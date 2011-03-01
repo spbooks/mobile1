@@ -1,0 +1,289 @@
+/*  Variables
+ *  ------------------------------------------------------------------------------- */
+/*  Mixins
+ *  ------------------------------------------------------------------------------- */
+/*  Box shadow
+ *  ------------------------------------------------------------------------------- */
+button {
+  -webkit-border-radius: 0.143em;
+  -moz-border-radius: 0.143em;
+  border-width: 1px;
+  border-style: solid;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+  margin-top: 1px;
+  padding: 8px 10px 9px;
+  position: relative;
+  text-decoration: none;
+  text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
+  background: #f3ebb7;
+  background: -webkit-gradient(linear, left top, left bottom, from(#f3ebb7), to(#e1d6aa));
+  border-color: #d1c698;
+  color: #3b3314; }
+  button:hover {
+    text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 1px;
+    background: #847539;
+    background: -webkit-gradient(linear, left top, left bottom, from(#9c8a46), to(#847539));
+    border-color: #5f5324;
+    color: white;
+    -o-box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 0;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 0;
+    -moz-box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 0;
+    box-shadow: rgba(0, 0, 0, 0.4) 0 0 5px 0; }
+
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent; }
+
+body {
+  font-family: "HelveticaNeue", arial, helvetica sans-serif;
+  background: #37040a url(../images/background-body.gif);
+  font-size: 0.875em;
+  line-height: 1.3; }
+
+@media only screen and (max-device-width: 480px) {
+  body {
+    -webkit-text-size-adjust: none;
+    min-height: 480px; } }
+
+a {
+  color: #ebc466;
+  font-weight: bold; }
+
+#tab-bar {
+  display: block;
+  background: #050405;
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#353535), color-stop(0.55, #212021), color-stop(0.551, #090809), to(#050405));
+  border-bottom: 1px #441d22 solid;
+  -o-box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px 0;
+  box-shadow: rgba(0, 0, 0, 0.5) 0 0 5px 0;
+  position: relative;
+  z-index: 1000; }
+  #tab-bar:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  .ie7 #tab-bar, .ie6 #tab-bar {
+    overflow: hidden;
+    zoom: 1; }
+  #tab-bar li {
+    display: inline;
+    float: left;
+    width: 33.333%; }
+  #tab-bar a {
+    text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 1px;
+    color: #cdcdcd;
+    display: block;
+    font-size: 0.857em;
+    font-weight: bold;
+    height: 4.583em;
+    padding-top: 0.417em;
+    position: relative;
+    margin: 0 0.857em;
+    text-align: center;
+    text-decoration: none; }
+
+#page-spots #tab-spots a {
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(40, 40, 40, 0.9)), color-stop(0.55, rgba(35, 35, 35, 0.5)), to(rgba(46, 46, 46, 0.1)));
+  color: #ebc466;
+  -o-box-shadow: rgba(0, 0, 0, 0.8) 0 -10px 1px 0;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.8) 0 -10px 1px 0;
+  -moz-box-shadow: rgba(0, 0, 0, 0.8) 0 -10px 1px 0;
+  box-shadow: rgba(0, 0, 0, 0.8) 0 -10px 1px 0; }
+  #page-spots #tab-spots a:after {
+    content: "";
+    display: block;
+    height: 0.5em;
+    margin-left: -1em;
+    left: 50%;
+    position: absolute;
+    margin-top: -1px;
+    top: 0;
+    width: 2em; }
+    .cssgradients #page-spots #tab-spots a:after {
+      background: -webkit-gradient(radial, 50% 0, 0, 50% 0, 7, from(rgba(236, 223, 156, 0.9)), to(rgba(85, 85, 85, 0))); }
+
+#tab-sighting a {
+  -webkit-border-bottom-left-radius: 0.286em;
+  -webkit-border-bottom-right-radius: 0.286em;
+  -moz-border-radius-bottomleft: 0.286em;
+  -moz-border-radius-bottomright: 0.286em;
+  text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
+  -o-box-shadow: black 0 0 4px 0;
+  -webkit-box-shadow: black 0 0 4px 0;
+  -moz-box-shadow: black 0 0 4px 0;
+  box-shadow: black 0 0 4px 0;
+  background: #d5d2d2;
+  color: #111111;
+  height: 4.95em;
+  margin: 0 0 -0.3em; }
+  .cssgradients #tab-sighting a {
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#dad7d7), color-stop(0.55, #eae9e9), color-stop(0.551, #d5d2d2), to(#d0cdcd)), #d5d2d2; }
+  #tab-sighting a:after {
+    background: #ff0099;
+    content: "";
+    display: block;
+    width: 4.5em;
+    height: 3.5em;
+    margin: 0.32em auto 0;
+    -o-background-size: 100% auto;
+    -webkit-background-size: 100% auto; }
+    .svg #tab-sighting a:after {
+      background: url(../images/pin2.svg) 0 0 no-repeat; }
+
+#header {
+  background: #ff0099; }
+  .no-standalone #header {
+    display: none; }
+
+#spots-location {
+  display: block;
+  padding: 0.65em 0.5em 0.6em; }
+  #spots-location:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  .ie7 #spots-location, .ie6 #spots-location {
+    overflow: hidden;
+    zoom: 1; }
+  #spots-location label {
+    display: none; }
+  #spots-location input {
+    -webkit-border-radius: 0.286em;
+    -moz-border-radius: 0.286em;
+    background: #e1cece;
+    border: 1px #3c0603 solid;
+    font-size: 1.15em;
+    margin: 0;
+    height: 2em;
+    width: 100%; }
+    #spots-location input:focus {
+      background: white; }
+  #spots-location fieldset {
+    float: left;
+    position: relative;
+    width: 76%; }
+  #spots-location button {
+    text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 1px;
+    -webkit-border-radius: 0.286em;
+    -moz-border-radius: 0.286em;
+    -o-box-shadow: rgba(255, 255, 255, 0.2) 0 1px 1px 0 inset;
+    -webkit-box-shadow: rgba(255, 255, 255, 0.2) 0 1px 1px 0 inset;
+    -moz-box-shadow: rgba(255, 255, 255, 0.2) 0 1px 1px 0 inset;
+    box-shadow: rgba(255, 255, 255, 0.2) 0 1px 1px 0 inset;
+    font-family: "HelveticaNeue", arial, helvetica sans-serif;
+    background: #7c0c18;
+    border: 1px #3c0603 solid;
+    color: white;
+    float: right;
+    font-size: 0.857em;
+    font-weight: bold;
+    height: 2.7em;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin: 0;
+    width: 22%;
+    -webkit-background-clip: padding-box; }
+
+#locate-me {
+  -webkit-border-top-right-radius: 0.286em;
+  -webkit-border-bottom-right-radius: 0.286em;
+  -moz-border-radius-topright: 0.286em;
+  -moz-border-radius-bottomright: 0.286em;
+  background: #eadddd;
+  border-left: 1px #b99f9e solid;
+  bottom: 0.071em;
+  overflow: hidden;
+  position: absolute;
+  right: 0;
+  top: 0.071em;
+  text-indent: -999em;
+  width: 2.2em; }
+
+.table-view {
+  background: #7c0c18; }
+  .table-view li {
+    border-top: 1px #8c2a34 solid;
+    border-bottom: 1px #640913 solid; }
+  .table-view .even {
+    background: #830f1b; }
+
+.table-action h2 {
+  color: white;
+  font-size: 1.256em; }
+.table-action li {
+  border: none; }
+.table-action a {
+  text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 1px;
+  border-top: 1px #8c2a34 solid;
+  border-bottom: 1px #640913 solid;
+  color: #d6b69e;
+  display: block;
+  font-size: 1em;
+  padding: 0.5em 0.785em 0.714em;
+  position: relative;
+  text-decoration: none; }
+.table-action .relative-distance {
+  font-weight: normal; }
+.table-action .sightings {
+  -webkit-border-radius: 0.143em;
+  -moz-border-radius: 0.143em;
+  background: #6f0914;
+  border: 1px #841420 solid;
+  color: #ebc466;
+  font-weight: bold;
+  position: absolute;
+  padding: 0.214em 0.429em;
+  right: 3em;
+  top: 50%;
+  margin-top: -1.1em; }
+
+#next-page {
+  text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 1px;
+  background: #62030e;
+  border-top: 1px #8c2a34 solid;
+  border-bottom: 1px #771f28 solid;
+  text-decoration: none;
+  display: block;
+  font-size: 1.143em;
+  padding: 0.5em 0.785em 0.785em; }
+
+#footer {
+  display: block;
+  color: #e0ccce;
+  padding: 1em 0.785em 1em; }
+  #footer:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden; }
+  .ie7 #footer, .ie6 #footer {
+    overflow: hidden;
+    zoom: 1; }
+  #footer .authenticate {
+    float: right; }
+
+#scroller {
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0); }
+
+#wrapper {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+  padding-bottom: 44px; }
