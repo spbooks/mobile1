@@ -1,0 +1,232 @@
+@import _mixins
+
+// ---- Reset --------------
+html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video
+  margin: 0
+  padding: 0
+  border: 0
+  outline: 0
+  font-size: 100%
+  vertical-align: baseline
+  background: transparent
+
+
+// ---- Structure --------------
+
+body
+  +font-stack("helvetica")
+  background: #37040a url(../images/background-body.gif)
+  font-size: 0.875em
+  line-height: 1.3
+
+@media only screen and (max-device-width: 480px)
+  body
+    // Disable font-size changes for orientation  
+    // http://developer.apple.com/library/safari/#documentation/AppleApplications/Reference/SafariWebContent/AdjustingtheTextSize/AdjustingtheTextSize.html
+    -webkit-text-size-adjust: none
+    min-height: 480px
+
+a
+  color: #ebc466
+  font-weight: bold
+
+// ---- Tab bar --------------
+#tab-bar
+  +clearfix
+  background: #050405
+  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(53, 53, 53, 1)), color-stop(0.55, rgba(33, 32, 33, 1)), color-stop(0.551, rgba(9, 8, 9, 1)), to(rgba(5, 4, 5, 1)))
+  border-bottom: 1px #441d22 solid
+  +box-shadow(rgba(0,0,0,.5), 0, 0, 5px, 0)
+  position: relative
+  z-index: 1000
+  li
+    display: inline
+    float: left
+    width: 33.333333%
+  a
+    +dark-inset
+    color: #cdcdcd
+    display: block
+    font:
+      // Set base at 12px
+      size: .857em
+      weight: bold
+    height: 4.583em
+    padding-top: .417em
+    position: relative
+    margin: 0 0.857em
+    text-align: center
+    text-decoration: none
+
+#tab-spots a
+  #page-spots &
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(40, 40, 40, .9)), color-stop(0.55, rgba(35, 35, 35, .5)), to(rgba(46, 46, 46, .1)))
+    color: #ebc466
+    +box-shadow(rgba(0, 0, 0,.8), 0, -10px, 1px, 0)
+    &:after
+      content: ""
+      display: block
+      height: .5em
+      margin-left: -1em
+      left: 50%
+      position: absolute
+      margin-top: -1px
+      top: 0
+      width: 2em
+      .cssgradients &
+        background: -webkit-gradient(radial, 50% 0, 0, 50% 0, 7, from(rgba(236, 223, 156, .9)), to(rgba(85, 85, 85, 0)))
+
+#tab-sighting
+  a
+    +small-rounded-bottom
+    +light-inset
+    +box-shadow(rgba(0,0,0,1), 0, 0, 4px, 0)
+    background: #d5d2d2
+    color: #111
+    height: 4.95em
+    margin: 0 0 -0.3em
+    .cssgradients &
+      // Note this hack
+      background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(218, 215, 215, 1)), color-stop(0.55, rgba(234, 233, 233, 1)), color-stop(0.551, rgba(213, 210, 210, 1)), to(rgba(208, 205, 205, 1))), #d5d2d2
+    &:after  
+      background: #f09
+      content: ""
+      display: block
+      width: 4.5em
+      height: 3.5em
+      margin: .32em auto 0
+      -o-background-size: 100% auto
+      -webkit-background-size: 100% auto
+      .svg &
+        background: url(../images/pin2.svg) 0 0 no-repeat
+
+// ---- Header --------------
+#header
+  background: #f09
+  .no-standalone &
+    display: none
+
+// ---- Spots --------------
+#spots-location
+  +clearfix
+  padding: .65em .5em .6em
+  label
+    display: none
+  input
+    +small-rounded
+    background: #e1cece
+    border: 1px #3c0603 solid
+    font-size: 1.15em
+    margin: 0
+    height: 2em
+    width: 100%
+    &:focus
+      background: #fff
+  fieldset
+    float: left
+    position: relative
+    width: 76%
+  button
+    +dark-inset
+    +small-rounded
+    +box-shadow(rgba(255,255,255,.2), 0, 1px, 1px, 0, inset)
+    +font-stack("helvetica")
+    background: #7c0c18
+    border: 1px #3c0603 solid
+    color: #fff
+    float: right
+    font:
+      size: .857em
+      weight: bold
+    height: 2.7em
+    letter-spacing: .15em
+    text-transform: uppercase
+    margin: 0
+    width: 22%
+    -webkit-background-clip: padding-box
+    
+#locate-me
+  +small-rounded-right
+  background: #eadddd
+  border-left: 1px #b99f9e solid
+  bottom: 0.071em
+  overflow: hidden
+  position: absolute
+  right: 0
+  top: 0.071em
+  text-indent: -999em
+  width: 2.2em
+
+
+
+// ---- Table Views --------------
+.table-view
+  background: #7c0c18
+  li
+    border-top: 1px #8c2a34 solid
+    border-bottom: 1px #640913 solid
+  .even
+    background: #830f1b
+.table-action
+  h2
+    color: #fff
+    font-size: 1.256em
+  li
+    border: none
+  a
+    +dark-inset
+    border-top: 1px #8c2a34 solid
+    border-bottom: 1px #640913 solid
+    color: #d6b69e
+    display: block
+    font-size: 1em
+    padding: .5em .785em .714em
+    position: relative
+    text-decoration: none
+    // &:active
+    //   background: #640913
+    //   border-top: 1px #7a1f28 solid
+    //   border-bottom: 1px #56060f solid
+  .relative-distance
+    font-weight: normal
+  .sightings
+    +tiny-rounded
+    background: #6f0914
+    border: 1px #841420 solid
+    color: #ebc466
+    font-weight: bold
+    position: absolute
+    padding: 0.214em 0.429em
+    right: 3em
+    top: 50%
+    margin-top: -1.1em
+
+#next-page
+  +dark-inset
+  background: #62030e
+  border-top: 1px #8c2a34 solid
+  border-bottom: 1px #771f28 solid
+  text-decoration: none
+  display: block
+  font-size: 1.143em
+  padding: .5em .785em .785em
+  
+// ---- Footer --------------
+#footer
+  +clearfix
+  color: #e0ccce
+  padding: 1em .785em 1em
+  .authenticate
+    float: right
+    
+#scroller
+  -webkit-touch-callout: none
+  -webkit-tap-highlight-color: rgba(0,0,0,0)
+    
+#wrapper
+  // height: 45px
+  position: relative
+  z-index: 1
+  width: 100%
+  overflow: hidden
+  padding-bottom: 44px
