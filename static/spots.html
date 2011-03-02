@@ -1,56 +1,29 @@
 <html class="no-js no-standalone">
   <head>
-    <title>StarTrackr</title>
+    <title>StarTrackr: Spots</title>
+    
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    
     <link type="text/css" rel="stylesheet" href="stylesheets/screen.css" media="screen.css"/>
     <script type="text/javascript" src="javascripts/vendor/modernizr-1.7.min.js"></script>
-    <script type="text/javascript" src="http://cubiq.org/dropbox/iscroll/iscroll.js?v3.7.1"></script>
-
-    <script type="text/javascript">
-    var myScroll;
-    var a = 0;
-    function loaded() {
-    	setHeight();	// Set the wrapper height. Not strictly needed, see setHeight() function below.
-
-    	// Please note that the following is the only line needed by iScroll to work. Everything else here is to make this demo fancier.
-    	myScroll = new iScroll('scroller', {desktopCompatibility:true});
-    }
-
-    // Change wrapper height based on device orientation. Not strictly needed by iScroll, you may also use pure CSS techniques.
-    function setHeight() {
-    	var headerH = document.getElementById('header').offsetHeight,
-    		footerH = document.getElementById('footer').offsetHeight,
-    		wrapperH = window.innerHeight - headerH - footerH;
-    	document.getElementById('wrapper').style.height = wrapperH + 'px';
-    }
-
-    // Check screen size on orientation change
-    window.addEventListener('onorientationchange' in window ? 'orientationchange' : 'resize', setHeight, false);
-
-    // Prevent the whole screen to scroll when dragging elements outside of the scroller (ie:header/footer).
-    // If you want to use iScroll in a portion of the screen and still be able to use the native scrolling, do *not* preventDefault on touchmove.
-    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
-    
-    setTimeout(function() { window.scrollTo(0, 0) }, 1200);
-
-    // Load iScroll when DOM content is ready.
-    document.addEventListener('DOMContentLoaded', loaded, false);
-    </script>
-  </head>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script src="javascripts/basic.js"></script>  </head>
   <body id="page-spots">
     <ul id="tab-bar">
       <li id="tab-spots">
-        <a href="#">
+        <a href="spots.html">
           Spots
         </a>
       </li>      
       <li id="tab-sighting">
-        <a href="#">
+        <a href="new.html">
           Add a sighting
         </a>
       </li>
       <li id="tab-stars">
-        <a href="#">
+        <a href="stars.html">
           Stars
         </a>
       </li>
@@ -74,70 +47,70 @@
         
         <ul id="spots-list" class="table-view table-action">
           <li>
-            <a href="#">
+            <a href="spot.html">
               <h2>Planet Hollywood</h2>
               <span class="relative-distance">233m away</span>
               <span class="sightings">3</span>
             </a>
           </li>
           <li class="even">
-            <a href="#">
+            <a href="spot.html">
               <h2>Myles&rsquo; House</h2>
               <span class="relative-distance">506m away</span>
               <span class="sightings">5</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="spot.html">
               <h2>Edgar&rsquo;s Inn</h2>
               <span class="relative-distance">1.2km away</span>
               <span class="sightings">15</span>
             </a>
           </li>
           <li class="even">
-            <a href="#">
+            <a href="spot.html">
               <h2>Hard Rock Caf&eacute;</h2>
               <span class="relative-distance">1.2km away</span>
               <span class="sightings">15</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="spot.html">
               <h2>Planet Hollywood</h2>
               <span class="relative-distance">233m away</span>
               <span class="sightings">3</span>
             </a>
           </li>
           <li class="even">
-            <a href="#">
+            <a href="spot.html">
               <h2>Myles&rsquo; House</h2>
               <span class="relative-distance">506m away</span>
               <span class="sightings">5</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="spot.html">
               <h2>Edgar&rsquo;s Inn</h2>
               <span class="relative-distance">1.2km away</span>
               <span class="sightings">15</span>
             </a>
           </li>
           <li class="even">
-            <a href="#">
+            <a href="spot.html">
               <h2>Hard Rock Caf&eacute;</h2>
               <span class="relative-distance">1.2km away</span>
               <span class="sightings">15</span>
             </a>
           </li>
           <li>
-            <a href="#">
+            <a href="spot.html">
               <h2>Edgar&rsquo;s Inn</h2>
               <span class="relative-distance">1.2km away</span>
               <span class="sightings">15</span>
             </a>
           </li>
           <li class="even">
-            <a href="#">
+            <a href="spot.html">
               <h2>Hard Rock Caf&eacute;</h2>
               <span class="relative-distance">1.2km away</span>
               <span class="sightings">15</span>

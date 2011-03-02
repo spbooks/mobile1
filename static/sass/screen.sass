@@ -18,6 +18,8 @@ body
   background: #37040a url(../images/background-body.gif)
   font-size: 0.875em
   line-height: 1.3
+  .standalone &
+    padding-bottom: 4.5em
 
 @media only screen and (max-device-width: 480px)
   body
@@ -38,7 +40,7 @@ a
   border-bottom: 1px #441d22 solid
   +box-shadow(rgba(0,0,0,.5), 0, 0, 5px, 0)
   position: relative
-  z-index: 1000
+  z-index: 200
   li
     display: inline
     float: left
@@ -57,6 +59,10 @@ a
     margin: 0 0.857em
     text-align: center
     text-decoration: none
+  .standalone &
+    margin-top: .3em
+    position: absolute
+    width: 100%
 
 #tab-spots a
   #page-spots &
@@ -76,6 +82,45 @@ a
       .cssgradients &
         background: -webkit-gradient(radial, 50% 0, 0, 50% 0, 7, from(rgba(236, 223, 156, .9)), to(rgba(85, 85, 85, 0)))
 
+.standalone.cssgradients
+  #page-spots
+    #tab-spots a
+      background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(46, 46, 46, 0), color-stop(0.55, rgba(35, 35, 35, .5)), to(rgba(40, 40, 40, .9))))
+      +box-shadow(rgba(0, 0, 0,.8), 0, 10px, 1px, 0)
+      &:after
+        bottom: -2px
+        background: -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 7, from(rgba(236, 223, 156, .9)), to(rgba(85, 85, 85, 0)))
+        top: auto
+        
+        
+#tab-stars a
+  #page-stars &
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(40, 40, 40, .9)), color-stop(0.55, rgba(35, 35, 35, .5)), to(rgba(46, 46, 46, .1)))
+    color: #ebc466
+    +box-shadow(rgba(0, 0, 0,.8), 0, -10px, 1px, 0)
+    &:after
+      content: ""
+      display: block
+      height: .5em
+      margin-left: -1em
+      left: 50%
+      position: absolute
+      margin-top: -1px
+      top: 0
+      width: 2em
+      .cssgradients &
+        background: -webkit-gradient(radial, 50% 0, 0, 50% 0, 7, from(rgba(236, 223, 156, .9)), to(rgba(85, 85, 85, 0)))
+
+.standalone.cssgradients
+  #page-stars
+    #tab-stars a
+      background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(46, 46, 46, 0), color-stop(0.55, rgba(35, 35, 35, .5)), to(rgba(40, 40, 40, .9))))
+      +box-shadow(rgba(0, 0, 0,.8), 0, 10px, 1px, 0)
+      &:after
+        bottom: -2px
+        background: -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 7, from(rgba(236, 223, 156, .9)), to(rgba(85, 85, 85, 0)))
+        top: auto
+
 #tab-sighting
   a
     +small-rounded-bottom
@@ -85,6 +130,10 @@ a
     color: #111
     height: 4.95em
     margin: 0 0 -0.3em
+    .standalone &
+      +no-rounded
+      +small-rounded-top
+      margin: -.3em 0 0
     .cssgradients &
       // Note this hack
       background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(218, 215, 215, 1)), color-stop(0.55, rgba(234, 233, 233, 1)), color-stop(0.551, rgba(213, 210, 210, 1)), to(rgba(208, 205, 205, 1))), #d5d2d2
@@ -102,9 +151,39 @@ a
 
 // ---- Header --------------
 #header
-  background: #f09
+  +dark-inset
+  background: #6a0712
+  border-bottom: 1px #38040a solid
+  color: #ebc466
+  font-weight: bold
+  letter-spacing: .15em
+  text-align: center
+  text-transform: uppercase
+  padding: .6em .6em .7em
+  .cssgradients &
+    // Note this hack
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(130, 21, 32, 1)), color-stop(0.55, rgba(119, 23, 34, 1)), color-stop(0.551, rgba(110, 8, 9, 1)), to(rgba(105, 7, 18, 1))), #6a0712
   .no-standalone &
     display: none
+  .back
+    +dark-inset
+    +small-rounded
+    +box-shadow(rgba(255,255,255,.2), 0, 1px, 1px, 0, inset)
+    +font-stack("helvetica")
+    background: #7c0c18
+    border: 1px #54100d solid
+    color: #fff
+    font:
+      size: .92em
+      weight: bold
+    letter-spacing: 0
+    padding: .4em .6em .5em .6em
+    position: absolute
+    text-decoration: none
+    text-transform: none
+    top: .2em
+    left: .5em
+    -webkit-background-clip: padding-box
 
 // ---- Spots --------------
 #spots-location
@@ -167,6 +246,7 @@ a
     border-bottom: 1px #640913 solid
   .even
     background: #830f1b
+
 .table-action
   h2
     color: #fff
@@ -201,6 +281,30 @@ a
     top: 50%
     margin-top: -1.1em
 
+.table-list
+  +dark-inset
+  color: #c08b7c
+  h2
+    color: #fff
+    font-size: 1.256em
+    line-height: 1
+    margin-bottom: .15em
+  a
+    text-decoration: none
+  li
+    padding: .8em .785em .9em 5em
+    position: relative
+  .avatar
+    position: absolute
+    left: 0
+    top: .4em
+    img
+      +small-rounded-right
+  h2
+    margin-top: 0
+  .details
+    font-size: .928em
+
 #next-page
   +dark-inset
   background: #62030e
@@ -210,7 +314,28 @@ a
   display: block
   font-size: 1.143em
   padding: .5em .785em .785em
-  
+
+.page-header  
+  +clearfix
+  color: #d6b69e
+  padding: .8em .785em 1.1em
+  position: relative
+  h1
+    +dark-inset
+    font-size: 1.57em
+    color: #fff
+    line-height: 1
+    margin-bottom: .25em
+    padding-right: 3em
+  .map, .avatar
+    margin-top: -2.18em
+    position: absolute
+    right: 0
+    top: 50%
+    img
+      +small-rounded-left
+
+
 // ---- Footer --------------
 #footer
   +clearfix
@@ -219,14 +344,12 @@ a
   .authenticate
     float: right
     
-#scroller
-  -webkit-touch-callout: none
-  -webkit-tap-highlight-color: rgba(0,0,0,0)
+// #scroller
+//   -webkit-touch-callout: none
+//   -webkit-tap-highlight-color: rgba(0,0,0,0)
     
 #wrapper
-  // height: 45px
   position: relative
   z-index: 1
   width: 100%
   overflow: hidden
-  padding-bottom: 44px
