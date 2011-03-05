@@ -1,7 +1,7 @@
 $(document).ready(function() {
-  if (window.navigator.standalone) {
-    $('html').addClass('standalone').removeClass('no-standalone');
-  }
+  Modernizr.addTest('standalone',function(){
+    return window.navigator.standalone;
+  });
   setTabBarPosition();
   setTimeout(function() {
     window.scrollTo(0,0); 

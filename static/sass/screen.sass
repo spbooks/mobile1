@@ -64,12 +64,32 @@ a
     position: absolute
     width: 100%
 
+
+// ---- States --------------
+#tab-spots a, #tab-stars a, #tab-sighting a
+  &:after
+    content: ""
+    display: block
+    width: 4.3em
+    height: 2.6em
+    margin: .32em auto 0
+    -o-background-size: 100% auto
+    -webkit-background-size: 100% auto
+
 #tab-spots a
+  &:after
+    background: transparent
+    .svg &
+      content: url(../images/icon-spots-normal.svg)
   #page-spots &
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(40, 40, 40, .9)), color-stop(0.55, rgba(35, 35, 35, .5)), to(rgba(46, 46, 46, .1)))
     color: #ebc466
     +box-shadow(rgba(0, 0, 0,.8), 0, -10px, 1px, 0)
     &:after
+      background: transparent
+      .svg &
+        content: url(../images/icon-spots-selected.svg)
+    &:before
       content: ""
       display: block
       height: .5em
@@ -87,18 +107,25 @@ a
     #tab-spots a
       background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(46, 46, 46, 0), color-stop(0.55, rgba(35, 35, 35, .5)), to(rgba(40, 40, 40, .9))))
       +box-shadow(rgba(0, 0, 0,.8), 0, 10px, 1px, 0)
-      &:after
+      &:before
         bottom: -2px
         background: -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 7, from(rgba(236, 223, 156, .9)), to(rgba(85, 85, 85, 0)))
         top: auto
-        
-        
+
 #tab-stars a
+  &:after
+    background: transparent
+    .svg &
+      content: url(../images/icon-stars-normal.svg)
   #page-stars &
     background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(40, 40, 40, .9)), color-stop(0.55, rgba(35, 35, 35, .5)), to(rgba(46, 46, 46, .1)))
     color: #ebc466
     +box-shadow(rgba(0, 0, 0,.8), 0, -10px, 1px, 0)
     &:after
+      background: transparent
+      .svg &
+        content: url(../images/icon-stars-selected.svg)
+    &:before
       content: ""
       display: block
       height: .5em
@@ -116,38 +143,31 @@ a
     #tab-stars a
       background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(46, 46, 46, 0), color-stop(0.55, rgba(35, 35, 35, .5)), to(rgba(40, 40, 40, .9))))
       +box-shadow(rgba(0, 0, 0,.8), 0, 10px, 1px, 0)
-      &:after
+      &:before
         bottom: -2px
         background: -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 7, from(rgba(236, 223, 156, .9)), to(rgba(85, 85, 85, 0)))
         top: auto
 
-#tab-sighting
-  a
-    +small-rounded-bottom
-    +light-inset
-    +box-shadow(rgba(0,0,0,1), 0, 0, 4px, 0)
-    background: #d5d2d2
-    color: #111
-    height: 4.95em
-    margin: 0 0 -0.3em
-    .standalone &
-      +no-rounded
-      +small-rounded-top
-      margin: -.3em 0 0
-    .cssgradients &
-      // Note this hack
-      background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(218, 215, 215, 1)), color-stop(0.55, rgba(234, 233, 233, 1)), color-stop(0.551, rgba(213, 210, 210, 1)), to(rgba(208, 205, 205, 1))), #d5d2d2
-    &:after  
-      background: #f09
-      content: ""
-      display: block
-      width: 4.5em
-      height: 3.5em
-      margin: .32em auto 0
-      -o-background-size: 100% auto
-      -webkit-background-size: 100% auto
-      .svg &
-        background: url(../images/pin2.svg) 0 0 no-repeat
+#tab-sighting a
+  +small-rounded-bottom
+  +light-inset
+  +box-shadow(rgba(0,0,0,1), 0, 0, 4px, 0)
+  background: #d5d2d2
+  color: #111
+  height: 4.95em
+  margin: 0 0 -0.3em
+  .standalone &
+    +no-rounded
+    +small-rounded-top
+    margin: -.3em 0 0
+  .cssgradients &
+    // Note this hack
+    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(218, 215, 215, 1)), color-stop(0.55, rgba(234, 233, 233, 1)), color-stop(0.551, rgba(213, 210, 210, 1)), to(rgba(208, 205, 205, 1))), #d5d2d2
+  &:after
+    background: transparent
+    content: ""
+    .svg &
+      content: url(../images/icon-sightings-normal.svg)
 
 // ---- Header --------------
 #header
@@ -170,7 +190,7 @@ a
     +small-rounded
     +box-shadow(rgba(255,255,255,.2), 0, 1px, 1px, 0, inset)
     +font-stack("helvetica")
-    background: #7c0c18
+    background: #9a1b27
     border: 1px #54100d solid
     color: #fff
     font:
@@ -189,7 +209,7 @@ a
 #spots-location
   +clearfix
   padding: .65em .5em .6em
-  label
+  label span
     display: none
   input
     +small-rounded
@@ -200,7 +220,11 @@ a
     height: 2em
     width: 100%
     &:focus
-      background: #fff
+      background: #fff  
+  input::-webkit-input-placeholder
+    color: #856969
+  input:-moz-placeholder
+    color: #856969
   fieldset
     float: left
     position: relative
@@ -224,7 +248,7 @@ a
     width: 22%
     -webkit-background-clip: padding-box
     
-#locate-me
+.locate-me
   +small-rounded-right
   background: #eadddd
   border-left: 1px #b99f9e solid
@@ -235,6 +259,19 @@ a
   top: 0.071em
   text-indent: -999em
   width: 2.2em
+  &:after
+    background: transparent
+    bottom: 0.25em
+    left: 0.25em
+    display: block
+    position: absolute
+    top: 0.25em
+    width: 1.8em
+    text-indent: 0
+    -o-background-size: 100% auto
+    -webkit-background-size: 100% auto
+    .svg &
+      content: url(../images/icon-location.svg)
 
 
 
@@ -335,6 +372,81 @@ a
     img
       +small-rounded-left
 
+
+// ---- Sighting --------------
+#page-sightings
+  form
+    background: #7c0c18
+    padding: .65em .5em .6em
+  label
+    display: block
+    font-size: 1.15em
+    position: relative
+    span
+      color: #7c0c18
+      font:
+        size: .875em
+        weight: bold
+      position: absolute
+      right: 82%
+      top: .8em
+  input
+    background: #e1cece
+    border: 1px #3c0603 solid
+    display: block
+    font-size: 1em
+    margin: 0
+    height: 2em
+    padding: 1.2em
+    padding-left: 20%
+    width: 100%
+    -webkit-background-clip: padding-box
+    &:focus
+      background: #fff  
+  input::-webkit-input-placeholder
+    color: #856969
+  input:-moz-placeholder
+    color: #856969
+    
+#label-name
+  border-bottom: 0
+
+#input-name  
+  +no-rounded
+  +small-rounded-top
+
+#label-spot
+  .locate-me
+    -webkit-border-top-right-radius: 0
+    -moz-border-radius-topright: 0
+    border-top-right-radius: 0
+
+#input-spot
+  +no-rounded
+  +small-rounded-bottom
+  border-top: none !important
+  padding-bottom: 1.3em !important
+  padding-right: 12% !important
+
+#photo
+  margin: 1em 0
+  a
+    +dark-inset
+    +small-rounded
+    +box-shadow(rgba(255,255,255,.2), 0, 1px, 1px, 0, inset)
+    +font-stack("helvetica")
+    background: #9a1b27
+    border: 1px #3c0603 solid
+    color: #fff
+    display: block
+    letter-spacing: 0
+    font:
+      size: 1.14em
+      weight: bold
+    padding: .5em .8em .7em
+    text-decoration: none
+    margin: 0
+    -webkit-background-clip: padding-box
 
 // ---- Footer --------------
 #footer

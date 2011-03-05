@@ -88,11 +88,12 @@ $default-box-shadow-inset : false !default
 //----- Rounded corners ------------------------
 
 =no-rounded
-  -webkit-border-bottom-left-radius: 0
-  -webkit-border-bottom-right-radius: 0
-  -moz-border-radius-bottomleft: 0
-  -moz-border-radius-bottomright: 0
-  
+  -webkit-border-radius: 0
+  -webkit-border-radius: 0
+  -moz-border-radius: 0
+  -moz-border-radius: 0
+  border-radius: 0
+  border-radius: 0
 
 =tiny-rounded
   -webkit-border-radius: $tiny-rounded-radius
@@ -103,28 +104,37 @@ $default-box-shadow-inset : false !default
   -webkit-border-top-right-radius: $tiny-rounded-radius
   -moz-border-radius-topleft: $tiny-rounded-radius
   -moz-border-radius-topright: $tiny-rounded-radius
+  border-top-left-radius: $tiny-rounded-radius
+  border-top-right-radius: $tiny-rounded-radius
 
 =tiny-rounded-bottom
   -webkit-border-bottom-left-radius: $tiny-rounded-radius
   -webkit-border-bottom-right-radius: $tiny-rounded-radius
   -moz-border-radius-bottomleft: $tiny-rounded-radius
   -moz-border-radius-bottomright: $tiny-rounded-radius
+  border-bottom-left-radius: $tiny-rounded-radius
+  border-bottom-right-radius: $tiny-rounded-radius
 
 =small-rounded
   -webkit-border-radius: $small-rounded-radius
   -moz-border-radius: $small-rounded-radius
+  border-radius: $small-rounded-radius
 
 =small-rounded-top
   -webkit-border-top-left-radius: $small-rounded-radius
   -webkit-border-top-right-radius: $small-rounded-radius
   -moz-border-radius-topleft: $small-rounded-radius
   -moz-border-radius-topright: $small-rounded-radius
+  border-top-left-radius: $small-rounded-radius
+  border-top-right-radius: $small-rounded-radius
 
 =small-rounded-bottom
   -webkit-border-bottom-left-radius: $small-rounded-radius
   -webkit-border-bottom-right-radius: $small-rounded-radius
   -moz-border-radius-bottomleft: $small-rounded-radius
   -moz-border-radius-bottomright: $small-rounded-radius
+  border-bottom-left-radius: $small-rounded-radius
+  border-bottom-right-radius: $small-rounded-radius
 
 =small-rounded-right
   -webkit-border-top-right-radius: $small-rounded-radius
@@ -137,38 +147,50 @@ $default-box-shadow-inset : false !default
   -webkit-border-bottom-left-radius: $small-rounded-radius
   -moz-border-radius-topleft: $small-rounded-radius
   -moz-border-radius-bottomleft: $small-rounded-radius
+  border-top-left-radius: $small-rounded-radius
+  border-bottom-left-radius: $small-rounded-radius
 
 =medium-rounded
   -webkit-border-radius: $medium-rounded-radius
   -moz-border-radius: $medium-rounded-radius
+  border-radius: $medium-rounded-radius
 
 =medium-rounded-top
   -webkit-border-top-left-radius: $medium-rounded-radius
   -webkit-border-top-right-radius: $medium-rounded-radius
   -moz-border-radius-topleft: $medium-rounded-radius
   -moz-border-radius-topright: $medium-rounded-radius
+  border-top-left-radius: $medium-rounded-radius
+  border-top-right-radius: $medium-rounded-radius
 
 =medium-rounded-bottom
   -webkit-border-bottom-left-radius: $medium-rounded-radius
   -webkit-border-bottom-right-radius: $medium-rounded-radius
   -moz-border-radius-bottomleft: $medium-rounded-radius
   -moz-border-radius-bottomright: $medium-rounded-radius
+  border-bottom-left-radius: $medium-rounded-radius
+  border-bottom-right-radius: $medium-rounded-radius
 
 =large-rounded
   -webkit-border-radius: $large-rounded-radius
   -moz-border-radius: $large-rounded-radius
+  border-radius: $large-rounded-radius
 
 =large-rounded-top
   -webkit-border-top-left-radius: $large-rounded-radius
   -webkit-border-top-right-radius: $large-rounded-radius
   -moz-border-radius-topleft: $large-rounded-radius
   -moz-border-radius-topright: $large-rounded-radius
+  border-top-left-radius: $large-rounded-radius
+  border-top-right-radius: $large-rounded-radius
 
 =large-rounded-bottom
   -webkit-border-bottom-left-radius: $large-rounded-radius
   -webkit-border-bottom-right-radius: $large-rounded-radius
   -moz-border-radius-bottomleft: $large-rounded-radius
   -moz-border-radius-bottomright: $large-rounded-radius
+  border-bottom-left-radius: $large-rounded-radius
+  border-bottom-right-radius: $large-rounded-radius
 
 // ----- Buttons -------
 =button

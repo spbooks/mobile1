@@ -1,0 +1,68 @@
+<html class="no-js">
+  <head>
+    <title>StarTrackr: Sightings</title>
+    
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    
+    <link type="text/css" rel="stylesheet" href="stylesheets/screen.css" media="screen"/>
+    <script type="text/javascript" src="javascripts/vendor/modernizr-1.7.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script src="javascripts/basic.js"></script>  </head>
+  <body id="page-sightings">
+    <ul id="tab-bar">
+      <li id="tab-spots">
+        <a href="spots.html">
+          Spots
+        </a>
+      </li>      
+      <li id="tab-sighting">
+        <a href="new.html">
+          Add a sighting
+        </a>
+      </li>
+      <li id="tab-stars">
+        <a href="stars.html">
+          Stars
+        </a>
+      </li>
+    </ul><!-- #tab-bar -->
+    
+    <div id="header">
+      <h1>New sighting</h1>
+      <a href="#" class="back">Back</a>
+    </div><!-- #header -->
+    
+    <div id="wrapper">
+      <div id="scroller">
+        <form action="" method="post">
+          <fieldset>
+            <label for="input-name" id="label-name">
+              <span>Who</span>
+              <input type="text" name="name" id="input-name" placeholder="Enter a name"/>
+            </label>
+            <label for="input-spot" id="label-spot">
+              <span>Where</span>
+              <input type="text" name="spot" id="input-spot" placeholder="Enter a spot or address"/>
+              <a href="#" class="locate-me">Locate me</a>
+            </label>
+          </fieldset>
+          <fieldset id="photo">
+            <a href="#">Attach a photograph</a>
+          </fieldset>
+          <fieldset id="share">
+            
+          </fieldset>
+        </form>
+        <div id="footer">
+          <span class="site-switch">
+            Switch to
+            <a href="#">standard site</a>
+          </span>
+          <a href="#" class="authenticate">Log out</a>
+        </div><!-- #footer -->
+      </div><!-- #scroller -->
+    </div><!-- #wrapper -->
+  </body>
+</html>

@@ -1,4 +1,4 @@
-<html class="no-js no-standalone">
+<html class="no-js">
   <head>
     <title>StarTrackr: Spots</title>
     
@@ -38,9 +38,11 @@
       <div id="scroller">
         <form id="spots-location" action="" method="post">
           <fieldset>
-            <label for="address">Location</label>
-            <input type="text" name="address" id="address"/>
-            <a href="#" id="locate-me">Locate me</a>
+            <label for="address">
+              <span>Location</span>
+              <input type="text" placeholder="Enter a location" name="address" id="address"/>
+            </label>
+            <a href="#" class="locate-me">Locate me</a>
           </fieldset>
           <button type="submit">Find</button>
         </form><!-- #spot-location -->
