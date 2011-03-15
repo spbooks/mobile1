@@ -1,0 +1,56 @@
+.in, .out {
+  -webkit-animation-timing-function: ease-in-out;
+  -webkit-animation-duration: 300ms;
+}
+@-webkit-keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; } 
+}
+.fade.in {
+  -webkit-animation-name: fade-in;
+  z-index: 10;
+}
+.fade.out {
+  z-index: 0;
+}
+.show.in {
+  z-index: 10;
+  -webkit-animation-name: fade-in;
+  -webkit-animation-duration: 10ms; }
+
+.show.out {
+  z-index: 0;
+  -webkit-animation-duration: 10ms; }
+
+/* Push in/out */
+@-webkit-keyframes inFromRight {
+from { -webkit-transform: translateX(100%); }
+to { -webkit-transform: translateX(0); } 
+}
+.push.in {
+-webkit-animation-name: inFromRight; 
+}
+
+@-webkit-keyframes outToLeft {
+from { -webkit-transform: translateX(0); }
+to { -webkit-transform: translateX(-100%); }
+}
+.push.out {
+-webkit-animation-name: outToLeft; 
+}
+
+@-webkit-keyframes inFromLeft {
+from { -webkit-transform: translateX(-100%); }
+to { -webkit-transform: translateX(0); } 
+}
+.push.in.reverse {
+-webkit-animation-name: inFromLeft; 
+}
+
+@-webkit-keyframes outToRight {
+from { -webkit-transform: translateX(0); }
+to { -webkit-transform: translateX(100%); } 
+}
+.push.out.reverse {
+-webkit-animation-name: outToRight; 
+}
