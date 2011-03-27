@@ -66,52 +66,110 @@
       <div id="stars"></div>
       <div id="star"></div>
     </div>
+
+<script id="tmplStar" type="text/x-jquery-tmpl">
+  <li>
+    <a href="spot.html?spot=${id}" data-load="spot" data-trans="push">
+      <h2>${name}</h2>
+      <span class="relative-distance">${distance}</span>
+      <span class="sightings">${sightings}</span>
+    </a>
+  </li>
+</script>
+
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
     <script type="text/javascript">
     if(!window.jQuery){
       document.write(unescape('%3Cscript src="javascripts/vendor/jquery-1.5.min.js"%3E%3C/script%3E'));
     }
     </script>
+    <script type="text/javascript" src="javascripts/vendor/jquery.tmpl.min" ></script>
     <script type="text/javascript" src="javascripts/vendor/modernizr-1.7.min.js"></script>
     <script type="text/javascript">
     var hasTouch = "ontouchend" in document,
-      touchEndEvent = hasTouch ? "touchend" : "mouseup";
+      touchEndEvent = hasTouch ? "touchend" : "mouseup",
+      hasAnimationEvent = typeof WebKitTransitionEvent !== "undefined";
 
     $(document).ready(function(){
+      
       // Hook up links to hijack
-      $("#tab-bar a, #spots-list a").live("click", function(e){
+      $("#tab-bar a").click("click", function(e){
+        var url = e.currentTarget;
+        loadPage(url, $(this).attr("data-load"));
+        e.preventDefault();
+      });
+
+      // Spots list
+      $("#spots-list a").live("click", function(e){
         var url = e.currentTarget;
         loadPage(url, $(this).attr("data-load"), $(this).attr("data-trans"));
         e.preventDefault();
       });
-      
+
+      // Back button
       $("#page-spot .back").live("click", function(e){
         e.preventDefault();
         transition("#spots", "push", true)
       })
-  
+
+      var spotsList = [{
+        id: 4,
+        name:"My Name is", 
+        distance:"2.3Km", 
+        sightings:10
+      },  {
+        id: 5,
+        name:"List listname", 
+        distance:"2.3Km", 
+        sightings:10
+      }];
+      
       // Load first page
-      loadPage("spots.html", "spots");
+      loadPage("spots.html", "spots", "show", function(){
+        $("#tmplStar").tmpl(spotsList).prependTo("#spots-list");
+      });
     });
 
-    function loadPage(url, pageName, trans) {
+    function loadPage(url, pageName, trans, callback) {
       $("#pages #" + pageName).load(url + " #wrapper", function(){
         $("body").attr("id", "page-" + pageName);
-        transition(this, trans || "show");
+        transition(this, trans || "show", false, callback);
       });
     };
+    
+    function transition(toPage, type, reverse, callback){
+      var toPage = $(toPage),
+        fromPage = $("#pages .current"),
+        reverse = reverse ? "reverse" : "",
+        onEnd = function(){
+            fromPage.removeClass("current " + type + " out " + reverse);
+            toPage.removeClass(type + " in " + reverse);
+            callback && callback();
+        };
+      toPage.addClass("current " + type + " in " + reverse);
+      fromPage.addClass(type + " out " + reverse);
+      if(hasAnimationEvent){
+          toPage.one("webkitAnimationEnd", onEnd);
+      }
+      else {
+          setTimeout(onEnd, 350);
+      }
 
-    function transition(toPage, type, reverse){
+    /*
+    without conditional end event:
+      function transition(toPage, type, reverse, callback){
       var toPage = $(toPage),
         fromPage = $("#pages .current"),
         reverse = reverse ? "reverse" : "";
       toPage
-        .addClass("current " + type + " in " + reverse)
+        .addClass("current " + type + " in " + reverse);
         .one("webkitAnimationEnd", function(){
           fromPage.removeClass("current " + type + " out " + reverse);
           toPage.removeClass(type + " in " + reverse);
+          callback && callback();
         });
       fromPage.addClass(type + " out " + reverse);
+      */
     }
     </script>
   </body>

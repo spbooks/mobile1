@@ -1,14 +1,14 @@
 .in, .out {
-  -webkit-animation-timing-function: ease-in-out;
-  -webkit-animation-duration: 300ms;
+	-webkit-animation-timing-function: ease-in-out;
+	-webkit-animation-duration: 300ms;
 }
 @-webkit-keyframes fade-in {
-  from { opacity: 0; }
-  to { opacity: 1; } 
+	from { opacity: 0; }
+	to { opacity: 1; } 
 }
 .fade.in {
-  -webkit-animation-name: fade-in;
-  z-index: 10;
+	-webkit-animation-name: fade-in;
+	z-index: 10;
 }
 .fade.out {
   z-index: 0;
@@ -28,7 +28,9 @@ from { -webkit-transform: translateX(100%); }
 to { -webkit-transform: translateX(0); } 
 }
 .push.in {
--webkit-animation-name: inFromRight; 
+	-webkit-transform: translateX(0);
+	-o-transform: translateX(0);
+	-webkit-animation-name: inFromRight; 
 }
 
 @-webkit-keyframes outToLeft {
@@ -36,7 +38,9 @@ from { -webkit-transform: translateX(0); }
 to { -webkit-transform: translateX(-100%); }
 }
 .push.out {
--webkit-animation-name: outToLeft; 
+	-webkit-transform: translateX(-100%);
+	-o-transform: translateX(-100%);
+	-webkit-animation-name: outToLeft; 
 }
 
 @-webkit-keyframes inFromLeft {
@@ -44,13 +48,15 @@ from { -webkit-transform: translateX(-100%); }
 to { -webkit-transform: translateX(0); } 
 }
 .push.in.reverse {
--webkit-animation-name: inFromLeft; 
+	-o-transform: translateX(0);
+	-webkit-animation-name: inFromLeft; 
 }
 
 @-webkit-keyframes outToRight {
-from { -webkit-transform: translateX(0); }
-to { -webkit-transform: translateX(100%); } 
+	from { -webkit-transform: translateX(0); }
+	to { -webkit-transform: translateX(100%); } 
 }
 .push.out.reverse {
--webkit-animation-name: outToRight; 
+	-o-transform: translateX(100%);
+	-webkit-animation-name: outToRight; 
 }

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>StarTrackr: Spot</title>
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+
+		<link type="text/css" rel="stylesheet" href="../stylesheets/screen.css" media="screen"/>
+		<link type="text/css" rel="stylesheet" href="../stylesheets/transitions.css" media="screen"/>
+		<style type="text/css" media="screen">
+			#pages {
+				position: relative;
+			}
+			#pages > div {
+				display:none;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				/* Ex 03-03-c - with opera mobile */
+				-o-transition-property: -o-transform; 
+				-o-transition-duration: 300ms;
+				
+			}
+			#pages > div.current {
+				display: block;
+			}
+			#header {
+				position: relative;
+			}
+			#header .back{
+	        display: none;
+	      }
+	      #spot-details .back{
+	        display: block !important;
+	      }
+
+		</style>
+	</head>
+	<body>
+		<ul id="tab-bar">
+			<li id="tab-spots">
+				<a data-load="spots" href="../spots.html">
+				Spots
+				</a>
+			</li>		 
+			<li id="tab-sighting">
+				<a data-load="sightings" href="../new.html">
+				Add a sighting
+				</a>
+			</li>
+			<li  id="tab-stars">
+				<a data-load="stars" href="../stars.html">
+				Stars
+				</a>
+			</li>
+		</ul><!-- #tab-bar -->
+
+    <!-- CHANGE: added pages for container -->
+<div id="pages">
+  <div id="spots">
+	<div id="header">
+      <h1>Spots</h1>
+      <a href="#" class="back">Back</a>
+    </div><!-- #header -->
+    <ul id="spots-list" class="table-view table-action">
+    </ul>
+  </div>
+	<div id="spot-details">
+		<!--container for details-->
+		<div id="header">
+			<h1>Details</h1>
+			<span class="back">back</span>
+		</div>
+	</div>
+  <div id="sightings"></div>
+  <div id="stars"></div>
+  <div id="star"></div>
+</div>
+<!-- For simple templating -->
+<div id="tmplSimple">
+	<li>
+		<a href="spot.html" data-load="spot">
+			<h2></h2>
+			<span class="relative-distance"></span>
+			<span class="sightings"></span>
+		</a>
+	</li>
+</div>
+
+<!-- For jQ tmpl -->
+<script id="tmplSpots" type="text/x-jquery-tmpl">
+	<li>
+		<a href="spot.html?spot=${id}" data-load="spot">
+			<h2>${name}</h2>
+			<span class="relative-distance">${distance}</span>
+			<span class="sightings">${sightings}</span>
+		</a>
+	</li>
+</script>
+
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+    if(!window.jQuery){
+      document.write(unescape('%3Cscript src="javascripts/vendor/jquery-1.5.min.js"%3E%3C/script%3E'));
+    }
+    </script>
+    <script type="text/javascript" src="../javascripts/vendor/jquery.tmpl.min" ></script>
+    <script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
+    <script type="text/javascript">
+
+	$(document).ready(function(){
+	/*
+		// Ex 04-02a - simple tempatltes
+		$.getJSON("../data/spots.js", function(data){
+			$.each(data, function(){
+				var newItem = $("#tmplSimple").clone();
+				// Now fill in the fields with the data
+				newItem.find("h2").text(this.name);
+				newItem.find(".relative-distance").text(this.distance);
+				newItem.find(".sightings").text(this.sightings);
+				
+				// And add the new list item to the page
+				newItem.children().appendTo("#spots-list")
+			});
+			transition("#spots", "show");
+		});
+	*/	
+		// Ex 04-02b - loading data with tempalting system
+		$.getJSON("../data/spots.js", function(data){
+			$("#tmplSpots")
+				.tmpl(data)
+				.appendTo("#spots-list");
+				transition("#spots", "show");
+		});
+		
+		
+		
+		
+		// Ex 04-01c - Hook up links to hijack
+		$("#tab-bar a").click("click", function(e){
+			e.preventDefault();
+			var url = e.currentTarget;
+			loadPage(url, $(this).attr("data-load"));
+		});
+		
+		// Ex 03-03a - list...
+		$("#spots-list li").live("click", function(e){
+			e.preventDefault();
+			transition("#spot-details", "push");
+		});
+		
+		$("#spot-details .back").live("click",function(){
+			transition("#spots", "push", true);
+		});
+	});
+
+	// Ex 04-01b - function for loading
+	function loadPage(url, pageName, trans) {
+		$("#pages #" + pageName).load(url + " #wrapper", function(){
+			$("body").attr("id", "page-" + pageName);
+			transition(this, trans || "show", false);
+		});
+	};
+
+	function transition(toPage, type, reverse){
+		var toPage = $(toPage),
+			fromPage = $("#pages .current"),
+			reverse = reverse ? "reverse" : "";
+
+		if(toPage.hasClass("current") || toPage === fromPage) { 
+			return; 
+		};
+		toPage
+			.addClass("current " + type + " in " + reverse)
+			.one("webkitAnimationEnd", function(){
+				fromPage.removeClass("current " + type + " out " + reverse);
+				toPage.removeClass(type + " in " + reverse);
+			});
+		fromPage.addClass(type + " out " + reverse);
+	}
+    </script>
+  </body>
+</html>
