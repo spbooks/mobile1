@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<title>StarTrackr: Spot</title>
+
+	<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+
+	<link type="text/css" rel="stylesheet" href="stylesheets/screen.css" media="screen"/>
+	<link type="text/css" rel="stylesheet" href="stylesheets/transitions.css" media="screen"/>
+	<style type="text/css" media="screen">
+	  #pages {
+		position: relative;
+	  }
+	  #pages > div {
+		display:none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+	  }
+	  #pages > div.current {
+		display: block;
+	  }
+	  #header {
+		position: relative;
+	  }
+	  #header .back{
+		display: none;
+	  }
+	  #page-spot .back{
+		display: block !important;
+	  }
+	  
+	  #element {
+		width: 200px;
+		height: 400px;
+		background-color: #800;
+		margin:0 auto;
+	  }
+	  #splash {
+		width:480px;
+		height: 320px;
+		background-color: blue;
+	  }
+	</style>
+  </head> 
+  <body>
+	<!-- CHANGE: added pages for container -->
+<div id="pages">
+  <div id="gestures" class="current">
+	<div id="element">!</div>
+  </div>
+  <div id="splash">
+	<h1>StarTrackr</h1>
+	<p>Go team</p>
+  </div>
+</div>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	if(!window.jQuery){
+	  document.write(unescape('%3Cscript src="javascripts/vendor/jquery-1.5.min.js"%3E%3C/script%3E'));
+	}
+	</script>
+	<script type="text/javascript" src="javascripts/vendor/modernizr-1.7.min.js"></script>
+	<script type="text/javascript">
+	var hasTouch = "ontouchend" in document,
+	  touchEndEvent = hasTouch ? "touchend" : "mouseup";
+	
+	var lastOrientation = -1;
+	$(window).bind("orientationchange", function(){
+	  if(window.orientation === lastOrientation) {
+		return;
+	  }
+	  switch(window.orientation) {
+		case 0:
+		  transition("#gestures", "fade");
+		  break;
+		case 90:
+		case -90:
+		  transition("#splash", "fade");
+		  break;
+		case 180:
+		  break;
+	  }
+	  lastOrientation = window.orientation;
+	});
+
+	//'http://miniapps.co.uk/code/wktouch/WKTouch.js'
+	 // Swipe left & right, pinch/zoom
+	 var xStart,
+	  yStart,
+	  timeStart,
+	  rotationStart,
+	  rotation = 0,
+	  scale = 1;
+	 $("#gestures").bind({
+		 "touchstart": function(e){
+			 e.preventDefault();
+			 xStart = e.pageX && e.pageX > 0 ? e.pageX : e.originalEvent.changedTouches[ 0 ].pageX;
+			 yStart = e.originalEvent.changedTouches[ 0 ].pageY;
+			 timeStart = new Date().getTime();
+		 },
+		 "touchend": function(e){
+			if(new Date().getTime() - timeStart > 500 ){
+			  return;
+			}
+			 var newX = e.pageX && e.pageX > 0 ? e.pageX : e.originalEvent.changedTouches[ 0 ].pageX,
+			  newY = e.pageY && e.pageY > 0 ? e.pageY : e.originalEvent.changedTouches[ 0 ].pageY,
+			  diffX = newX - xStart,
+			  diffY = newY - yStart;
+			 if( Math.abs( diffX ) > 30 && Math.abs( diffY ) < 30){
+				xStart = 0;
+				 if( diffX > 0 ){
+					 alert("swipe right");
+				 } else {
+					 alert("swipe left");
+				 }
+			 }
+		 },
+		 "touchmove": function(e){
+			 e.preventDefault();
+		 },
+		 "gesturestart" : function(e){
+		   var gesture = e.originalEvent;
+		   $("#element").text(gesture.rotation);
+		   rotationStart = gesture.rotation;
+		 },
+		 "gesturechange": function(e){
+		   var gesture = e.originalEvent;
+		   $("#element").text( "Rotation:"+ gesture.rotation + "<br/> Scale: " + gesture.scale);
+		   scale = gesture.scale;
+		   $("#element")[0].style.webkitTransform = "scale(" + scale + ")" + "rotate(" + ((gesture.rotation) % 360) + "deg)";
+		 },
+		 "gestureend": function(e) {
+		   var gesture = e.originalEvent;
+		   $("#element").text(gesture.rotation - rotationStart);
+		 }
+	 });
+
+	 // "or could wrap in jQuery "special" event...."
+	 function Swipe(el, callback, options) {
+		   options = options || {};
+		   var swipeDistance = options.distance || 30,
+			   swipeX = -1,
+			   swipeStart = function(e) {
+				   if (options.lockScroll) {
+					   e.preventDefault();
+				   }
+				   swipeX = e.pageX ? e.pageX : e.changedTouches[0].pageX;
+			   },
+			   swipeEnd = function(e) {
+				   var distance = swipeX - (e.pageX ? e.pageX : e.changedTouches[0].pageX);
+				   if(Math.abs(distance) < swipeDistance) {
+					   return;
+				   }
+				   callback(distance > 0);
+			   };
+
+		   // Public API
+		   this.removeSwipe = function() {
+			   $.off(el, "touchstart", swipeStart);
+			   $.off(el, "touchend", swipeEnd);
+		   };
+
+		   // On init - bind events;
+		   $.on(el, "touchstart", swipeStart);
+		   $.on(el, "touchend", swipeEnd);
+	   };
+
+	   function transition(toPage, type, reverse, callback){
+		 var toPage = $(toPage),
+		   fromPage = $("#pages .current"),
+		   reverse = reverse ? "reverse" : "";
+		 toPage
+		   .addClass("current " + type + " in " + reverse)
+		   .one("webkitAnimationEnd", function(){
+			 fromPage.removeClass("current " + type + " out " + reverse);
+			 toPage.removeClass(type + " in " + reverse);
+			 callback && callback();
+		   });
+		 fromPage.addClass(type + " out " + reverse);
+	   }
+	</script>
+  </body>
+</html>

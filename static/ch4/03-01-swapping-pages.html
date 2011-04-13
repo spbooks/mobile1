@@ -143,8 +143,9 @@
 				// Ex 03-01 - swapping pages
 				$("#tab-bar a").click(function(e){
 					e.preventDefault();
+					var nextPage = $(e.target.hash);
 					$("#pages .current").removeClass("current");
-					$(e.target.hash).addClass("current");
+					nextPage.addClass("current");
 				});
 			});
 		</script>

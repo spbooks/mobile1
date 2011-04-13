@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>StarTrackr: Spot</title>
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+
+		<link type="text/css" rel="stylesheet" href="../stylesheets/screen.css" media="screen"/>
+		<link type="text/css" rel="stylesheet" href="../stylesheets/transitions.css" media="screen"/>
+		<style type="text/css" media="screen">
+			#pages {
+				position: relative;
+			}
+			#pages > div {
+				display:none;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+			}
+			#pages > div.current {
+				display: block;
+			}
+			#header {
+				position: relative;
+			}
+			#header .back{
+				display: none;
+			}
+			#page-spot .back{
+				display: block !important;
+			}
+#about {
+	display:none;
+	position: absolute;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background-color: #400;
+	z-index: 250;
+	color: #fff;
+}
+		</style>
+	</head> 
+	<body>
+		<ul id="tab-bar">
+			<li id="tab-spots">
+				<a data-load="spots" href="../spots.html">
+				Spots
+				</a>
+			</li>		 
+			<li id="tab-sighting">
+				<a data-load="sightings" href="../new.html">
+				Add a sighting
+				</a>
+			</li>
+			<li id="tab-stars">
+				<a data-load="stars" href="../stars.html">
+				Stars
+				</a>
+			</li>
+		</ul><!-- #tab-bar -->
+
+		<div id="header">
+			<h1>Spots</h1>
+			<a href="#" class="back">Back</a>
+		</div><!-- #header -->
+
+		<!-- CHANGE: added pages for container -->
+		<div id="pages">
+			<div id="spots" class="current">
+				<!-- "Spots" content -->
+				 <div class="page-header">
+					 <h1>Planet Hollywood</h1>
+					 <span class="address">123 Fake St, Hollywood, CA</span>
+					 <a href="#" class="map">
+						 <img src="http://maps.google.com/maps/api/staticmap?zoom=14&size=65x60&maptype=roadmap&markers=size:mid%7Ccolor:red%7Chollywood+blvd+la&sensor=false"/>
+					 </a>
+				 </div>
+				 <ul id="sightings-list" class="table-view table-list">
+					 <li data-name="Garrett Murray">
+						 <a class="avatar" href="#">
+							 <img src="../images/sightings/garrett.jpg" alt="">
+						 </a>
+						 <h2><a href="star.html">Garrett Murray</a></h2>
+						 <span class="details">
+							 <strong class="time-ago">2 hours ago</strong>
+							 by
+							 <a href="#" class="user">makenosound</a>
+						 </span>
+					 </li>
+					 <li class="even" data-name="Bobs Yarunkle">
+						 <a class="avatar" href="#">
+							 <img src="../images/sightings/garrett.jpg" alt="">
+						 </a>
+						 <h2><a href="star.html">Bobs Yarunkle</a></h2>
+						 <span class="details">
+							 <strong class="time-ago">2 hours ago</strong>
+							 by
+							 <a href="#" class="user">makenosound</a>
+						 </span>
+					 </li>
+				 </ul><!-- #spots-list -->
+			</div>
+		</div>
+<div id="about">
+	<div id="header">
+		<h1>About Us!</h1>
+	</div>
+</div>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+		<script type="text/javascript">
+		if(!window.jQuery){
+			document.write(unescape('%3Cscript src="../javascripts/vendor/jquery-1.5.min.js"%3E%3C/script%3E'));
+		}
+		</script>
+		<script type="text/javascript" src="../javascripts/vendor/jquery.tmpl.min" ></script>
+		<script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
+		<script type="text/javascript">
+		
+	/*
+		$(window).bind("orientationchange", function(){
+				switch(window.orientation) {
+					case 0:
+						$("#about").hide();
+						break;
+					case 90:
+					case -90:
+						$("#about").show();
+						break;
+				}
+			});*/
+	
+	/*
+		// Ex 01-02 : orientation on load
+		$(window).bind("orientationchange", rotated);
+		function rotated() {
+			switch(window.orientation) {
+				case 0:
+					$("#about").hide();
+					break;
+				case 90:
+				case -90:
+					$("#about").show();
+					break;
+			}
+		}
+		$(document).ready(function(){
+			rotated();
+		});*/
+
+
+		var lastOrientation = -1;
+		$(window).bind("orientationchange resize", function(){
+
+			var current;
+			if("orientation" in window) {
+				current = window.orientation;
+			} 
+			else {
+				var mainWindow = document.documentElement;
+				if(mainWindow.clientWidth / mainWindow.clientHeight < 1.1) {
+					current = 0;
+				}
+				else{
+					current = 90;
+				}
+			}
+				
+			if(current === lastOrientation) {
+				return;
+			}
+
+			switch(current) {
+				case 0:
+					$("#about").hide();
+					// Set portrait mode
+					$("body")
+						.removeClass("landscape")
+						.addClass("portrait");
+					break;
+				case 90:
+				case -90:
+					$("#about").show();
+					// Set landscape mode
+					$("body")
+						.removeClass("portrait")
+						.addClass("landscape");
+					break;
+			}
+			lastOrientation = current;
+		});
+
+		</script>
+	</body>
+</html>

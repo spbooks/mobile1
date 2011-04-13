@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>StarTrackr: Spot</title>
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+
+		<link type="text/css" rel="stylesheet" href="../stylesheets/screen.css" media="screen"/>
+		<link type="text/css" rel="stylesheet" href="../stylesheets/transitions.css" media="screen"/>
+		<style type="text/css" media="screen">
+			#pages {
+				position: relative;
+			}
+			#pages > div {
+				display:none;
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+			}
+			#pages > div.current {
+				display: block;
+			}
+			#header {
+				position: relative;
+			}
+			#header .back{
+				display: none;
+			}
+			#page-spot .back{
+				display: block !important;
+			}
+			
+#photo {
+	width: 200px;
+	height: 400px;
+	background-color: #700;
+	margin:0 auto;
+	-webkit-box-shadow: 0 0 5px #333;
+	}
+#photoedit {
+	overflow: hidden;
+}
+		</style>
+	</head> 
+	<body>
+		<ul id="tab-bar">
+			<li id="tab-spots">
+				<a data-load="spots" href="../spots.html">
+				Spots
+				</a>
+			</li>		 
+			<li id="tab-sighting">
+				<a data-load="sightings" href="../new.html">
+				Add a sighting
+				</a>
+			</li>
+			<li id="tab-stars">
+				<a data-load="stars" href="../stars.html">
+				Stars
+				</a>
+			</li>
+		</ul><!-- #tab-bar -->
+
+		<div id="header">
+			<h1>Spots</h1>
+			<a href="#" class="back">Back</a>
+		</div><!-- #header -->
+
+		<!-- CHANGE: added pages for container -->
+		<div id="pages">
+			<div id="photoedit" class="current">
+				<!-- "Edit" content -->
+				<div id="cropper">
+					<div id="photo"></div>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+		<script type="text/javascript">
+		if(!window.jQuery){
+			document.write(unescape('%3Cscript src="../javascripts/vendor/jquery-1.5.min.js"%3E%3C/script%3E'));
+		}
+		</script>
+		<script type="text/javascript" src="../javascripts/vendor/jquery.tmpl.min" ></script>
+		<script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
+		<script type="text/javascript">
+
+		$(document).bind({
+			"touchstart": function(e){
+				e.preventDefault();
+			}
+		});
+
+		var rotation = 0,
+			scale = 1;
+
+		$("#cropper").bind({
+			"gesturechange": function(e){
+				var gesture = e.originalEvent;
+				// Update the image
+				var curScale = gesture.scale * scale;
+				var curRotation = (gesture.rotation + rotation) % 360;
+
+				$("#photo").css(
+					"webkitTransform", 
+					"scale(" + curScale + ")" + "rotate(" + curRotation + "deg)"
+				);
+			 },
+			"gestureend": function(e) {
+				var gesture = e.originalEvent;
+				// Store the details for the next gesture
+				scale *= gesture.scale;
+				rotation = (rotation + gesture.rotation) % 360;
+			}
+		});
+		</script>
+	</body>
+</html>
