@@ -1,17 +1,32 @@
-<html class="no-js">
+<!doctype html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js"><!--<![endif]-->
   <head>
-    <title>StarTrackr: Star</title>
+    <title>StarTrackr</title>
     
     <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     
+    <!-- For iPad -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://papercraft.local:9110/apple-touch-icon-72x72-precomposed.png">
+    <!-- For iPhone 4 with high-resolution Retina display -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://papercraft.local:9110/apple-touch-icon-114x114-precomposed.png">
+    <!-- For iOS 1- and Blackberry 6 -->
+    <link rel="apple-touch-icon" href="http://papercraft.local:9110/apple-touch-icon.png">
+    <!-- For pre-retina iPhone, iPod Touch, and Android 2.1+ devices -->
+    <link rel="apple-touch-icon-precomposed" href="http://papercraft.local:9110/apple-touch-icon-precomposed.png">
+    <!-- Startup image -->
+    <link rel="apple-touch-startup-image" href="http://papercraft.local:9110/apple-touch-startup-image.png">
+    
     <link type="text/css" rel="stylesheet" href="stylesheets/screen.css" media="screen"/>
     <script type="text/javascript" src="javascripts/vendor/modernizr-1.7.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <script src="javascripts/basic.js"></script>  </head>
-  <body id="page-stars">
-    <ul id="tab-bar">
+    <script src="javascripts/vendor/helper.js"></script>
+    <script src="javascripts/basic.js"></script>
+  </head>
+  <body>
+    <ul id="tab-bar" class="page-stars">
       <li id="tab-spots">
         <a href="spots.html">
           Spots
@@ -29,74 +44,76 @@
       </li>
     </ul><!-- #tab-bar -->
     
-    <div id="header">
-      <h1>Spots</h1>
-      <a href="#" class="back">Back</a>
-    </div><!-- #header -->
+    <div id="content" class="page-stars">
+      <div id="header">
+        <h1>Stars</h1>
+        <a href="#" class="back">Back</a>
+      </div><!-- #header -->
     
-    <div id="wrapper">
-      <div id="scroller">
-        <ul id="sightings-list" class="table-view table-action">
-          <li>
-            <a href="star.html">
-              <h2>Caterina Fake</h2>
-              <span class="sightings">5</span>
-            </a>
-          </li>
-          <li>
-            <a href="star.html">
-              <h2>Dan Cederholm</h2>
-              <span class="sightings">5</span>
-            </a>
-          </li>
-          <li>
-            <a href="star.html">
-              <h2>Eric Meyer</h2>
-              <span class="sightings">5</span>
-            </a>
-          </li>
-          <li>
-            <a href="star.html">
-              <h2>Garrett Murray</h2>
-              <span class="sightings">5</span>
-            </a>
-          </li>
-          <li>
-            <a href="star.html">
-              <h2>Jeffrey Zeldman</h2>
-              <span class="sightings">5</span>
-            </a>
-          </li>
-          <li>
-            <a href="star.html">
-              <h2>Sophia Teutschler</h2>
-              <span class="sightings">5</span>
-            </a>
-          </li>
-          <li>
-            <a href="star.html">
-              <h2>Tina Roth Eisenberg</h2>
-              <span class="sightings">5</span>
-            </a>
-          </li>
-          <li>
-            <a href="star.html">
-              <h2>Veerle Pieters</h2>
-              <span class="sightings">5</span>
-            </a>
-          </li>
-        </ul><!-- #spots-list -->
-        <a href="#" id="next-page">
-          Next page
-        </a>
-        <div id="footer">
-          <span class="site-switch">
-            Switch to
-            <a href="#">standard site</a>
-          </span>
-          <a href="#" class="authenticate">Log out</a>
-        </div><!-- #footer -->
-      </div><!-- #scroller -->
-    </div><!-- #wrapper -->
+      <div id="wrapper">
+        <div id="scroller">
+          <ul id="sightings-list" class="table-view table-action">
+            <li>
+              <a href="star.html">
+                <h2>Caterina Fake</h2>
+                <span class="sightings">5</span>
+              </a>
+            </li>
+            <li>
+              <a href="star.html">
+                <h2>Dan Cederholm</h2>
+                <span class="sightings">5</span>
+              </a>
+            </li>
+            <li>
+              <a href="star.html">
+                <h2>Eric Meyer</h2>
+                <span class="sightings">5</span>
+              </a>
+            </li>
+            <li>
+              <a href="star.html">
+                <h2>Garrett Murray</h2>
+                <span class="sightings">5</span>
+              </a>
+            </li>
+            <li>
+              <a href="star.html">
+                <h2>Jeffrey Zeldman</h2>
+                <span class="sightings">5</span>
+              </a>
+            </li>
+            <li>
+              <a href="star.html">
+                <h2>Sophia Teutschler</h2>
+                <span class="sightings">5</span>
+              </a>
+            </li>
+            <li>
+              <a href="star.html">
+                <h2>Tina Roth Eisenberg</h2>
+                <span class="sightings">5</span>
+              </a>
+            </li>
+            <li>
+              <a href="star.html">
+                <h2>Veerle Pieters</h2>
+                <span class="sightings">5</span>
+              </a>
+            </li>
+          </ul><!-- #spots-list -->
+          <a href="#" id="next-page">
+            Next page
+          </a>
+          <div id="footer">
+            <span class="site-switch">
+              Switch to
+              <a href="#">standard site</a>
+            </span>
+            <a href="#" class="authenticate">Log out</a>
+          </div><!-- #footer -->
+        </div><!-- #scroller -->
+      </div><!-- #wrapper -->  
+    </div><!-- #content -->
   </body>
 </html>
