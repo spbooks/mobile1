@@ -41,6 +41,13 @@ a
   +box-shadow(rgba(0,0,0,.5), 0, 0, 5px, 0)
   position: relative
   z-index: 200
+  .cssgradients &    
+    background-image: -moz-linear-gradient(top, rgba(53, 53, 53, 1), rgba(33, 32, 33, 1) 55%, rgba(9, 8, 9, 1) 55.1%, rgba(5, 4, 5, 1))
+    background-image: -ms-linear-gradient(top, rgba(53, 53, 53, 1), rgba(33, 32, 33, 1) 55%, rgba(9, 8, 9, 1) 55.1%, rgba(5, 4, 5, 1))
+    background-image: -o-linear-gradient(top, rgba(53, 53, 53, 1), rgba(33, 32, 33, 1) 55%, rgba(9, 8, 9, 1) 55.1%, rgba(5, 4, 5, 1))
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(53, 53, 53, 1)), color-stop(0.55, rgba(33, 32, 33, 1)), color-stop(0.551, rgba(9, 8, 9, 1)), to(rgba(5, 4, 5, 1)))
+    background-image: -webkit-linear-gradient(top, rgba(53, 53, 53, 1), rgba(33, 32, 33, 1) 55%, rgba(9, 8, 9, 1) 55.1%, rgba(5, 4, 5, 1))
+    background-image: linear-gradient(top, rgba(53, 53, 53, 1), rgba(33, 32, 33, 1) 55%, rgba(9, 8, 9, 1) 55.1%, rgba(5, 4, 5, 1))
   li
     display: inline
     float: left
@@ -54,9 +61,12 @@ a
       size: .857em
       weight: bold
     height: 4.583em
+    min-height: 56px
+    margin: 0 0.857em
+    // Need to stop sprites overflowing
+    overflow: hidden
     padding-top: .417em
     position: relative
-    margin: 0 0.857em
     text-align: center
     text-decoration: none
   .standalone &
@@ -66,86 +76,123 @@ a
 
 
 // ---- States --------------
+
 #tab-spots a, #tab-stars a, #tab-sighting a
   &:after
-    content: ""
-    display: block
-    width: 4.3em
-    height: 2.6em
-    margin: .32em auto 0
-    -o-background-size: 100% auto
-    -webkit-background-size: 100% auto
+    content: url(../images/sprite.png)
+    position: absolute
+    overflow: hidden
+    left: 50%
+    top: 22px
+    .svg &
+      content: url(../images/sprite.svg)
 
 #tab-spots a
   &:after
-    background: transparent
-    .svg &
-      content: url(../images/icon-spots-normal.svg)
-  #page-spots &
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(40, 40, 40, .9)), color-stop(0.55, rgba(35, 35, 35, .5)), to(rgba(46, 46, 46, .1)))
+    clip: rect(0 18px 33px 0px)
+    margin-left: -10px
+  .page-spots &
     color: #ebc466
     +box-shadow(rgba(0, 0, 0,.8), 0, -10px, 1px, 0)
+    .cssgradients &
+      background-image: -moz-linear-gradient(top, rgba(40, 40, 40, .9), rgba(35, 35, 35, .5) 55%, rgba(46, 46, 46, .1))
+      background-image: -ms-linear-gradient(top, rgba(40, 40, 40, .9), rgba(35, 35, 35, .5) 55%, rgba(46, 46, 46, .1))
+      background-image: -o-linear-gradient(top, rgba(40, 40, 40, .9), rgba(35, 35, 35, .5) 55%, rgba(46, 46, 46, .1))
+      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(40, 40, 40, .9)), color-stop(0.55, rgba(35, 35, 35, .5)), to(rgba(46, 46, 46, .1)))
+      background-image: -webkit-linear-gradient(top, rgba(40, 40, 40, .9), rgba(35, 35, 35, .5) 55%, rgba(46, 46, 46, .1))
+      background-image: linear-gradient(top, rgba(40, 40, 40, .9), rgba(35, 35, 35, .5) 55%, rgba(46, 46, 46, .1))
     &:after
-      background: transparent
-      .svg &
-        content: url(../images/icon-spots-selected.svg)
+      clip: rect(0 37px 33px 18px)
+      margin-left: -29px
     &:before
       content: ""
       display: block
       height: .5em
-      margin-left: -1em
+      margin-left: -.5em
       left: 50%
       position: absolute
       margin-top: -1px
       top: 0
-      width: 2em
+      width: 1em
       .cssgradients &
-        background: -webkit-gradient(radial, 50% 0, 0, 50% 0, 7, from(rgba(236, 223, 156, .9)), to(rgba(85, 85, 85, 0)))
+        +tiny-rounded-bottom
+        background-image: -moz-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
+        background-image: -ms-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
+        background-image: -o-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
+        background-image: -webkit-gradient(radial, 50% 0, 0, 50% 0, 7, from(rgba(236, 223, 156, .9)), to(rgba(0, 0, 0, 0)))
+        background-image: -moz-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
+        background-image: radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
 
 .standalone.cssgradients
-  #page-spots
+  .page-spots
     #tab-spots a
-      background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(46, 46, 46, 0), color-stop(0.55, rgba(35, 35, 35, .5)), to(rgba(40, 40, 40, .9))))
-      +box-shadow(rgba(0, 0, 0,.8), 0, 10px, 1px, 0)
+      +box-shadow(rgba(0, 0, 0,.8), 0, 1px, 1px, 0)
+      background-image: -moz-linear-gradient(top, rgba(46, 46, 46, 0), rgba(35, 35, 35, .5) 55%, rgba(40, 40, 40, .9))
+      background-image: -ms-linear-gradient(top, rgba(46, 46, 46, 0), rgba(35, 35, 35, .5) 55%, rgba(40, 40, 40, .9))
+      background-image: -o-linear-gradient(top, rgba(46, 46, 46, 0), rgba(35, 35, 35, .5) 55%, rgba(40, 40, 40, .9))
+      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(46, 46, 46, 0), color-stop(0.55, rgba(35, 35, 35, .5)), to(rgba(40, 40, 40, .9))))
+      background-image: -webkit-linear-gradient(top, rgba(46, 46, 46, 0), rgba(35, 35, 35, .5) 55%, rgba(40, 40, 40, .9))
+      background-image: linear-gradient(top, rgba(46, 46, 46, 0), rgba(35, 35, 35, .5) 55%, rgba(40, 40, 40, .9))
       &:before
         bottom: -2px
-        background: -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 7, from(rgba(236, 223, 156, .9)), to(rgba(85, 85, 85, 0)))
+        background-image: -moz-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
+        background-image: -ms-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
+        background-image: -o-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
+        background-image: -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 7, from(rgba(236, 223, 156, .9)), to(rgba(0, 0, 0, 0)))
+        background-image: -moz-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
+        background-image: radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
         top: auto
 
 #tab-stars a
   &:after
-    background: transparent
-    .svg &
-      content: url(../images/icon-stars-normal.svg)
-  #page-stars &
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(40, 40, 40, .9)), color-stop(0.55, rgba(35, 35, 35, .5)), to(rgba(46, 46, 46, .1)))
+    clip: rect(0 87px 33px 38px)
+    margin-left: -64px
+  // Selected state
+  .page-stars &
     color: #ebc466
     +box-shadow(rgba(0, 0, 0,.8), 0, -10px, 1px, 0)
+    .cssgradients &
+      background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(40, 40, 40, .9)), color-stop(0.55, rgba(35, 35, 35, .5)), to(rgba(46, 46, 46, .1)))
     &:after
-      background: transparent
-      .svg &
-        content: url(../images/icon-stars-selected.svg)
+      clip: rect(0 140px 33px 88px)
+      margin-left: -115px
     &:before
       content: ""
       display: block
       height: .5em
-      margin-left: -1em
+      margin-left: -.25em
       left: 50%
       position: absolute
       margin-top: -1px
       top: 0
-      width: 2em
+      width: .5em
       .cssgradients &
-        background: -webkit-gradient(radial, 50% 0, 0, 50% 0, 7, from(rgba(236, 223, 156, .9)), to(rgba(85, 85, 85, 0)))
+        +tiny-rounded-bottom
+        background-image: -moz-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
+        background-image: -ms-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
+        background-image: -o-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
+        background-image: -webkit-gradient(radial, 50% 0, 0, 50% 0, 7, from(rgba(236, 223, 156, .9)), to(rgba(0, 0, 0, 0)))
+        background-image: -moz-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
+        background-image: radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
 
 .standalone.cssgradients
-  #page-stars
+  .page-stars
     #tab-stars a
-      background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(46, 46, 46, 0), color-stop(0.55, rgba(35, 35, 35, .5)), to(rgba(40, 40, 40, .9))))
       +box-shadow(rgba(0, 0, 0,.8), 0, 10px, 1px, 0)
+      background-image: -moz-linear-gradient(top, rgba(46, 46, 46, 0), rgba(35, 35, 35, .5) 55%, rgba(40, 40, 40, .9))
+      background-image: -ms-linear-gradient(top, rgba(46, 46, 46, 0), rgba(35, 35, 35, .5) 55%, rgba(40, 40, 40, .9))
+      background-image: -o-linear-gradient(top, rgba(46, 46, 46, 0), rgba(35, 35, 35, .5) 55%, rgba(40, 40, 40, .9))
+      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(46, 46, 46, 0), color-stop(0.55, rgba(35, 35, 35, .5)), to(rgba(40, 40, 40, .9))))
+      background-image: -webkit-linear-gradient(top, rgba(46, 46, 46, 0), rgba(35, 35, 35, .5) 55%, rgba(40, 40, 40, .9))
+      background-image: linear-gradient(top, rgba(46, 46, 46, 0), rgba(35, 35, 35, .5) 55%, rgba(40, 40, 40, .9))
       &:before
         bottom: -2px
-        background: -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 7, from(rgba(236, 223, 156, .9)), to(rgba(85, 85, 85, 0)))
+        background-image: -moz-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
+        background-image: -ms-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
+        background-image: -o-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
+        background-image: -webkit-gradient(radial, 50% 100%, 0, 50% 100%, 7, from(rgba(236, 223, 156, .9)), to(rgba(0, 0, 0, 0)))
+        background-image: -moz-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
+        background-image: radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
         top: auto
 
 #tab-sighting a
@@ -155,36 +202,54 @@ a
   background: #d5d2d2
   color: #111
   height: 4.95em
+  min-height: 60px
   margin: 0 0 -0.3em
+  // Selected state
+  .page-sightings &
+    background-color: #f2d868
+    .cssgradients &
+      background-image: -moz-linear-gradient(top, rgba(243, 220, 119, 1), rgba(246, 228, 150, 1) 55%, rgba(242, 216, 104, 1) 55.1%, rgba(238, 211, 96, 1))
+      background-image: -ms-linear-gradient(top, rgba(243, 220, 119, 1), rgba(246, 228, 150, 1) 55%, rgba(242, 216, 104, 1) 55.1%, rgba(238, 211, 96, 1))
+      background-image: -o-linear-gradient(top, rgba(243, 220, 119, 1), rgba(246, 228, 150, 1) 55%, rgba(242, 216, 104, 1) 55.1%, rgba(238, 211, 96, 1))
+      background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(243, 220, 119, 1)), color-stop(0.55, rgba(246, 228, 150, 1)), color-stop(0.551, rgba(242, 216, 104, 1)), to(rgba(238, 211, 96, 1)))
+      background-image: -webkit-linear-gradient(top, rgba(243, 220, 119, 1), rgba(246, 228, 150, 1) 55%, rgba(242, 216, 104, 1) 55.1%, rgba(238, 211, 96, 1))
+      background-image: linear-gradient(top, rgba(243, 220, 119, 1), rgba(246, 228, 150, 1) 55%, rgba(242, 216, 104, 1) 55.1%, rgba(238, 211, 96, 1))
   .standalone &
     +no-rounded
     +small-rounded-top
     margin: -.3em 0 0
   .cssgradients &
-    // Note this hack
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(218, 215, 215, 1)), color-stop(0.55, rgba(234, 233, 233, 1)), color-stop(0.551, rgba(213, 210, 210, 1)), to(rgba(208, 205, 205, 1))), #d5d2d2
+    background-image: -moz-linear-gradient(top, rgba(218, 215, 215, 1), rgba(234, 233, 233, 1) 55%, rgba(213, 210, 210, 1) 55.1%, rgba(208, 205, 205, 1))
+    background-image: -ms-linear-gradient(top, rgba(218, 215, 215, 1), rgba(234, 233, 233, 1) 55%, rgba(213, 210, 210, 1) 55.1%, rgba(208, 205, 205, 1))
+    background-image: -o-linear-gradient(top, rgba(218, 215, 215, 1), rgba(234, 233, 233, 1) 55%, rgba(213, 210, 210, 1) 55.1%, rgba(208, 205, 205, 1))
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(218, 215, 215, 1)), color-stop(0.55, rgba(234, 233, 233, 1)), color-stop(0.551, rgba(213, 210, 210, 1)), to(rgba(208, 205, 205, 1)))
+    background-image: -webkit-linear-gradient(top, rgba(218, 215, 215, 1), rgba(234, 233, 233, 1) 55%, rgba(213, 210, 210, 1) 55.1%, rgba(208, 205, 205, 1))
+    background-image: linear-gradient(top, rgba(218, 215, 215, 1), rgba(234, 233, 233, 1) 55%, rgba(213, 210, 210, 1) 55.1%, rgba(208, 205, 205, 1))
   &:after
-    background: transparent
-    content: ""
-    .svg &
-      content: url(../images/icon-sightings-normal.svg)
+    clip: rect(0 191px 33px 140px)
+    margin-left: -165px
+    width: 190px
 
 // ---- Header --------------
 #header
   +dark-inset
-  background: #6a0712
-  border-bottom: 1px #38040a solid
+  background: transparent
   color: #ebc466
   font-weight: bold
   letter-spacing: .15em
   text-align: center
   text-transform: uppercase
-  padding: .6em .6em .7em
-  .cssgradients &
-    // Note this hack
-    background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(130, 21, 32, 1)), color-stop(0.55, rgba(119, 23, 34, 1)), color-stop(0.551, rgba(110, 8, 9, 1)), to(rgba(105, 7, 18, 1))), #6a0712
-  .no-standalone &
-    display: none
+  padding: .9em .6em .75em
+  .standalone.cssgradients &
+    border-bottom: 1px #38040a solid
+    background-color: #6a0712
+    background-image: -moz-linear-gradient(top, rgba(130, 21, 32, 1), rgba(119, 23, 34, 1) 55%, rgba(110, 8, 9, 1) 55.1%, rgba(105, 7, 18, 1))
+    background-image: -ms-linear-gradient(top, rgba(130, 21, 32, 1), rgba(119, 23, 34, 1) 55%, rgba(110, 8, 9, 1) 55.1%, rgba(105, 7, 18, 1))
+    background-image: -o-linear-gradient(top, rgba(130, 21, 32, 1), rgba(119, 23, 34, 1) 55%, rgba(110, 8, 9, 1) 55.1%, rgba(105, 7, 18, 1))
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(130, 21, 32, 1)), color-stop(0.55, rgba(119, 23, 34, 1)), color-stop(0.551, rgba(110, 8, 9, 1)), to(rgba(105, 7, 18, 1)))
+    background-image: -webkit-gradient(top, rgba(130, 21, 32, 1), rgba(119, 23, 34, 1) 55%, rgba(110, 8, 9, 1) 55.1%, rgba(105, 7, 18, 1))
+    background-image: linear-gradient(top, rgba(130, 21, 32, 1), rgba(119, 23, 34, 1) 55%, rgba(110, 8, 9, 1) 55.1%, rgba(105, 7, 18, 1))
+    padding: .6em .6em .7em
   .back
     +dark-inset
     +small-rounded
@@ -208,7 +273,11 @@ a
 // ---- Spots --------------
 #spots-location
   +clearfix
-  padding: .65em .5em .6em
+  border-top: 1px #590d15 dashed
+  padding: .55em .5em .6em
+  font-size: 1.1em
+  .standalone &
+    border: none
   label span
     display: none
   input
@@ -217,8 +286,8 @@ a
     border: 1px #3c0603 solid
     font-size: 1.15em
     margin: 0
-    height: 2em
-    width: 100%
+    height: 1.8em
+    width: 90%
     &:focus
       background: #fff  
   input::-webkit-input-placeholder
@@ -241,37 +310,36 @@ a
     font:
       size: .857em
       weight: bold
-    height: 2.7em
+    height: 3.2em
     letter-spacing: .15em
     text-transform: uppercase
     margin: 0
     width: 22%
     -webkit-background-clip: padding-box
-    
-.locate-me
+
+.no-geolocation .locate-me
+  display: none
+
+.geolocation .locate-me
   +small-rounded-right
   background: #eadddd
   border-left: 1px #b99f9e solid
   bottom: 0.071em
   overflow: hidden
   position: absolute
-  right: 0
+  right: 1px
   top: 0.071em
   text-indent: -999em
-  width: 2.2em
+  width: 2.3em
   &:after
-    background: transparent
-    bottom: 0.25em
-    left: 0.25em
-    display: block
+    content: url(../images/sprite.svg)
     position: absolute
-    top: 0.25em
-    width: 1.8em
+    left: 1.1em
+    top: .4em
+    clip: rect(0 226px 33px 201px)
+    left: -197px
+    // Need to reset text-indent!
     text-indent: 0
-    -o-background-size: 100% auto
-    -webkit-background-size: 100% auto
-    .svg &
-      content: url(../images/icon-location.svg)
 
 
 
@@ -288,8 +356,14 @@ a
   h2
     color: #fff
     font-size: 1.256em
+    white-space: nowrap
+    width: 85%
+    overflow: hidden
+    -o-text-overflow: ellipsis
+    text-overflow: ellipsis
   li
     border: none
+    position: relative
   a
     +dark-inset
     border-top: 1px #8c2a34 solid
@@ -300,10 +374,16 @@ a
     padding: .5em .785em .714em
     position: relative
     text-decoration: none
-    // &:active
-    //   background: #640913
-    //   border-top: 1px #7a1f28 solid
-    //   border-bottom: 1px #56060f solid
+    &:after
+      clip: rect(0 201px 20px 192px)
+      content: url(../images/sprite.png)
+      margin: -.82em -3.4em 0 0
+      overflow: hidden
+      position: absolute
+      top: 50%
+      right: 0
+      .svg &
+        content: url(../images/sprite.svg)
   .relative-distance
     font-weight: normal
   .sightings
@@ -314,7 +394,7 @@ a
     font-weight: bold
     position: absolute
     padding: 0.214em 0.429em
-    right: 3em
+    right: 2.5em
     top: 50%
     margin-top: -1.1em
 
@@ -326,6 +406,11 @@ a
     font-size: 1.256em
     line-height: 1
     margin-bottom: .15em
+    white-space: nowrap
+    width: 100%
+    overflow: hidden
+    -o-text-overflow: ellipsis
+    text-overflow: ellipsis
   a
     text-decoration: none
   li
@@ -352,11 +437,14 @@ a
   font-size: 1.143em
   padding: .5em .785em .785em
 
-.page-header  
+.page-header
+  border-top: 1px #5f1018 dashed
   +clearfix
   color: #d6b69e
   padding: .8em .785em 1.1em
   position: relative
+  .standalone &
+    border: none
   h1
     +dark-inset
     font-size: 1.57em
@@ -374,32 +462,34 @@ a
 
 
 // ---- Sighting --------------
-#page-sightings
+.page-sightings
   form
     background: #7c0c18
-    padding: .65em .5em .6em
+    border-top: 1px #8c2a34 solid
+    padding: .65em 0 0
+  fieldset
+    padding-left: .5em
+    padding-right: .5em
   label
+    +dark-inset
+    color: #fff
     display: block
-    font-size: 1.15em
+    font-size: .75em
     position: relative
-    span
-      color: #7c0c18
-      font:
-        size: .875em
-        weight: bold
-      position: absolute
-      right: 82%
-      top: .8em
+    font-weight: bold
+    letter-spacing: .15em
+    text-transform: uppercase
   input
+    +small-rounded
     background: #e1cece
     border: 1px #3c0603 solid
     display: block
-    font-size: 1em
-    margin: 0
+    font-size: 1.3em
+    margin: .3em 0 .5em
+    padding: 0
     height: 2em
-    padding: 1.2em
-    padding-left: 20%
-    width: 100%
+    width: 96%
+    padding: .3em 2%
     -webkit-background-clip: padding-box
     &:focus
       background: #fff  
@@ -407,27 +497,38 @@ a
     color: #856969
   input:-moz-placeholder
     color: #856969
+
+.geolocation #label-spot .locate-me
+  bottom: 1px
+  top: auto
+  height: 3.4em
+  width: 3.2em
+
+#save
+  background: #62030e
+  border-top: 1px #3c0603 solid
+  padding-top: .65em
+  padding-bottom: .65em
+  button
+    +light-inset
+    +small-rounded
+    +box-shadow(rgba(255,255,255,.4), 0, 1px, 1px, 0, inset)
+    +font-stack("helvetica")
+    background: #edc82b
+    border: 1px #3c0603 solid
+    color: #111
+    display: block
+    letter-spacing: 0
+    font:
+      size: 1.14em
+      weight: bold
+    padding: .55em .8em .65em 
+    position: relative
+    text-decoration: none
+    margin: 0
+    -webkit-background-clip: padding-box
+    width: 100%
     
-#label-name
-  border-bottom: 0
-
-#input-name  
-  +no-rounded
-  +small-rounded-top
-
-#label-spot
-  .locate-me
-    -webkit-border-top-right-radius: 0
-    -moz-border-radius-topright: 0
-    border-top-right-radius: 0
-
-#input-spot
-  +no-rounded
-  +small-rounded-bottom
-  border-top: none !important
-  padding-bottom: 1.3em !important
-  padding-right: 12% !important
-
 #photo
   margin: 1em 0
   a
@@ -443,10 +544,21 @@ a
     font:
       size: 1.14em
       weight: bold
-    padding: .5em .8em .7em
+    padding: .55em .8em .65em 3.1em
+    position: relative
     text-decoration: none
     margin: 0
     -webkit-background-clip: padding-box
+    &:after
+      content: url(../images/sprite.png)
+      position: absolute
+      top: .4em
+      left: .5em
+      overflow: hidden
+      clip: rect(0 258px 33px 226px)
+      margin-left: -226px
+      .svg &
+        content: url(../images/sprite.svg)
 
 // ---- Footer --------------
 #footer
