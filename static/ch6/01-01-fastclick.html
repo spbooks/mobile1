@@ -22,15 +22,6 @@
 			#pages > div.current {
 				display: block;
 			}
-			#header {
-				position: relative;
-			}
-			#header .back{
-				display: none;
-			}
-			#page-spot .back{
-				display: block !important;
-			}
 		</style>
 	</head> 
 	<body>
@@ -97,30 +88,20 @@
 		}
 		</script>
 		<script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
+		<script src="../javascripts/vendor/fastButton.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-var cache = window.applicationCache,
-	cacheStatusValues = [
-		"uncached", "idle", "checking", 
-		"downloading", "updateready", "obsolete"
-	];
-$(cache).bind({
-    "cached checking downloading error noupdate obsolete progress updateready":
-    function(e){
-        var msg = "event: " + e.type + ", ";
-        msg +=  "online: " + (navigator.onLine) ? "yes" : "no"; 
-        msg += ", status: " + cacheStatusValues[cache.status];
-        if (e.type == 'error' && navigator.onLine) {
-            msg+= ' (probably a syntax error in manifest)';
-        }
-        // Print the message
-        console.log(msg);        
-    }
-});
+			$(document).ready(function() {
+				$("#sightings-list li").bind("touchend", function(){
+					alert("clickk");
+				});
+				return;
 
-$(cache).bind("updateready", function(){
-	cache.swapCache();
-});
-
+				$("#sightings-list li").each(function(){
+					new MBP.fastButton(this, function() {
+						alert("clicked")
+					});	
+				});
+			});
 		</script>
 	</body>
 </html>

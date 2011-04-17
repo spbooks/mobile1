@@ -101,6 +101,17 @@
 	</li>
 </script>
 
+<!-- For jQ tmpl 2 -->
+<script id="tmpl-tweet" type="text/x-jquery-tmpl">
+	<li>
+		<img src="${profile_image_url}" alt="${from_user}">
+		<h2>${from_user}</h2>
+		<span class="details">
+			${text}
+		</span>
+	</li>
+</script>
+
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
     <script type="text/javascript">
     if(!window.jQuery){
@@ -112,6 +123,17 @@
     <script type="text/javascript">
 
 	$(document).ready(function(){
+/*		// Ex 04-02aa - inlining
+		$.getJSON("../data/spots.js", function(data) {
+			var html = "";
+			for(var i = 0; i < data.length; i++) {
+				html += "<li>";
+				html += "<h2>" + data[i].name + "</h2>";
+				html += "</li>";
+			}
+			$("#spots-list").append(html);
+			transition("#spots", "show");
+		});*/
 	/*
 		// Ex 04-02a - simple tempatltes
 		$.getJSON("../data/spots.js", function(data){
@@ -128,15 +150,24 @@
 			transition("#spots", "show");
 		});
 	*/	
-		// Ex 04-02b - loading data with tempalting system
+		/*// Ex 04-02b - loading data with tempalting system
 		$.getJSON("../data/spots.js", function(data){
 			$("#tmplSpots")
 				.tmpl(data)
 				.appendTo("#spots-list");
 				transition("#spots", "show");
 		});
-		
-		
+		*/
+		//http://search.twitter.com/search.json?q=celeb+spotting
+		// Ex 04-02c - twitter tmpl.
+		var twitQuery = "celeb+spotting",
+			twitUrl = "http://search.twitter.com/search.json?q=";
+		$.getJSON(twitUrl + twitQuery + "&callback=?", function(data){
+			$("#tmpl-tweet")
+				.tmpl(data.results)
+				.appendTo("#spots-list");
+				transition("#spots", "show");
+		});
 		
 		
 		// Ex 04-01c - Hook up links to hijack
@@ -161,7 +192,7 @@
 	function loadPage(url, pageName, trans) {
 		$("#pages #" + pageName).load(url + " #wrapper", function(){
 			$("body").attr("id", "page-" + pageName);
-			transition(this, trans || "show", false);
+			transition(this, trans || "flip", false);
 		});
 	};
 
