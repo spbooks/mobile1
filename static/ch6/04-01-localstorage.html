@@ -88,36 +88,38 @@
 		}
 		</script>
 		<script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
-		<script src="../javascripts/vendor/fastButton.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				/*// Ex 02-01a - simple
-				$("#sightings-list li").bind("touchend", function(){
-					alert("clickk");
-				});*/
+				console.log("localStorage" in window);
+				var store = window.localStorage;
+				store.setItem("fav-celeb", "Johnny Deep");
+				var fav = store.getItem("fav-celeb");
+				console.log(fav);
 
-				// Ex 02-01b - trak.
-				$("#sightings-list li").bind({
-					"touchstart": function(e){
-						$(this).data("clicked", new Date().getTime());
-					},
-					"touchend": function(e){
-						var now = new Date().getTime(),
-							start = $(this).data("clicked");
-						if(now - start > 400) {
-							return
-						};
-						// Do code!
-					}
-				});
+				console.log("should be null: ", store.getItem("no-key-of-this-name"));
+				store["lastSpot"] = new Date();
+				store.lastLocation = "Hollywood";
 
-				return;
+				var spotTime = new Date(store["lastSpot"]),
+					spotPlace = store.lastLocation;
 
-				$("#sightings-list li").each(function(){
-					new MBP.fastButton(this, function() {
-						alert("clicked")
-					});	
-				});
+				var visits = store["visitCount"];
+				if(visits == null){
+					visits = 0;
+				} else {
+					visits = parseInt(visits, 10);	
+				}
+				store["visitCount"] = visits + 1;
+				console.log(visits);
+
+				console.log(spotTime.getTime(), spotPlace);
+
+				console.log(store.length);
+
+				for(var i = 0; i < store.length; i++) {
+					//console.log(store.key(i) + ":" + store[store.key(i)]);
+				}
+
 			});
 		</script>
 	</body>

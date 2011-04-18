@@ -56,29 +56,9 @@
 					 <h1>Planet Hollywood</h1>
 					 <span class="address">123 Fake St, Hollywood, CA</span>
 				 </div>
-				 <ul id="sightings-list" class="table-view table-list">
-					 <li data-name="Garrett Murray">
-						 <a class="avatar" href="#">
-							 <img src="../images/sightings/garrett.jpg" alt="">
-						 </a>
-						 <h2><a href="star.html">Garrett Murray</a></h2>
-						 <span class="details">
-							 <strong class="time-ago">2 hours ago</strong>
-							 by
-							 <a href="#" class="user">makenosound</a>
-						 </span>
-					 </li>
-					 <li class="even" data-name="Bobs Yarunkle">
-						 <a class="avatar" href="#">
-							 <img src="../images/sightings/garrett.jpg" alt="">
-						 </a>
-						 <h2><a href="star.html">Bobs Yarunkle</a></h2>
-						 <span class="details">
-							 <strong class="time-ago">2 hours ago</strong>
-							 by
-							 <a href="#" class="user">makenosound</a>
-						 </span>
-					 </li>
+				 <button id="addNote">Add Note</button>
+				 <ul id="notes-list" class="table-view table-list">
+					
 				 </ul><!-- #spots-list -->
 			</div>
 		</div>
@@ -88,36 +68,33 @@
 		}
 		</script>
 		<script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
-		<script src="../javascripts/vendor/fastButton.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
+			var $has = {
+				touch: "ontouchend" in document,
+				orientation: "onorientationchange" in window,
+				geolocation: typeof navigator.geolocation != "undefined",
+				localStorage: "localStorage" in window,
+				transitions: "WebKitTransitionEvent" in window,
+				canvas: !!document.createElement("canvas").getContext,
+				audio: !!document.createElement("audio").canPlayType
+			};
+			console.log($has)
+			if($has.touch){
+				alert("we've got touch!");
+			}
+			/*orientation: "orientation" in window,
+	touch: "ontouchend" in document,
+	cssTransitions: "WebKitTransitionEvent" in window,
+	pushState: !!history.pushState,
+	mediaquery: $.mobile.media('only all'),
+	cssPseudoElement: !!propExists('content'),
+	boxShadow: !!propExists('boxShadow') && !bb,
+	scrollTop: ("pageXOffset" in window || "scrollTop" in document.documentElement || "scrollTop" in fakeBody[0]) && !webos,
+	dynamicBaseTag: baseTagTest(),
+	eventCapture: ("addEventListener" in document) // This is a weak test. We may want to beef this up later.*/
+
+
 			$(document).ready(function() {
-				/*// Ex 02-01a - simple
-				$("#sightings-list li").bind("touchend", function(){
-					alert("clickk");
-				});*/
-
-				// Ex 02-01b - trak.
-				$("#sightings-list li").bind({
-					"touchstart": function(e){
-						$(this).data("clicked", new Date().getTime());
-					},
-					"touchend": function(e){
-						var now = new Date().getTime(),
-							start = $(this).data("clicked");
-						if(now - start > 400) {
-							return
-						};
-						// Do code!
-					}
-				});
-
-				return;
-
-				$("#sightings-list li").each(function(){
-					new MBP.fastButton(this, function() {
-						alert("clicked")
-					});	
-				});
 			});
 		</script>
 	</body>

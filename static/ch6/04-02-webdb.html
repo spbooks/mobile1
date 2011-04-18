@@ -56,29 +56,9 @@
 					 <h1>Planet Hollywood</h1>
 					 <span class="address">123 Fake St, Hollywood, CA</span>
 				 </div>
-				 <ul id="sightings-list" class="table-view table-list">
-					 <li data-name="Garrett Murray">
-						 <a class="avatar" href="#">
-							 <img src="../images/sightings/garrett.jpg" alt="">
-						 </a>
-						 <h2><a href="star.html">Garrett Murray</a></h2>
-						 <span class="details">
-							 <strong class="time-ago">2 hours ago</strong>
-							 by
-							 <a href="#" class="user">makenosound</a>
-						 </span>
-					 </li>
-					 <li class="even" data-name="Bobs Yarunkle">
-						 <a class="avatar" href="#">
-							 <img src="../images/sightings/garrett.jpg" alt="">
-						 </a>
-						 <h2><a href="star.html">Bobs Yarunkle</a></h2>
-						 <span class="details">
-							 <strong class="time-ago">2 hours ago</strong>
-							 by
-							 <a href="#" class="user">makenosound</a>
-						 </span>
-					 </li>
+				 <button id="addNote">Add Note</button>
+				 <ul id="notes-list" class="table-view table-list">
+					
 				 </ul><!-- #spots-list -->
 			</div>
 		</div>
@@ -88,37 +68,62 @@
 		}
 		</script>
 		<script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
-		<script src="../javascripts/vendor/fastButton.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				/*// Ex 02-01a - simple
-				$("#sightings-list li").bind("touchend", function(){
-					alert("clickk");
-				});*/
-
-				// Ex 02-01b - trak.
-				$("#sightings-list li").bind({
-					"touchstart": function(e){
-						$(this).data("clicked", new Date().getTime());
-					},
-					"touchend": function(e){
-						var now = new Date().getTime(),
-							start = $(this).data("clicked");
-						if(now - start > 400) {
-							return
-						};
-						// Do code!
+				$("#addNote").click(function(){
+					var celeb = prompt("Celeb's name"),
+						note = prompt("Note");
+					if(celeb && note) {
+						insertNote(celeb, note);
 					}
 				});
-
-				return;
-
-				$("#sightings-list li").each(function(){
-					new MBP.fastButton(this, function() {
-						alert("clicked")
-					});	
-				});
 			});
+
+			var db = window.openDatabase(
+                "celeb-notes23",
+                "1.0",
+                "CelebNotes",
+                4 * 1024 * 1024
+            );
+
+            // Create the table
+          	db.transaction(function(t) {
+            	var sql = "CREATE TABLE IF NOT EXISTS notes ";
+            	sql += "(id INTEGER PRIMARY KEY ASC, celeb, note)";
+
+            	t.executeSql(sql, function(){
+            		selectNotes();
+            	}, function(){
+            		console.log(arguments)
+            		selectNotes();
+            		
+            	});
+            });
+
+            function selectNotes() {
+            	db.transaction(function(t){
+	            	t.executeSql('SELECT * FROM notes', [], function (t, data) {
+					  for (var i = 0; i < data.rows.length; i++) {
+					  	var item = data.rows.item(i);
+					    $("<li></li>")
+					    	.append("<span>" + item.celeb + "</span>")
+					    	.append("<span>" + item.note + "</span>")
+					    	.appendTo("#notes-list")
+					  }
+					});
+            	});
+            }
+
+            function insertNote(celeb, note) {
+            	db.transaction(function(t) {
+            		var sql = "INSERT INTO notes (celeb, note) VALUES (?, ?)";
+            		t.executeSql(sql, [celeb, note], function(){
+            			alert('saved');
+            		});
+            	});
+            }
+            
+
 		</script>
 	</body>
 </html>

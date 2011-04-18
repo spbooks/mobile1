@@ -22,6 +22,29 @@
 			#pages > div.current {
 				display: block;
 			}
+			
+			#mask {
+				background-color: #000;
+				opacity: 0.6;
+				right: 0;
+				z-index: 500;
+				top:0;
+				left: 0;
+				bottom: 0px;
+				position: absolute;
+			}
+			
+			#dialog {
+				position: absolute;
+				width: 90%;
+				height: 200px;
+				top: 50%;
+				background-color: #fff;
+				z-index: 600;
+				left: 5%;
+				-webkit-border-radius: 10px;
+				-webkit-box-sizing: border-box;
+			}
 		</style>
 	</head> 
 	<body>
@@ -82,43 +105,29 @@
 				 </ul><!-- #spots-list -->
 			</div>
 		</div>
+		
+				
+		<div id="mask">sss</div>
+		<div id="dialog">
+			<h3>Lol</h3>
+			<button id="dismiss">Close</button>
+		</div>
+
 		<script type="text/javascript">
 		if(!window.jQuery){
 			document.write(unescape('%3Cscript src="../javascripts/vendor/jquery-1.5.min.js"%3E%3C/script%3E'));
 		}
 		</script>
 		<script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
-		<script src="../javascripts/vendor/fastButton.js" type="text/javascript" charset="utf-8"></script>
 		<script type="text/javascript">
-			$(document).ready(function() {
-				/*// Ex 02-01a - simple
-				$("#sightings-list li").bind("touchend", function(){
-					alert("clickk");
-				});*/
 
-				// Ex 02-01b - trak.
-				$("#sightings-list li").bind({
-					"touchstart": function(e){
-						$(this).data("clicked", new Date().getTime());
-					},
-					"touchend": function(e){
-						var now = new Date().getTime(),
-							start = $(this).data("clicked");
-						if(now - start > 400) {
-							return
-						};
-						// Do code!
-					}
-				});
+		$("#dismiss").click(function(){
+			$("#dialog,#mask").fadeOut();
+		})
 
-				return;
+		$(document).ready(function() {
 
-				$("#sightings-list li").each(function(){
-					new MBP.fastButton(this, function() {
-						alert("clicked")
-					});	
-				});
-			});
+		});
 		</script>
 	</body>
 </html>
