@@ -15,16 +15,14 @@ $large_rounded_radius: .714em
  *  -------------------------------------------------------------------------------
 
 =clearfix
-  &:after
-    content: "."
+  &:before, &:after
+    content: "\0020"
     display: block
     height: 0
-    clear: both
-    visibility: hidden
-  .ie7 &, .ie6 &
     overflow: hidden
-    zoom: 1
-  display: block
+  &:after
+    clear: both
+  zoom: 1
 
 
 =font-stack($font)

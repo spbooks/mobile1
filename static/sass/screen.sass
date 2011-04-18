@@ -13,6 +13,11 @@ html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pr
 
 // ---- Structure --------------
 
+
+html
+  -webkit-text-size-adjust: 100%
+  -ms-text-size-adjust: 100%
+
 body
   +font-stack("helvetica")
   background: #37040a url(../images/background-body.gif)
@@ -23,9 +28,6 @@ body
 
 @media only screen and (max-device-width: 480px)
   body
-    // Disable font-size changes for orientation  
-    // http://developer.apple.com/library/safari/#documentation/AppleApplications/Reference/SafariWebContent/AdjustingtheTextSize/AdjustingtheTextSize.html
-    -webkit-text-size-adjust: none
     min-height: 480px
 
 a
@@ -36,12 +38,12 @@ a
 #tab-bar
   +clearfix
   background: #050405
-  background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(53, 53, 53, 1)), color-stop(0.55, rgba(33, 32, 33, 1)), color-stop(0.551, rgba(9, 8, 9, 1)), to(rgba(5, 4, 5, 1)))
   border-bottom: 1px #441d22 solid
-  +box-shadow(rgba(0,0,0,.5), 0, 0, 5px, 0)
   position: relative
   z-index: 200
-  .cssgradients &    
+  -webkit-user-select: none
+  +box-shadow(rgba(0,0,0,.5), 0, 0, 5px, 0)
+  .cssgradients &
     background-image: -moz-linear-gradient(top, rgba(53, 53, 53, 1), rgba(33, 32, 33, 1) 55%, rgba(9, 8, 9, 1) 55.1%, rgba(5, 4, 5, 1))
     background-image: -ms-linear-gradient(top, rgba(53, 53, 53, 1), rgba(33, 32, 33, 1) 55%, rgba(9, 8, 9, 1) 55.1%, rgba(5, 4, 5, 1))
     background-image: -o-linear-gradient(top, rgba(53, 53, 53, 1), rgba(33, 32, 33, 1) 55%, rgba(9, 8, 9, 1) 55.1%, rgba(5, 4, 5, 1))
@@ -61,11 +63,11 @@ a
       size: .857em
       weight: bold
     height: 4.583em
-    min-height: 56px
-    margin: 0 0.857em
+    min-height: 55px
+    margin: 0 0.833em
     // Need to stop sprites overflowing
     overflow: hidden
-    padding-top: .417em
+    padding-top: .428em
     position: relative
     text-align: center
     text-decoration: none
@@ -77,15 +79,16 @@ a
 
 // ---- States --------------
 
-#tab-spots a, #tab-stars a, #tab-sighting a
+#tab-bar a
   &:after
     content: url(../images/sprite.png)
     position: absolute
     overflow: hidden
     left: 50%
-    top: 22px
+    top: 1.833em
     .svg &
       content: url(../images/sprite.svg)
+
 
 #tab-spots a
   &:after
@@ -111,7 +114,7 @@ a
       margin-left: -.5em
       left: 50%
       position: absolute
-      margin-top: -1px
+      margin-top: 0
       top: 0
       width: 1em
       .cssgradients &
@@ -134,7 +137,7 @@ a
       background-image: -webkit-linear-gradient(top, rgba(46, 46, 46, 0), rgba(35, 35, 35, .5) 55%, rgba(40, 40, 40, .9))
       background-image: linear-gradient(top, rgba(46, 46, 46, 0), rgba(35, 35, 35, .5) 55%, rgba(40, 40, 40, .9))
       &:before
-        bottom: -2px
+        bottom: -1px
         background-image: -moz-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
         background-image: -ms-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
         background-image: -o-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
@@ -163,9 +166,9 @@ a
       margin-left: -.25em
       left: 50%
       position: absolute
-      margin-top: -1px
+      margin-top: 0
       top: 0
-      width: .5em
+      width: 1em
       .cssgradients &
         +tiny-rounded-bottom
         background-image: -moz-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
@@ -186,7 +189,7 @@ a
       background-image: -webkit-linear-gradient(top, rgba(46, 46, 46, 0), rgba(35, 35, 35, .5) 55%, rgba(40, 40, 40, .9))
       background-image: linear-gradient(top, rgba(46, 46, 46, 0), rgba(35, 35, 35, .5) 55%, rgba(40, 40, 40, .9))
       &:before
-        bottom: -2px
+        bottom: -1px
         background-image: -moz-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
         background-image: -ms-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
         background-image: -o-radial-gradient(rgba(236, 223, 156, .9), rgba(0, 0, 0, 0))
@@ -203,7 +206,7 @@ a
   color: #111
   height: 4.95em
   min-height: 60px
-  margin: 0 0 -0.3em
+  margin: 0 0 -0.367em
   // Selected state
   .page-sightings &
     background-color: #f2d868
@@ -239,7 +242,7 @@ a
   letter-spacing: .15em
   text-align: center
   text-transform: uppercase
-  padding: .9em .6em .75em
+  padding: .9em .8em .75em
   .standalone.cssgradients &
     border-bottom: 1px #38040a solid
     background-color: #6a0712
@@ -250,6 +253,13 @@ a
     background-image: -webkit-gradient(top, rgba(130, 21, 32, 1), rgba(119, 23, 34, 1) 55%, rgba(110, 8, 9, 1) 55.1%, rgba(105, 7, 18, 1))
     background-image: linear-gradient(top, rgba(130, 21, 32, 1), rgba(119, 23, 34, 1) 55%, rgba(110, 8, 9, 1) 55.1%, rgba(105, 7, 18, 1))
     padding: .6em .6em .7em
+  h1
+    overflow: hidden
+    text-overflow: ellipsis
+    white-space: nowrap
+    .standalone &
+      margin-left: 20%
+      width: 65%
   .back
     +dark-inset
     +small-rounded
@@ -257,6 +267,7 @@ a
     +font-stack("helvetica")
     background: #9a1b27
     border: 1px #54100d solid
+    display: none
     color: #fff
     font:
       size: .92em
@@ -269,13 +280,15 @@ a
     top: .2em
     left: .5em
     -webkit-background-clip: padding-box
+    .standalone &
+      display: block
 
 // ---- Spots --------------
 #spots-location
   +clearfix
   border-top: 1px #590d15 dashed
   padding: .55em .5em .6em
-  font-size: 1.1em
+  font-size: 1em
   .standalone &
     border: none
   label span
@@ -284,12 +297,13 @@ a
     +small-rounded
     background: #e1cece
     border: 1px #3c0603 solid
-    font-size: 1.15em
+    font-size: 1em
     margin: 0
-    height: 1.8em
-    width: 90%
+    height: 2em
+    width: 94%
+    -webkit-appearance: caret
     &:focus
-      background: #fff  
+      background: #fff
   input::-webkit-input-placeholder
     color: #856969
   input:-moz-placeholder
@@ -310,37 +324,43 @@ a
     font:
       size: .857em
       weight: bold
-    height: 3.2em
+    height: 3em
     letter-spacing: .15em
     text-transform: uppercase
     margin: 0
     width: 22%
     -webkit-background-clip: padding-box
+  .geolocation &
+    .locate-me
+      right: 0
 
 .no-geolocation .locate-me
   display: none
 
-.geolocation .locate-me
-  +small-rounded-right
-  background: #eadddd
-  border-left: 1px #b99f9e solid
-  bottom: 0.071em
-  overflow: hidden
-  position: absolute
-  right: 1px
-  top: 0.071em
-  text-indent: -999em
-  width: 2.3em
-  &:after
-    content: url(../images/sprite.svg)
+.geolocation
+  .locate-me
+    +small-rounded-right
+    background: #eadddd
+    border-left: 1px #b99f9e solid
+    bottom: 0.071em
+    overflow: hidden
     position: absolute
-    left: 1.1em
-    top: .4em
-    clip: rect(0 226px 33px 201px)
-    left: -197px
-    // Need to reset text-indent!
-    text-indent: 0
-
+    right: 1px
+    top: 0.1em
+    text-indent: -999em
+    width: 2.4em
+    &:after
+      content: url(../images/sprite.png)
+      position: absolute
+      left: 1.1em
+      top: .4em
+      clip: rect(0 226px 33px 201px)
+      left: -197px
+      // Need to reset text-indent!
+      text-indent: 0
+  &.svg
+    .locate-me:after
+      content: url(../images/sprite.svg)
 
 
 // ---- Table Views --------------
@@ -355,22 +375,17 @@ a
 .table-action
   h2
     color: #fff
-    font-size: 1.256em
-    white-space: nowrap
-    width: 85%
-    overflow: hidden
-    -o-text-overflow: ellipsis
+    font-size: 1.285em
     text-overflow: ellipsis
+    overflow: hidden
+    white-space: nowrap
+    width: 82%
   li
-    border: none
     position: relative
   a
     +dark-inset
-    border-top: 1px #8c2a34 solid
-    border-bottom: 1px #640913 solid
     color: #d6b69e
     display: block
-    font-size: 1em
     padding: .5em .785em .714em
     position: relative
     text-decoration: none
@@ -403,13 +418,12 @@ a
   color: #c08b7c
   h2
     color: #fff
-    font-size: 1.256em
+    font-size: 1.285em
     line-height: 1
     margin-bottom: .15em
     white-space: nowrap
     width: 100%
     overflow: hidden
-    -o-text-overflow: ellipsis
     text-overflow: ellipsis
   a
     text-decoration: none
@@ -577,3 +591,10 @@ a
   z-index: 1
   width: 100%
   overflow: hidden
+  
+  
+a:link
+  -webkit-tap-highlight-color: transparent
+
+.standalone *
+  -webkit-touch-callout: none
