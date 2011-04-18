@@ -88,15 +88,17 @@
 				// Ex 04-01c - Hook up links to hijack
 				$("#tab-bar a").click("click", function(e){
 					e.preventDefault();
-					var url = e.currentTarget;
-					loadPage(url, $(this).attr("data-load"));
+					var url = e.target.href;
+					var pageName = $(this).attr("data-load");
+
+					loadPage(url, pageName);
 				});
 
 			});
 			
 			// Ex 04-01b - function for loading
 			function loadPage(url, pageName, trans) {
-				$("#pages #" + pageName).load(url + " #wrapper", function(){
+				$("#pages #" + pageName).load(url + "?" + new Date().getTime() + " #wrapper", function(){
 					$("body").attr("id", "page-" + pageName);
 					transition(this, trans || "show", false);
 				});
