@@ -16,7 +16,7 @@
 .show.in {
   z-index: 10;
   -webkit-animation-name: fade-in;
-  -webkit-animation-duration: 5000ms; }
+  -webkit-animation-duration: 10ms; }
 
 .show.out {
   z-index: 0;
