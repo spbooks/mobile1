@@ -62,6 +62,7 @@
     #pages > div.current {
       display: block;
     }
+
     </style>
   </head>
   <body>
@@ -92,7 +93,7 @@
       </div><!-- .header -->
     
       <div class="wrapper">
-        <div class="scroller">
+        <div class="scroller" id="spots-scroll">
           <form id="spots-location" action="/location/" method="post">
             <fieldset>
               <label for="address">
@@ -439,9 +440,11 @@
     <script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script src="../javascripts/vendor/helper.js"></script>
+	<script src="../javascripts/vendor/iscroll-min.js" type="text/javascript" charset="utf-8"></script>
 
     <script type="text/javascript" charset="utf-8">
       $(document).ready(function() {
+
         // Ex 03-02a - fade with function
         $("#tab-bar a").click(function(e){
           e.preventDefault();
@@ -513,7 +516,9 @@
         if(toPage.hasClass("current") || toPage === fromPage) { 
           return; 
         };
+
         setTabBarPosition();
+
         toPage
           .addClass("current " + type + " in " + reverse)
           .one("webkitAnimationEnd", function(){
@@ -521,6 +526,11 @@
             toPage.removeClass(type + " in " + reverse);
           });
         fromPage.addClass(type + " out " + reverse);
+
+        if(!("WebKitTransitionEvent" in window)){
+            toPage.trigger("webkitAnimationEnd");
+        }
+
       }
       
       // Move the tab bar
