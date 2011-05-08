@@ -120,7 +120,7 @@
 			$(document).ready(function() {
 				startrackr.init();
 			});
-			
+
 			var startrackr = {
 				pages: [],
 				init: function(){
@@ -134,6 +134,9 @@
 				},
 				addPage: function(page) {
 					this.pages.push(page);
+				},
+				loadPage: function(page, data) {
+					page.load(data);
 				}
 			};
 
@@ -142,7 +145,7 @@
 					// add handlers;
 					$("#spots li a").live("click", function(e){
 						e.preventDefault();
-					    spot.load($(e.target).attr("data-id"));
+						startrackr.loadPage(spot, $(e.target).attr("data-id"));
 					});
 				},
 				load: function(){

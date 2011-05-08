@@ -138,7 +138,8 @@
 		*/
 
 			// Ex 01-02d - feature detection
-			$("#tab-bar li").bind(touchEndEvent, function(){
+			$("#tab-bar li").bind(touchEndEvent, function(e){
+				console.log(e.preventDefault)
 				alert("Coming soon!");
 			});
 		});

@@ -128,10 +128,17 @@
 						this.init && this.init();
 					});
 					
+					// Ex 05-02 events
 					$(document).bind("page-change", function(e, data){
-						data.container.find(".page-header").text(data.name);
-						transition(data.container, data.transition);
+						data.$el
+							.find(".page-header")
+							.text(data.name);
 					});
+					
+					$(document).bind("page-change", function(e, data){
+						transition(data.$el, data.transition);
+					});
+					
 
 					spots.load();
 				},
@@ -156,7 +163,7 @@
 						complete: function(){
 							hideSpinner();
 							$(document).trigger("page-change", {
-								container: $("#spots"),
+								$el: $("#spots"),
 								name: "Spots"
 							});
 							//transition("#spots", "fade");
@@ -177,7 +184,7 @@
 						complete: function(){
 							//$("#spot .page-header h1").text(id);
 							$(document).trigger("page-change", {
-								container: $("#spot"),
+								$el: $("#spot"),
 								name: "Spot " + id,
 								transition: "push"
 							});
