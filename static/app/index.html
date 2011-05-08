@@ -440,7 +440,7 @@
     <script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script src="../javascripts/vendor/helper.js"></script>
-	<script src="../javascripts/vendor/iscroll-min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../javascripts/vendor/iscroll-min.js" type="text/javascript" charset="utf-8"></script>
 
     <script type="text/javascript" charset="utf-8">
       $(document).ready(function() {
@@ -499,6 +499,7 @@
           this.history = [];
         }
       };
+      
       // Handle back clicks
       $(".back").live("click",function(){
         transition(visits.back(), "push", true);
@@ -519,6 +520,13 @@
 
         setTabBarPosition();
 
+        // For non-animatey browsers
+        if(!("WebKitTransitionEvent" in window)){
+            toPage.addClass("current");
+            fromPage.removeClass("current");
+            return;
+        }
+        
         toPage
           .addClass("current " + type + " in " + reverse)
           .one("webkitAnimationEnd", function(){
@@ -527,9 +535,6 @@
           });
         fromPage.addClass(type + " out " + reverse);
 
-        if(!("WebKitTransitionEvent" in window)){
-            toPage.trigger("webkitAnimationEnd");
-        }
 
       }
       
