@@ -1,6 +1,6 @@
 <!doctype html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js"><!--<![endif]-->
+<!--[if IEMobile 7 ]><html class="no-js iem7 standalone"><![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js standalone"><!--<![endif]-->
   <head>
     <title>StarTrackr</title>
     
@@ -55,7 +55,6 @@
     #pages > div {
       display: none;
       position: absolute;
-      top: 70px;
       left: 0;
       width: 100%;
     }
@@ -65,7 +64,7 @@
     }
     </style>
   </head>
-  <body class="standalone">
+  <body>
     <ul id="tab-bar" class="page-spots">
       <li id="tab-spots">
         <a href="#page-spots">
@@ -87,13 +86,13 @@
   <div id="pages">
     <!-- Spots page -->
     <div id="page-spots" class="page-spots">
-      <div id="header">
+      <div class="header">
         <h1>Spots</h1>
         <a href="#" class="back">Back</a>
-      </div><!-- #header -->
+      </div><!-- .header -->
     
-      <div id="wrapper">
-        <div id="scroller">
+      <div class="wrapper">
+        <div class="scroller">
           <form id="spots-location" action="/location/" method="post">
             <fieldset>
               <label for="address">
@@ -180,20 +179,20 @@
           <a href="#" id="next-page">
             Next page
           </a>
-        </div><!-- #scroller -->
-      </div><!-- #wrapper -->
-    </div><!-- #content -->
+        </div><!-- .scroller -->
+      </div><!-- .wrapper -->
+    </div><!-- #pages -->
     
     
     <!-- Spot page -->
     <div id="page-spot" class="page-spots">
-      <div id="header">
+      <div class="header">
         <h1>Spots</h1>
         <a href="#" class="back">Back</a>
-      </div><!-- #header -->
+      </div><!-- .header -->
 
-      <div id="wrapper">
-        <div id="scroller">
+      <div class="wrapper">
+        <div class="scroller">
           <div class="page-header">
             <h1>Planet Hollywood</h1>
             <span class="address">123 Fake St, Hollywood, CA</span>
@@ -250,18 +249,18 @@
           <a href="#" id="next-page">
             Next page
           </a>
-        </div><!-- #scroller -->
-      </div><!-- #wrapper -->  
+        </div><!-- .scroller -->
+      </div><!-- .wrapper -->  
     </div><!-- #content -->
 
     <div id="page-sightings" class="page-sightings">
-      <div id="header">
+      <div class="header">
         <h1>New sighting</h1>
         <a href="#" class="back">Back</a>
-      </div><!-- #header -->
+      </div><!-- .header -->
 
-      <div id="wrapper">
-        <div id="scroller">
+      <div class="wrapper">
+        <div class="scroller">
           <form action="" method="post">
             <fieldset>
               <label for="input-name" id="label-name">
@@ -284,19 +283,19 @@
               <button type="submit">Share your sighting</button>
             </fieldset>
           </form>
-        </div><!-- #scroller -->
-      </div><!-- #wrapper -->  
+        </div><!-- .scroller -->
+      </div><!-- .wrapper -->  
     </div><!-- #content -->
 
     <!-- Stars page -->
     <div id="page-stars" class="page-stars">
-      <div id="header">
+      <div class="header">
         <h1>Stars</h1>
         <a href="#" class="back">Back</a>
-      </div><!-- #header -->
+      </div><!-- .header -->
 
-      <div id="wrapper">
-        <div id="scroller">
+      <div class="wrapper">
+        <div class="scroller">
           <ul id="sightings-list" class="table-view table-action">
             <!--<li>
               <a href="star.html">
@@ -356,19 +355,19 @@
           <a href="#" id="next-page">
             Next page
           </a>
-        </div><!-- #scroller -->
-      </div><!-- #wrapper -->  
+        </div><!-- .scroller -->
+      </div><!-- .wrapper -->  
     </div><!-- #content -->
 
     <!-- Star page -->
     <div id="page-star" class="page-stars">
-      <div id="header">
+      <div class="header">
         <h1>Stars</h1>
         <a href="#" class="back">Back</a>
-      </div><!-- #header -->
+      </div><!-- .header -->
     
-      <div id="wrapper">
-        <div id="scroller">
+      <div class="wrapper">
+        <div class="scroller">
           <div class="page-header">
             <h1>Garrett Murray</h1>
             <span class="sightings">13 sightings</span>
@@ -425,20 +424,18 @@
           <a href="#" id="next-page">
             Next page
           </a>
-        </div><!-- #scroller -->
-      </div><!-- #wrapper -->  
-    </div><!-- #content -->
-    
-  </div>
-
-    <div id="footer">
+        </div><!-- .scroller -->
+      </div><!-- .wrapper -->  
+    </div><!-- #pages -->
+    <div class="footer">
       <span class="site-switch">
         Switch to
         <a href="#">standard site</a>
       </span>
       <a href="#" class="authenticate">Log out</a>
-    </div><!-- #footer -->
-
+    </div><!-- .footer -->
+    
+  </div>
     <script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script src="../javascripts/vendor/helper.js"></script>
@@ -460,6 +457,9 @@
         });
 
         transition($("#page-spots"), "show");
+        
+        // Set the tab bar position
+        setTabBarPosition();
       });
       
       // Ex 03-03a - list...
@@ -513,6 +513,7 @@
         if(toPage.hasClass("current") || toPage === fromPage) { 
           return; 
         };
+        setTabBarPosition();
         toPage
           .addClass("current " + type + " in " + reverse)
           .one("webkitAnimationEnd", function(){
@@ -520,6 +521,16 @@
             toPage.removeClass(type + " in " + reverse);
           });
         fromPage.addClass(type + " out " + reverse);
+      }
+      
+      // Move the tab bar
+      var setTabBarPosition = function() {
+        document.getElementById('tab-bar').style.top = (window.pageYOffset + window.innerHeight - 65) + 'px';
+      }
+
+      // Bind setTabBarPosition to scoll event
+      window.onscroll = function() {
+        setTabBarPosition();
       }
     </script>
   </body>

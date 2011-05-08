@@ -23,8 +23,10 @@ body
   background: #37040a url(../images/background-body.gif)
   font-size: 0.875em
   line-height: 1.3
-  .standalone &
-    padding-bottom: 4.5em
+
+
+#pages
+  background: #37040a url(../images/background-body.gif)
 
 @media only screen and (max-device-width: 480px)
   body
@@ -234,7 +236,7 @@ a
     width: 190px
 
 // ---- Header --------------
-#header
+.header
   +dark-inset
   background: transparent
   color: #ebc466
@@ -575,18 +577,18 @@ a
         content: url(../images/sprite.svg)
 
 // ---- Footer --------------
-#footer
+.footer
   +clearfix
   color: #e0ccce
   padding: 1em .785em 1em
   .authenticate
     float: right
     
-// #scroller
+// .scroller
 //   -webkit-touch-callout: none
 //   -webkit-tap-highlight-color: rgba(0,0,0,0)
     
-#wrapper
+.wrapper
   position: relative
   z-index: 1
   width: 100%
