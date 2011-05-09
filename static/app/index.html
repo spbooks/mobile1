@@ -1,6 +1,6 @@
 <!doctype html>
 <!--[if IEMobile 7 ]><html class="no-js iem7 standalone"><![endif]-->
-<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js standalone"><!--<![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js "><!--<![endif]-->
   <head>
     <title>StarTrackr</title>
     
@@ -181,6 +181,13 @@
             Next page
           </a>
         </div><!-- .scroller -->
+        <div class="footer">
+          <span class="site-switch">
+            Switch to
+            <a href="#">standard site</a>
+          </span>
+          <a href="#" class="authenticate">Log out</a>
+        </div><!-- .footer -->
       </div><!-- .wrapper -->
     </div><!-- #pages -->
     
@@ -251,6 +258,13 @@
             Next page
           </a>
         </div><!-- .scroller -->
+        <div class="footer">
+          <span class="site-switch">
+            Switch to
+            <a href="#">standard site</a>
+          </span>
+          <a href="#" class="authenticate">Log out</a>
+        </div><!-- .footer -->
       </div><!-- .wrapper -->  
     </div><!-- #content -->
 
@@ -285,6 +299,13 @@
             </fieldset>
           </form>
         </div><!-- .scroller -->
+        <div class="footer">
+          <span class="site-switch">
+            Switch to
+            <a href="#">standard site</a>
+          </span>
+          <a href="#" class="authenticate">Log out</a>
+        </div><!-- .footer -->
       </div><!-- .wrapper -->  
     </div><!-- #content -->
 
@@ -357,6 +378,13 @@
             Next page
           </a>
         </div><!-- .scroller -->
+        <div class="footer">
+          <span class="site-switch">
+            Switch to
+            <a href="#">standard site</a>
+          </span>
+          <a href="#" class="authenticate">Log out</a>
+        </div><!-- .footer -->
       </div><!-- .wrapper -->  
     </div><!-- #content -->
 
@@ -426,17 +454,19 @@
             Next page
           </a>
         </div><!-- .scroller -->
+        <div class="footer">
+          <span class="site-switch">
+            Switch to
+            <a href="#">standard site</a>
+          </span>
+          <a href="#" class="authenticate">Log out</a>
+        </div><!-- .footer -->
       </div><!-- .wrapper -->  
     </div><!-- #pages -->
-    <div class="footer">
-      <span class="site-switch">
-        Switch to
-        <a href="#">standard site</a>
-      </span>
-      <a href="#" class="authenticate">Log out</a>
-    </div><!-- .footer -->
-    
+        
   </div>
+
+
     <script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script src="../javascripts/vendor/helper.js"></script>
@@ -540,7 +570,9 @@
       
       // Move the tab bar
       var setTabBarPosition = function() {
-        document.getElementById('tab-bar').style.top = (window.pageYOffset + window.innerHeight - 65) + 'px';
+        if(navigator.standalone) {
+          document.getElementById('tab-bar').style.top = (window.pageYOffset + window.innerHeight - 65) + 'px';
+        }
       }
 
       // Bind setTabBarPosition to scoll event
