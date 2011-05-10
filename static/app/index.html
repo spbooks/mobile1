@@ -466,9 +466,20 @@
         
   </div>
 
+  <!-- For jQ tmpl 2 -->
+  <script id="tmpl-tweet" type="text/x-jquery-tmpl">
+  	<li>
+      <a href="spot.html">
+        <h2>${name}</h2>
+        <span class="relative-distance">${location.distance}m away</span>
+        <span class="sightings">${hereNow.count}</span>
+      </a>
+    </li>
+  </script>
 
     <script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../javascripts/vendor/jquery.tmpl.min.js" ></script>
     <script src="../javascripts/vendor/helper.js"></script>
     <script src="../javascripts/vendor/iscroll-min.js" type="text/javascript" charset="utf-8"></script>
 
@@ -578,6 +589,58 @@
       // Bind setTabBarPosition to scoll event
       window.onscroll = function() {
         setTabBarPosition();
+      }
+      
+      /*
+            GEO LOCATION STUFF
+      */
+      
+      $(".locate-me").click(function(){
+        $("#spots-list").children().remove();
+        
+        navigator.geolocation.getCurrentPosition(
+          function(pos) {
+            // Succesfully got location
+            var lat = pos.coords.latitude,
+                lng = pos.coords.longitude;
+            fetchLocations(lat, lng);
+          },
+          function(error) {
+            // Failed to get location
+            alert(error);
+          }, {
+            // Options for geolocation
+            maximumAge: 10000, 
+            timeout: 10000,
+            enableHighAccuracy: true
+          }
+        );
+      });
+      
+      function fetchLocations(lat, lng) {
+        $.ajax({
+          url: "locations.php",
+          data: {
+            lat: lat,
+            lng: lng
+          },
+          type: "POST",
+          dataType: "JSON",
+          success: function(data){
+            displayLocations(data.response.groups);
+          },
+          error: function(){
+            alert("Error.");
+            console.log(arguments);
+          }
+        })
+      }
+      
+      function displayLocations(groups) {
+        console.log(groups)
+        $("#tmpl-tweet")
+  				.tmpl(groups[1].items)
+  				.appendTo("#spots-list");
       }
     </script>
   </body>

@@ -475,7 +475,6 @@
     <script type="text/javascript" charset="utf-8">
       // I had to create a changePage function because we can't
       // "pushState" in the transition called from onPopState
-    
       window.addEventListener("popstate", function(event) {
         if(!event.state){
           return;
@@ -487,6 +486,10 @@
           event.state.transition, 
           !event.state.reverse
         );
+        
+        if(event.state.first) {
+          console.log(event.state.page);//$(event.state.page).find(".back").hide();
+        }
       }, false);
 
       $(document).ready(function() {
@@ -527,18 +530,38 @@
         window.history.back();
       });
       
+      var pageState = {
+        state: {},
+        title: "",
+        url: ""
+      };
+      var first = true;
       function changePage(page, type, reverse) {
         // Store the transition with the state
-        window.history.pushState({
-          page: page,
-          transition: type,
-          reverse: reverse
-        }, Math.random(), page);
+        if(pageState.url){
+          // Update the transition to be the NEXT transition
+          pageState.state.transition = type;
+          window.history.replaceState(pageState.state, pageState.title, pageState.url);
+        }
+
+        pageState = {
+          state: {
+            page: page,
+            transition: type,
+            reverse: reverse
+          },
+          title: "",
+          url: page
+        }
+        if(first) {
+          pageState.state.first = true;
+          first = false;
+        }
+        window.history.pushState(pageState.state, pageState.title, pageState.url);
         
         // Do the real transition
         transition(page, type, reverse)
       }
-      
       // Ex 03-03a - transition with reverse
       function transition(toPage, type, reverse){
 
