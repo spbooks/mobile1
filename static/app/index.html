@@ -619,12 +619,9 @@
       
       function fetchLocations(lat, lng) {
         $.ajax({
-          url: "locations.php",
-          data: {
-            lat: lat,
-            lng: lng
-          },
-          type: "POST",
+          url: "https://api.foursquare.com/v2/venues/search?ll=" + lat + ',' + lng + "&client_id=JTHNTGXROWPZVZ1MNNWJ411PIPDAOO3I4VTKC4TNXNDVALJ3&client_secret=WMX25UJBHEZMGDXKVZR2TTC3CKA2W3E4JC4HMVVZ3W321A4Q&callback=",
+
+          type: "GET",
           dataType: "JSON",
           success: function(data){
             displayLocations(data.response.groups);
@@ -636,12 +633,18 @@
         })
       }
       
+
+      
       function displayLocations(groups) {
-        console.log(groups)
-        $("#tmpl-tweet")
-  				.tmpl(groups[1].items)
-  				.appendTo("#spots-list");
+        for(var i = 0; i < groups.length; i++) {
+          if(groups[i].type === 'nearby') {
+            $("#tmpl-tweet")
+  				    .tmpl(groups[i].items)
+  				    .appendTo("#spots-list");
+          }
+        }
       }
+
     </script>
   </body>
 </html>
