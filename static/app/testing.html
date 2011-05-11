@@ -86,7 +86,7 @@
   
   <div id="pages">
     <!-- Spots page -->
-    <div id="page-spots" class="page-spots">
+    <div id="page-spots" class="page-spots current">
       <div class="header">
         <h1>Spots</h1>
         <a href="#" class="back">Back</a>
@@ -473,121 +473,33 @@
     <script src="../javascripts/vendor/iscroll-min.js" type="text/javascript" charset="utf-8"></script>
 
     <script type="text/javascript" charset="utf-8">
-      onpopstate = function(event) {
-        console.log(event.state);
-        console.log(event.state.target);
-        reverse = window.history.length > event.state.length ? false : true;
-        if(event.state) {
-          transition(event.state.target, "push", reverse);
-        }
-      }
       $(document).ready(function() {
-          window.history.pushState({target:'#page-spots'}, '', '#page-spots');
-        // Ex 03-02a - fade with function
-        $("#tab-bar a").click(function(e){
-          e.preventDefault();
-          var nextPage = $(e.target.hash);
-          state = {
-            target: e.target.hash,
-            length: window.history.length
-          };
-          window.history.pushState(state, '', e.target.hash);
+$("#tab-bar a").bind('click',function(e) {
+  e.preventDefault();
+  // Swap pages!
+  var nextPage = $(e.target.hash);
+  transition(nextPage, "push");
+  $("#tab-bar").attr("className", e.target.hash.slice(1));
+});
 
-          transition(e.target.hash, "show");
         });
+function transition(toPage,type) {
+  var toPage = $(toPage),
+    fromPage = $("#pages .current");
+if(toPage.hasClass("current") || toPage === fromPage) { 
+  return; 
+};
 
-        transition("#page-spots", "show");
-        
-        // Set the tab bar position
-        setTabBarPosition();
-      });
-     // Ex 03-03a - list...
-     $("#spots-list li").click(function(e){
-        state = {
-          target: '#page-spot',
-          length: window.history.length,
-          direction: 'down'
-          };
-        window.history.pushState(state, '', '#page-spot');
-        e.preventDefault();
-        transition("#page-spot", "push");
-      });
-      $("#sightings-list li").click(function(e){
-        state = {
-          target: '#page-star',
-          length: window.history.length,
-          direction: down
-        };
-        window.history.pushState(state, '', '#page-star');
-        e.preventDefault();
-        transition("#page-star", "push");
-      });
-      $("#star-spots-list li").click(function(e){
-        state = {
-          target: '#page-spot',
-          length: window.history.length,
-          direction: down
-        };
-        window.history.pushState(state, '', '#page-spot');
-        e.preventDefault();
-        transition("#page-spot", "push");
-      });
-      
-      // Handle back clicks
-$(".back").live("click",function(){
-    console.log('back clicked');
-       history.back();
-      });
-      
-      // Ex 03-03a - transition with reverse
-      function transition(toPage, type, reverse){
-  
-        if(toPage) {
-          // Set the current icon
-          $("#tab-bar").attr("className", toPage.slice(1));
-        }
+  toPage
+    .addClass("current " + type + " in")
+    .one("webkitAnimationEnd", function(){
+      fromPage.removeClass("current " + type + " out");
+      toPage.removeClass(type + " in");
+    });
+  fromPage.addClass(type + " out");
 
-        var toPage = $(toPage),
-          fromPage = $("#pages .current"),
-          reverse = reverse ? "reverse" : "";
+}
 
-                toPage.find(".back").toggle();
-
-        if(toPage.hasClass("current") || toPage === fromPage) { 
-          return; 
-        };
-
-        setTabBarPosition();
-
-        // For non-animatey browsers
-        if(!("WebKitTransitionEvent" in window)){
-            toPage.addClass("current");
-            fromPage.removeClass("current");
-            return;
-        }
-        
-        toPage
-          .addClass("current " + type + " in " + reverse)
-          .one("webkitAnimationEnd", function(){
-            fromPage.removeClass("current " + type + " out " + reverse);
-            toPage.removeClass(type + " in " + reverse);
-          });
-        fromPage.addClass(type + " out " + reverse);
-
-
-      }
-      
-      // Move the tab bar
-      var setTabBarPosition = function() {
-        if(navigator.standalone) {
-          document.getElementById('tab-bar').style.top = (window.pageYOffset + window.innerHeight - 65) + 'px';
-        }
-      }
-
-      // Bind setTabBarPosition to scoll event
-      window.onscroll = function() {
-        setTabBarPosition();
-      }
     </script>
   </body>
 </html>
