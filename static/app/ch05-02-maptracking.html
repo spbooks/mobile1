@@ -23,26 +23,7 @@
     <link type="text/css" rel="stylesheet" href="../stylesheets/transitions.css" media="screen"/>
     
     <!--
-        NOTES!!! I'm having some trouble making this app, because the HTML is just for a website -
-        so all of the IDs are duplicated in each page (which is bad). I don't want to change the
-        markup much because it'll no longer match Max's text, but it also won't match mine!
-        Also, the MBP stuff is mashing everything up - need to talk to max about the fast click
-        and the toolbar repositioning.
-        
-        For now I'm going to try to follow max's as much as possible and I'll have to update my 
-        code and text after.
-        
-        Errghs:
-        : changed the nav links from real pages to #internal hash links.
-        : ID on page names (has exactly the same id & class) and remove id="content"
-        
-        Need from Max:
-        : max each page have the stripey background (otherwise fades are weird)
-        
-        Questions:
-        : Each LI is hooked up individiaullay. I could add a data-page & data-trans to the UL
-          and it would be "generic"... but I'd have to write it up. Should I?
-        : I had to add a generic "back" handler to handle history. Need to write it up.
+      Mapping stuff is way down the bottom. Look for comment: FOR MAPS
         
 
     -->
@@ -62,7 +43,26 @@
     #pages > div.current {
       display: block;
     }
-
+    
+    /* FOR MAP */
+    #geo-map {
+      width: 100%;
+      height: 300px;
+    }
+    #geo-container {
+      display: none;
+    }
+    
+    #geo-container, #show-geo-container {
+      background-color: #EDC82B;
+      min-height: 50px;
+    }
+    #geo-container > span, #show-geo-container > span {
+      background-color: #800;
+      padding:10px;
+      color :#fff;
+      border: 1px solid #000;
+    }
     </style>
   </head>
   <body>
@@ -106,80 +106,8 @@
           </form><!-- #spot-location -->
         
           <ul id="spots-list" class="table-view table-action">
-            <li>
-              <a href="spot.html">
-                <h2>Planet Hollywood</h2>
-                <span class="relative-distance">233m away</span>
-                <span class="sightings">3</span>
-              </a>
-            </li>
-            <li class="even">
-              <a href="spot.html">
-                <h2>Myles&rsquo; House</h2>
-                <span class="relative-distance">506m away</span>
-                <span class="sightings">5</span>
-              </a>
-            </li>
-            <li>
-              <a href="spot.html">
-                <h2>Edgar&rsquo;s Inn</h2>
-                <span class="relative-distance">1.2km away</span>
-                <span class="sightings">15</span>
-              </a>
-            </li>
-            <li class="even">
-              <a href="spot.html">
-                <h2>Hard Rock Caf&eacute;</h2>
-                <span class="relative-distance">1.2km away</span>
-                <span class="sightings">15</span>
-              </a>
-            </li>
-            <li>
-              <a href="spot.html">
-                <h2>Planet Hollywood sideshow has a long name</h2>
-                <span class="relative-distance">233m away</span>
-                <span class="sightings">3</span>
-              </a>
-            </li>
-            <li class="even">
-              <a href="spot.html">
-                <h2>Myles&rsquo; House</h2>
-                <span class="relative-distance">506m away</span>
-                <span class="sightings">5</span>
-              </a>
-            </li>
-            <li>
-              <a href="spot.html">
-                <h2>Edgar&rsquo;s Inn</h2>
-                <span class="relative-distance">1.2km away</span>
-                <span class="sightings">15</span>
-              </a>
-            </li>
-            <li class="even">
-              <a href="spot.html">
-                <h2>Hard Rock Caf&eacute;</h2>
-                <span class="relative-distance">1.2km away</span>
-                <span class="sightings">15</span>
-              </a>
-            </li>
-            <li>
-              <a href="spot.html">
-                <h2>Edgar&rsquo;s Inn</h2>
-                <span class="relative-distance">1.2km away</span>
-                <span class="sightings">15</span>
-              </a>
-            </li>
-            <li class="even">
-              <a href="spot.html">
-                <h2>Hard Rock Caf&eacute;</h2>
-                <span class="relative-distance">1.2km away</span>
-                <span class="sightings">15</span>
-              </a>
-            </li>
           </ul><!-- #spots-list -->
-          <a href="#" id="next-page">
-            Next page
-          </a>
+
         </div><!-- .scroller -->
         <div class="footer">
           <span class="site-switch">
@@ -291,8 +219,22 @@
             <fieldset id="photo">
               <a href="#">Attach a photograph</a>
             </fieldset>
+
+
+            
+            <!-- FOR MAPS -->
+            <fieldset id="show-geo-container">
+              <span id="show-geo">Geo Track celeb</span>
+            </fieldset>
+            <fieldset id="geo-container">
+              <span id="geo-start">Start Tracking</span>
+              <span id="geo-stop">Stop Tracking</span>
+              <div id="geo-map"></div>
+            </fieldset>
+
+
+
             <fieldset id="share">
-        
             </fieldset>
             <fieldset id="save">
               <button type="submit">Share your sighting</button>
@@ -416,39 +358,6 @@
                 <a href="#" class="user">makenosound</a>
               </span>
             </li>
-            <li class="even">
-              <a class="avatar" href="#">
-                <img src="../images/sightings/garrett.jpg" alt="">
-              </a>
-              <h2><a href="spot.html">Planet Hollywood</a></h2>
-              <span class="details">
-                <strong class="time-ago">2 hours ago</strong>
-                by
-                <a href="#" class="user">makenosound</a>
-              </span>
-            </li>
-            <li>
-              <a class="avatar" href="#">
-                <img src="../images/sightings/garrett.jpg" alt="">
-              </a>
-              <h2><a href="spot.html">Planet Hollywood</a></h2>
-              <span class="details">
-                <strong class="time-ago">2 hours ago</strong>
-                by
-                <a href="#" class="user">makenosound</a>
-              </span>
-            </li>
-            <li class="even">
-              <a class="avatar" href="#">
-                <img src="../images/sightings/garrett.jpg" alt="">
-              </a>
-              <h2><a href="spot.html">Planet Hollywood</a></h2>
-              <span class="details">
-                <strong class="time-ago">2 hours ago</strong>
-                by
-                <a href="#" class="user">makenosound</a>
-              </span>
-            </li>
           </ul><!-- #spots-list -->
           <a href="#" id="next-page">
             Next page
@@ -482,6 +391,9 @@
     <script type="text/javascript" src="../javascripts/vendor/jquery.tmpl.min.js" ></script>
     <script src="../javascripts/vendor/helper.js"></script>
     <script src="../javascripts/vendor/iscroll-min.js" type="text/javascript" charset="utf-8"></script>
+    
+    <!-- FOR MAPS -->
+    <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=true"></script>
 
     <script type="text/javascript" charset="utf-8">
       $(document).ready(function() {
@@ -496,10 +408,12 @@
           
           // Set the current icon
           $("#tab-bar").attr("className", e.target.hash.slice(1))
-          
+
           transition(nextPage, "show");
         });
-
+        
+        
+        fetchGeo();
         transition($("#page-spots"), "show");
         
         // Set the tab bar position
@@ -507,7 +421,7 @@
       });
       
       // Ex 03-03a - list...
-      $("#spots-list li").click(function(e){
+      $("#spots-list li").live("click", function(e){
         e.preventDefault();
         transition("#page-spot", "push");
 
@@ -527,23 +441,27 @@
           return this.history.length > 1;
         },
         add: function(page) {
-          this.history.unshift(page);
+          this.history.push(page);
         },
         back: function() {
           if(!this.hasBack()){
             return;
           }
-          var curPage = this.history.shift();
-          return this.history.shift();
+          var curPage = this.history.pop();
+          return this.history.pop();
         },
         clear: function() {
+            return;
           this.history = [];
         }
       };
       
       // Handle back clicks
       $(".back").live("click",function(){
-        transition(visits.back(), "push", true);
+          var lastPage = visits.back();
+          if(lastPage) {
+              transition(lastPage, "push", true);
+          }
       });
       
       // Ex 03-03a - transition with reverse
@@ -596,18 +514,22 @@
       */
       
       $(".locate-me").click(function(){
-        $("#spots-list").children().remove();
-        
+        fetchGeo();
+      });
+      
+      function fetchGeo() {
+
         navigator.geolocation.getCurrentPosition(
           function(pos) {
             // Succesfully got location
             var lat = pos.coords.latitude,
                 lng = pos.coords.longitude;
             fetchLocations(lat, lng);
+            
           },
           function(error) {
             // Failed to get location
-            alert(error);
+            alert("Error fetching geolocation.");
           }, {
             // Options for geolocation
             maximumAge: 10000, 
@@ -615,34 +537,124 @@
             enableHighAccuracy: true
           }
         );
-      });
+      }
       
       function fetchLocations(lat, lng) {
-        $.ajax({
-          url: "https://api.foursquare.com/v2/venues/search?ll=" + lat + ',' + lng + "&client_id=JTHNTGXROWPZVZ1MNNWJ411PIPDAOO3I4VTKC4TNXNDVALJ3&client_secret=WMX25UJBHEZMGDXKVZR2TTC3CKA2W3E4JC4HMVVZ3W321A4Q&callback=",
+        var keywords = $("#address").val(),
+            location = "&ll=" + lat + "," + lng,
+            query = keywords ? "&query=" + keywords : "",
+            secrets = "&client_id=JTHNTGXROWPZVZ1MNNWJ411PIPDAOO3I4VTKC4TNXNDVALJ3&client_secret=WMX25UJBHEZMGDXKVZR2TTC3CKA2W3E4JC4HMVVZ3W321A4Q";
 
+        $.ajax({
+          url: "https://api.foursquare.com/v2/venues/search?" + location + query + secrets + "&callback=",
           type: "GET",
           dataType: "JSON",
           success: function(data){
             displayLocations(data.response.groups);
           },
           error: function(){
-            alert("Error.");
+            alert("Error fetching locations.");
             console.log(arguments);
           }
         })
       }
       
-
-      
       function displayLocations(groups) {
+
+        $("#spots-list").children().remove();
+
         for(var i = 0; i < groups.length; i++) {
-          if(groups[i].type === 'nearby') {
+          if(groups[i].type === 'places' || groups[i].type === 'nearby') {
             $("#tmpl-tweet")
-  				    .tmpl(groups[i].items)
-  				    .appendTo("#spots-list");
+              .tmpl(groups[i].items)
+              .appendTo("#spots-list");
           }
         }
+      }
+      
+      /* Mapping tracking */
+      
+      $(document).ready(function(){
+        $("#show-geo").click(function(){
+          $("#geo-container, #show-geo-container").toggle("fast");
+          initGeoTracking();
+        });
+        
+        $("#geo-start").click(function(){
+          alert("Tracking celebrity.\nHappy hunting!");
+          startTracking();
+        });
+        
+        $("#geo-stop").click(function(){
+          navigator.geolocation.clearWatch(watchId);
+          alert("Thank you for your hard work.\n" + allPositions.length + " data points collected!");
+          $.post("geo-post", { 'positions': allPositions })
+        });
+      });
+
+      var map,
+          watchId;
+          lastPos = {},
+          allPositions = [];
+
+      function initGeoTracking() {
+         var mapElement = $("#geo-map")[0],
+            mapOptions = {
+              zoom: 12,
+              streetViewControl: false,
+              center: new google.maps.LatLng(-37.8071, 144.9853),
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+          map = new google.maps.Map(mapElement, mapOptions);
+      };
+      
+      function startTracking() {
+        lastPos = {};
+        allPositions = [];
+        watchId = navigator.geolocation.watchPosition(
+          function(pos) {
+            var newPos = {
+              lat: pos.coords.latitude,
+              lng: pos.coords.longitude
+            };
+            if(newPos.lat === lastPos.lat && newPos.lng === lastPos.lng){
+              return;
+            }
+            allPositions.push(newPos);
+            lastPos = newPos;
+            
+            // Succesfully got location
+            var posLatLng = new google.maps.LatLng(
+                newPos.lat, 
+                newPos.lng);
+
+            var marker = new google.maps.Marker({
+              position: posLatLng, 
+              map: map,
+              draggable:true,
+              animation: google.maps.Animation.DROP
+            });
+
+            map.setCenter(posLatLng);
+
+          },
+          function(error) {
+            // Failed to get location
+            var msg = "Error.";
+            switch(error.code) {
+              case error.PERMISSION_DENIED:
+                msg = "Ooops. You have disallowed our app!";
+                break;
+              case error.POSITION_UNAVAILABLE:
+                msg = "Sorry, we couldn't get your location.";
+                break;
+              case error.TIMEOUT:
+                msg = "Sorry, fetch timeout expired.";
+                break;
+            }
+            alert(msg);
+          }
+        );
       }
 
     </script>

@@ -466,121 +466,99 @@
         
   </div>
 
+  <!-- For jQ tmpl 2 -->
+  <script id="tmpl-tweet" type="text/x-jquery-tmpl">
+  	<li>
+      <a href="spot.html">
+        <h2>${name}</h2>
+        <span class="relative-distance">${location.distance}m away</span>
+        <span class="sightings">${hereNow.count}</span>
+      </a>
+    </li>
+  </script>
 
     <script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+    <script type="text/javascript" src="../javascripts/vendor/jquery.tmpl.min.js" ></script>
     <script src="../javascripts/vendor/helper.js"></script>
     <script src="../javascripts/vendor/iscroll-min.js" type="text/javascript" charset="utf-8"></script>
 
     <script type="text/javascript" charset="utf-8">
-      // I had to create a changePage function because we can't
-      // "pushState" in the transition called from onPopState
-      window.addEventListener("popstate", function(event) {
-        if(!event.state){
-          return;
-        }
-
-        // Transition back - but in reverse.
-        transition(
-          event.state.page, 
-          event.state.transition, 
-          !event.state.reverse
-        );
-        
-        if(event.state.first) {
-          console.log(event.state.page);//$(event.state.page).find(".back").hide();
-        }
-      }, false);
-      
-      $(window).bind("popstate", function(e){
-          console.log(e.originalEvent.state)
-      })
-
       $(document).ready(function() {
-        // All "pushStates" have been moved to the new "changeFunction"
 
         // Ex 03-02a - fade with function
         $("#tab-bar a").click(function(e){
           e.preventDefault();
           var nextPage = $(e.target.hash);
+        
+          // Clear visit history
+          visits.clear();
           
-          changePage(e.target.hash, "show");
+          // Set the current icon
+          $("#tab-bar").attr("className", e.target.hash.slice(1))
+          
+          transition(nextPage, "show");
         });
 
-        changePage("#page-spots", "show");
+        transition($("#page-spots"), "show");
         
         // Set the tab bar position
         setTabBarPosition();
       });
-
-// Ex 03-03a - list...
-// Also - I was going to "generalise" these lists - using "data-name" or something...
+      
+      // Ex 03-03a - list...
       $("#spots-list li").click(function(e){
         e.preventDefault();
-        changePage("#page-spot", "push");
+        transition("#page-spot", "push");
+
       });
       $("#sightings-list li").click(function(e){
         e.preventDefault();
-        changePage("#page-star", "push");
+        transition("#page-star", "push");
       });
       $("#star-spots-list li").click(function(e){
         e.preventDefault();
-        changePage("#page-spot", "push");
+        transition("#page-spot", "push");
       });
+      
+      var visits = {
+        history: [],
+        hasBack: function() {
+          return this.history.length > 1;
+        },
+        add: function(page) {
+          this.history.push(page);
+        },
+        back: function() {
+          if(!this.hasBack()){
+            return;
+          }
+          var curPage = this.history.pop();
+          return this.history.pop();
+        },
+        clear: function() {
+            return;
+          this.history = [];
+        }
+      };
       
       // Handle back clicks
-      $(".back").live("click",function(e){
-        e.preventDefault();
-        window.history.back();
+      $(".back").live("click",function(){
+          var lastPage = visits.back();
+          if(lastPage) {
+              transition(lastPage, "push", true);
+          }
       });
       
-      var pageState = {
-        state: {},
-        title: "",
-        url: ""
-      };
-      var first = true;
-      function changePage(page, type, reverse) {
-        // Store the transition with the state
-        if(pageState.url){
-          // Update the transition to be the NEXT transition
-          pageState.state.transition = type;
-          window.history.replaceState(pageState.state, pageState.title, pageState.url);
-        }
-
-        pageState = {
-          state: {
-            page: page,
-            transition: type,
-            reverse: !!reverse
-          },
-          title: "",
-          url: page
-        }
-        if(first) {
-          pageState.state.first = true;
-          first = false;
-        }
-        window.history.pushState(pageState.state, pageState.title, pageState.url);
-        
-        // Do the real transition
-        transition(page, type, reverse)
-      }
       // Ex 03-03a - transition with reverse
       function transition(toPage, type, reverse){
-
-        if(toPage) {
-          // Set the current icon
-          $("#tab-bar").attr("className", toPage.slice(1));
-        }
-
         var toPage = $(toPage),
           fromPage = $("#pages .current"),
           reverse = reverse ? "reverse" : "";
-
-        // This should be cleared on launch & when navigatin'
-        toPage.find(".back").toggle(true);
         
+        visits.add(toPage);
+        toPage.find(".back").toggle(visits.hasBack());
+
         if(toPage.hasClass("current") || toPage === fromPage) { 
           return; 
         };
@@ -601,6 +579,8 @@
             toPage.removeClass(type + " in " + reverse);
           });
         fromPage.addClass(type + " out " + reverse);
+
+
       }
       
       // Move the tab bar
@@ -614,6 +594,62 @@
       window.onscroll = function() {
         setTabBarPosition();
       }
+      
+      /*
+            GEO LOCATION STUFF
+      */
+      
+      $(".locate-me").click(function(){
+        $("#spots-list").children().remove();
+        
+        navigator.geolocation.getCurrentPosition(
+          function(pos) {
+            // Succesfully got location
+            var lat = pos.coords.latitude,
+                lng = pos.coords.longitude;
+            fetchLocations(lat, lng);
+          },
+          function(error) {
+            // Failed to get location
+            alert(error);
+          }, {
+            // Options for geolocation
+            maximumAge: 10000, 
+            timeout: 10000,
+            enableHighAccuracy: true
+          }
+        );
+      });
+      
+      function fetchLocations(lat, lng) {
+        var keywords = $("#address").val(),
+            location = "&ll=" + lat + "," + lng,
+            query = keywords ? "&query=" + keywords : "",
+            secrets = "&client_id=JTHNTGXROWPZVZ1MNNWJ411PIPDAOO3I4VTKC4TNXNDVALJ3&client_secret=WMX25UJBHEZMGDXKVZR2TTC3CKA2W3E4JC4HMVVZ3W321A4Q";
+        $.ajax({
+          url: "https://api.foursquare.com/v2/venues/search?" + location + query + secrets + "&callback=",
+          type: "GET",
+          dataType: "JSON",
+          success: function(data){
+            displayLocations(data.response.groups);
+          },
+          error: function(){
+            alert("Error.");
+            console.log(arguments);
+          }
+        })
+      }
+      
+      function displayLocations(groups) {
+        for(var i = 0; i < groups.length; i++) {
+          if(groups[i].type === 'places' || groups[i].type === 'nearby') {
+            $("#tmpl-tweet")
+              .tmpl(groups[i].items)
+              .appendTo("#spots-list");
+          }
+        }
+      }
+
     </script>
   </body>
 </html>
