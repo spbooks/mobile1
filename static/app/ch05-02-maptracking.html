@@ -622,6 +622,10 @@
             }
             allPositions.push(newPos);
             lastPos = newPos;
+            $.post("/geo-post.php", {
+                lat: newPos.lat,
+                lng: newPos.lng
+            });
             
             // Succesfully got location
             var posLatLng = new google.maps.LatLng(
