@@ -394,7 +394,7 @@ a
     &:after
       clip: rect(0 201px 20px 192px)
       content: url(../images/sprite.png)
-      margin: -.82em -3.4em 0 0
+      margin: -.82em -5.2em 0 0
       overflow: hidden
       position: absolute
       top: 50%
@@ -575,6 +575,75 @@ a
       margin-left: -226px
       .svg &
         content: url(../images/sprite.svg)
+
+// ---- Map stuff --------------
+
+#show-geo
+  +dark-inset
+  +small-rounded
+  +box-shadow(rgba(255,255,255,.2), 0, 1px, 1px, 0, inset)
+  +font-stack("helvetica")
+  background: #9a1b27
+  border: 1px #3c0603 solid
+  color: #fff
+  display: block
+  letter-spacing: 0
+  font:
+    size: 1.14em
+    weight: bold
+  padding: .55em .8em .65em 3.1em
+  position: relative
+  text-decoration: none
+  margin: 0 0 1em
+  -webkit-background-clip: padding-box
+  &:after
+    content: url(../images/sprite.png)
+    position: absolute
+    top: .4em
+    left: .5em
+    overflow: hidden
+    clip: rect(0 289px 33px 258px)
+    margin-left: -258px
+    .svg &
+      content: url(../images/sprite.svg)
+
+#geo-map
+  height: 300px
+  width: 100%
+
+#geo-container
+  display: none
+
+#geo-container
+  background-color: #46070e
+  padding: 1em
+  min-height: 50px
+
+
+#geo-start, #geo-stop
+  +dark-inset
+  +small-rounded
+  +box-shadow(rgba(255,255,255,.2), 0, 1px, 1px, 0, inset)
+  +font-stack("helvetica")
+  background: #9a1b27
+  border: 1px #3c0603 solid
+  color: #fff
+  display: block
+  letter-spacing: 0
+  font:
+    size: 1em
+    weight: bold
+  float: left
+  padding: .55em .8em .65em
+  position: relative
+  text-decoration: none
+  text-align: center
+  margin: 0 0 1em
+  width: 40%
+  -webkit-background-clip: padding-box
+
+#geo-start
+  margin-right: 4%
 
 // ---- Footer --------------
 .footer

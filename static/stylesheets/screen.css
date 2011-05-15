@@ -436,7 +436,7 @@ a {
   .table-action a:after {
     clip: rect(0 201px 20px 192px);
     content: url(../images/sprite.png);
-    margin: -0.82em -3.4em 0 0;
+    margin: -0.82em -5.2em 0 0;
     overflow: hidden;
     position: absolute;
     top: 50%;
@@ -640,6 +640,80 @@ a {
       margin-left: -226px; }
       .svg #photo a:after {
         content: url(../images/sprite.svg); }
+
+#show-geo {
+  text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 1px;
+  -webkit-border-radius: 0.286em;
+  -moz-border-radius: 0.286em;
+  border-radius: 0.286em;
+  -o-box-shadow: rgba(255, 255, 255, 0.2) 0 1px 1px 0 inset;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.2) 0 1px 1px 0 inset;
+  -moz-box-shadow: rgba(255, 255, 255, 0.2) 0 1px 1px 0 inset;
+  box-shadow: rgba(255, 255, 255, 0.2) 0 1px 1px 0 inset;
+  font-family: "HelveticaNeue", arial, helvetica sans-serif;
+  background: #9a1b27;
+  border: 1px #3c0603 solid;
+  color: white;
+  display: block;
+  letter-spacing: 0;
+  font-size: 1.14em;
+  font-weight: bold;
+  padding: 0.55em 0.8em 0.65em 3.1em;
+  position: relative;
+  text-decoration: none;
+  margin: 0 0 1em;
+  -webkit-background-clip: padding-box; }
+  #show-geo:after {
+    content: url(../images/sprite.png);
+    position: absolute;
+    top: 0.4em;
+    left: 0.5em;
+    overflow: hidden;
+    clip: rect(0 289px 33px 258px);
+    margin-left: -258px; }
+    .svg #show-geo:after {
+      content: url(../images/sprite.svg); }
+
+#geo-map {
+  height: 300px;
+  width: 100%; }
+
+#geo-container {
+  display: none; }
+
+#geo-container {
+  background-color: #46070e;
+  padding: 1em;
+  min-height: 50px; }
+
+#geo-start, #geo-stop {
+  text-shadow: rgba(0, 0, 0, 0.4) 0 -1px 1px;
+  -webkit-border-radius: 0.286em;
+  -moz-border-radius: 0.286em;
+  border-radius: 0.286em;
+  -o-box-shadow: rgba(255, 255, 255, 0.2) 0 1px 1px 0 inset;
+  -webkit-box-shadow: rgba(255, 255, 255, 0.2) 0 1px 1px 0 inset;
+  -moz-box-shadow: rgba(255, 255, 255, 0.2) 0 1px 1px 0 inset;
+  box-shadow: rgba(255, 255, 255, 0.2) 0 1px 1px 0 inset;
+  font-family: "HelveticaNeue", arial, helvetica sans-serif;
+  background: #9a1b27;
+  border: 1px #3c0603 solid;
+  color: white;
+  display: block;
+  letter-spacing: 0;
+  font-size: 1em;
+  font-weight: bold;
+  float: left;
+  padding: 0.55em 0.8em 0.65em;
+  position: relative;
+  text-decoration: none;
+  text-align: center;
+  margin: 0 0 1em;
+  width: 40%;
+  -webkit-background-clip: padding-box; }
+
+#geo-start {
+  margin-right: 4%; }
 
 .footer {
   zoom: 1;
