@@ -34,16 +34,7 @@ a {
   color: #ebc466;
   font-weight: bold; }
   
-#pages {
-	position: relative; }
-  #pages > div {
-  	display:none;
-  	position: absolute;
-  	top: 0;
-  	left: 0;
-  	width: 100%; }
-  #pages > div.current {
-  	display: block; }
+
   
 #tab-bar {
   zoom: 1;
@@ -356,7 +347,7 @@ a {
     font-size: 1em;
     margin: 0;
     height: 2em;
-    width: 94%;
+    width: 100%;
     -webkit-appearance: caret; }
     #spots-location input:focus {
       background: white; }

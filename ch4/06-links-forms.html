@@ -9,33 +9,18 @@
 
 		<link type="text/css" rel="stylesheet" href="../stylesheets/screen.css" media="screen"/>
 		<link type="text/css" rel="stylesheet" href="../stylesheets/transitions.css" media="screen"/>
-		<style type="text/css" media="screen">
-			#pages {
-				position: relative;
-			}
-			#pages > div {
-				display:none;
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-			}
-			#pages > div.current {
-				display: block;
-			}
-			#header {
-				position: relative;
-			}
-			#header .back{
-				display: none;
-			}
-			#page-spot .back{
-				display: block !important;
-			}
-			
-			#contact-list li {
-				padding-left: 10px;
-			}
+		<style>
+		  #spots-location input {
+		    margin: 0.9em;
+		  }
+		  #photo a {
+		    margin-left: 0.9em;
+		  }
+		  
+		  .table-list li {
+		    padding-left: 0.9em;
+		  }
+		
 		</style>
 	</head> 
 	<body>
@@ -57,12 +42,11 @@
 			</li>
 		</ul><!-- #tab-bar -->
 
-		<div id="header">
+		<div class="header">
 			<h1>Contact</h1>
 			<a href="#" class="back">Back</a>
 		</div><!-- #header -->
 
-		<!-- CHANGE: added pages for container -->
 		<div id="pages">
 			<div id="spots" class="current">
 				<div class="page-header">
@@ -89,29 +73,35 @@
 					</li>
 					<li>
 						<h2>
-							<a href="geo:46.9,1.8?z=100">Drop around for tea</a><br>
+							<a href="geo:-37.807411,144.993417?z=18">Drop around for tea (geo: link)</a><br>
 						</h2><span class="details"><strong class="time-ago">Follow the map to our welcoming door.</strong></span>
 					</li>
+					<li>
+					  <h2>
+					    <a href="http://maps.google.com.au/maps?q=sitepoint">Drop around for tea (maps link)</a>
+					   </h2><span class="details"><strong class="time-ago">Follow the map to our welcoming door.</strong></span>
+					  </h2>
+					</li>
 				</ul><!-- #spots-list -->
-				<!-- Ex 02-01d - autocaps and autocorrect -->
+
 				<form id="spots-location" autocapitalize="off" action="" method="post" name="spots-location">
 					<fieldset>
-						<label for="input-name" id="label-name">
+						<label for="name" id="label-name">
 							<span>Who</span>
 							<input type="text" autocorrect="off" name="name" id="input-name" placeholder="Star's name"/>
 						</label>
 						<label for="tags">
 							<span>Tags</span>
-							<input type="text" autocapitalize="off" placeholder="Enter relevent tags" name="tags" id="tags">
+							<input type="text" autocapitalize="off" placeholder="Tag your sighting" name="tags" id="tags"/>
 						</label>
 						<label for="email">
 							<span>Email</span>
-							<input type="email" placeholder="Email address" />
+							<input type="email" placeholder="Email address"/>
 						</label>
-						<label>
-							<span>Spots</span>
-							<input type="number" placeholder="NumberOfSpots" />
-						</label>
+            <label>
+              <span>Number of celebs</span>
+              <input type="number" placeholder="Number of celebs"/>
+            </label>
 					</fieldset>
 					<fieldset id="photo">
 						<a href="#">Submit</a>
@@ -126,15 +116,7 @@
 			document.write(unescape('%3Cscript src="../javascripts/vendor/jquery-1.5.min.js"%3E%3C/script%3E'));
 		}
 		</script>
-		<script type="text/javascript" src="../javascripts/vendor/jquery.tmpl.min" ></script>
 		<script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
-		<script type="text/javascript">
-		var hasTouch = "ontouchend" in document,
-			touchEndEvent = hasTouch ? "touchend" : "mouseup";
 
-		$(document).ready(function(){
-			
-		});
-		</script>
 	</body>
 </html>
