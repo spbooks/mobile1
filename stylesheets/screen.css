@@ -33,7 +33,18 @@ body {
 a {
   color: #ebc466;
   font-weight: bold; }
-
+  
+#pages {
+	position: relative; }
+  #pages > div {
+  	display:none;
+  	position: absolute;
+  	top: 0;
+  	left: 0;
+  	width: 100%; }
+  #pages > div.current {
+  	display: block; }
+  
 #tab-bar {
   zoom: 1;
   background: #050405;
@@ -274,7 +285,8 @@ a {
   letter-spacing: 0.15em;
   text-align: center;
   text-transform: uppercase;
-  padding: 0.9em 0.8em 0.75em; }
+  padding: 0.9em 0.8em 0.75em;
+  position: relative; }
   .standalone.cssgradients .header {
     border-bottom: 1px #38040a solid;
     background-color: #6a0712;

@@ -1,0 +1,4 @@
+sass --watch --style compressed sass:stylesheets
+sass --watch --style nested sass:stylesheets
+
+coffee -o javascripts -w -c coffeescripts/*.coffee

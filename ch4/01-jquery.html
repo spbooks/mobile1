@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>StarTrackr: Spot</title>
+
+		<meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+
+		<link type="text/css" rel="stylesheet" href="../stylesheets/screen.css" media="screen"/>
+		<link type="text/css" rel="stylesheet" href="../stylesheets/transitions.css" media="screen"/>
+		<style type="text/css" media="screen">
+
+		</style>
+	</head> 
+	<body>
+		<ul id="tab-bar">
+			<li id="tab-spots">
+				<a data-load="spots" href="../spots.html">
+				Spots
+				</a>
+			</li>		 
+			<li id="tab-sighting">
+				<a data-load="sightings" href="../new.html">
+				Add a sighting
+				</a>
+			</li>
+			<li id="tab-stars">
+				<a data-load="stars" href="../stars.html">
+				Stars
+				</a>
+			</li>
+		</ul><!-- #tab-bar -->
+
+		<div id="header">
+			<h1>Spots</h1>
+			<a href="#" class="back">Back</a>
+		</div><!-- #header -->
+
+		<div id="pages">
+			<div id="spots" class="current">
+					<!-- "Spots" content -->
+					 <div class="page-header">
+						 <h1>Planet Hollywood</h1>
+						 <span class="address">123 Fake St, Hollywood, CA</span>
+						 <a href="#" class="map">
+							 <img src="http://maps.google.com/maps/api/staticmap?zoom=14&size=65x60&maptype=roadmap&markers=size:mid%7Ccolor:red%7Chollywood+blvd+la&sensor=false"/>
+						 </a>
+					 </div>
+					 <ul id="sightings-list" class="table-view table-list">
+						 <li data-name="Garrett Murray">
+							 <a class="avatar" href="#">
+								 <img src="../images/sightings/garrett.jpg" alt="">
+							 </a>
+							 <h2><a href="star.html">Garrett Murray</a></h2>
+							 <span class="details">
+								 <strong class="time-ago">2 hours ago</strong>
+								 by
+								 <a href="#" class="user">makenosound</a>
+							 </span>
+						 </li>
+						 <li class="even" data-name="Bobs Yarunkle">
+							 <a class="avatar" href="#">
+								 <img src="../images/sightings/garrett.jpg" alt="">
+							 </a>
+							 <h2><a href="star.html">Bobs Yarunkle</a></h2>
+							 <span class="details">
+								 <strong class="time-ago">2 hours ago</strong>
+								 by
+								 <a href="#" class="user">makenosound</a>
+							 </span>
+						 </li>
+					 </ul><!-- #spots-list -->
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../javascripts/vendor/jquery-1.5.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+			alert("StarTrackr loaded!");
+		});
+		</script>
+	</body>
+</html>
