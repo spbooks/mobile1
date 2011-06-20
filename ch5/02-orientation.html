@@ -1,0 +1,187 @@
+<!doctype html>
+<!--[if IEMobile 7 ]><html class="no-js iem7 standalone"><![endif]-->
+<!--[if (gt IEMobile 7)|!(IEMobile)]><!--> <html class="no-js "><!--<![endif]-->
+  <head>
+    <title>StarTrackr</title>
+    
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=0;" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    
+    <!-- For iPad -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../apple-touch-icon-72x72-precomposed.png">
+    <!-- For iPhone 4 with high-resolution Retina display -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../apple-touch-icon-114x114-precomposed.png">
+    <!-- For iOS 1- and Blackberry 6 -->
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+    <!-- For pre-retina iPhone, iPod Touch, and Android 2.1+ devices -->
+    <link rel="apple-touch-icon-precomposed" href="../apple-touch-icon-precomposed.png">
+    <!-- Startup image -->
+    <link rel="apple-touch-startup-image" href="../apple-touch-startup-image.png">
+    
+    <link type="text/css" rel="stylesheet" href="../stylesheets/screen.css" media="screen"/>
+    <link type="text/css" rel="stylesheet" href="../stylesheets/transitions.css" media="screen"/>
+    <style>
+      .back {display: none;}
+      
+      #about {
+        display:none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        background-color: #400;
+        z-index: 250;
+      }
+      
+      #about h1 {
+        color: white;
+        font-size: 1.285em;
+      }
+    </style>
+  </head>
+  <body>
+    <ul id="tab-bar" class="page-spots">
+      <li id="tab-spots">
+        <a href="#page-spots">
+          Spots
+        </a>
+      </li>      
+      <li id="tab-sighting">
+        <a href="#page-sightings">
+          Add a sighting
+        </a>
+      </li>
+      <li id="tab-stars">
+        <a href="#page-stars">
+          Stars
+        </a>
+      </li>
+    </ul><!-- #tab-bar -->
+  
+  <div id="pages">
+    <!-- Spots page -->
+    <div id="page-spots" class="page-spots current">
+      <div class="header">
+        <h1>Spots</h1>
+        <a href="#" class="back">Back</a>
+      </div><!-- .header -->
+    
+      <div class="wrapper">
+        <div class="scroller" id="spots-scroll">
+          <form id="spots-location" action="/location/" method="post">
+            <fieldset>
+              <label for="address">
+                <span>Location</span>
+                <input type="text" placeholder="Enter a location" name="address" id="address"/>
+              </label>
+              <a href="#" class="locate-me">Locate me</a>
+            </fieldset>
+            <button type="submit">Find</button>
+          </form><!-- #spot-location -->
+        
+          <ul id="spots-list" class="table-view table-action">
+            <li>
+              <a href="spot.html">
+                <h2>Planet Hollywood</h2>
+                <span class="relative-distance">233m away</span>
+                <span class="sightings">3</span>
+              </a>
+            </li>
+            <li class="even">
+              <a href="spot.html">
+                <h2>Myles&rsquo; House</h2>
+                <span class="relative-distance">506m away</span>
+                <span class="sightings">5</span>
+              </a>
+            </li>
+            <li>
+              <a href="spot.html">
+                <h2>Edgar&rsquo;s Inn</h2>
+                <span class="relative-distance">1.2km away</span>
+                <span class="sightings">15</span>
+              </a>
+            </li>
+            <li class="even">
+              <a href="spot.html">
+                <h2>Hard Rock Caf&eacute;</h2>
+                <span class="relative-distance">1.2km away</span>
+                <span class="sightings">15</span>
+              </a>
+            </li>
+            <li>
+              <a href="spot.html">
+                <h2>Planet Hollywood sideshow has a long name</h2>
+                <span class="relative-distance">233m away</span>
+                <span class="sightings">3</span>
+              </a>
+            </li>
+            <li class="even">
+              <a href="spot.html">
+                <h2>Myles&rsquo; House</h2>
+                <span class="relative-distance">506m away</span>
+                <span class="sightings">5</span>
+              </a>
+            </li>
+            <li>
+              <a href="spot.html">
+                <h2>Edgar&rsquo;s Inn</h2>
+                <span class="relative-distance">1.2km away</span>
+                <span class="sightings">15</span>
+              </a>
+            </li>
+            <li class="even">
+              <a href="spot.html">
+                <h2>Hard Rock Caf&eacute;</h2>
+                <span class="relative-distance">1.2km away</span>
+                <span class="sightings">15</span>
+              </a>
+            </li>
+            <li>
+              <a href="spot.html">
+                <h2>Edgar&rsquo;s Inn</h2>
+                <span class="relative-distance">1.2km away</span>
+                <span class="sightings">15</span>
+              </a>
+            </li>
+            <li class="even">
+              <a href="spot.html">
+                <h2>Hard Rock Caf&eacute;</h2>
+                <span class="relative-distance">1.2km away</span>
+                <span class="sightings">15</span>
+              </a>
+            </li>
+          </ul><!-- #spots-list -->
+          <a href="#" id="next-page">
+            Next page
+          </a>
+        </div><!-- .scroller -->
+        <div class="footer">
+          <span class="site-switch">
+            Switch to
+            <a href="#">standard site</a>
+          </span>
+          <a href="#" class="authenticate">Log out</a>
+        </div><!-- .footer -->
+      </div><!-- .wrapper -->
+    </div><!-- #page-spots -->
+  </div>
+
+  <!-- About page, revealed via device rotation -->
+  <div id="about">
+    <div id="header">
+      <h1>About Us!</h1>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
+  <script src="../javascripts/vendor/jquery.tmpl.min.js"></script>
+  
+  <script type="text/javascript" charset="utf-8" src="../javascripts/ch5/02-orientation.js"></script>
+
+  </body>
+</html>

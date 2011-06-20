@@ -24,6 +24,7 @@ body {
   line-height: 1.3; }
 
 #pages {
+  position: relative;
   background: #37040a url(../images/background-body.gif); }
 
 @media only screen and (max-device-width: 480px) {
@@ -33,8 +34,6 @@ body {
 a {
   color: #ebc466;
   font-weight: bold; }
-  
-
   
 #tab-bar {
   zoom: 1;

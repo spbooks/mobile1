@@ -1,3 +1,18 @@
+#pages {
+  position: relative;
+}
+#pages > div {
+  display:none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+#pages > div.current {
+	display: block;
+}
+
 .in, .out {
 	-webkit-animation-timing-function: ease-in-out;
 	-webkit-animation-duration: 300ms;

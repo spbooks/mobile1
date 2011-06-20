@@ -21,24 +21,7 @@
     
     <link type="text/css" rel="stylesheet" href="../stylesheets/screen.css" media="screen"/>
     <link type="text/css" rel="stylesheet" href="../stylesheets/transitions.css" media="screen"/>
-    
-    
-    <style type="text/css" media="screen">
-    #pages {
-      position: relative;
-    }
-    #pages > div {
-      display: none;
-      position: absolute;
-      left: 0;
-      width: 100%;
-    }
-    
-    #pages > div.current {
-      display: block;
-    }
 
-    </style>
   </head>
   <body>
     <ul id="tab-bar" class="page-spots">
@@ -61,7 +44,7 @@
   
   <div id="pages">
     <!-- Spots page -->
-    <div id="page-spots" class="page-spots">
+    <div id="page-spots" class="page-spots current">
       <div class="header">
         <h1>Spots</h1>
         <a href="#" class="back">Back</a>
@@ -293,7 +276,7 @@
 
       <div class="wrapper">
         <div class="scroller">
-          <ul id="sightings-list" class="table-view table-action">
+          <ul id="stars-list" class="table-view table-action">
             <!--<li>
               <a href="star.html">
                 <h2>I am a celebrity with an incredibly long name for some unfathomable reason</h2>
@@ -445,145 +428,8 @@
     <script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>
     <script src="../javascripts/vendor/helper.js"></script>
-    <script src="../javascripts/vendor/iscroll-min.js" type="text/javascript" charset="utf-8"></script>
+    
+    <script type="text/javascript" charset="utf-8" src="../javascripts/ch4/09-slide.js"></script>
 
-    <script type="text/javascript" charset="utf-8">
-      // I had to create a changePage function because we can't
-      // "pushState" in the transition called from onPopState
-      window.addEventListener("popstate", function(event) {
-        if(!event.state){
-          return;
-        }
-
-        // Transition back - but in reverse.
-        transition(
-          event.state.page, 
-          event.state.transition, 
-          !event.state.reverse
-        );
-        
-        if(event.state.first) {
-          console.log(event.state.page);//$(event.state.page).find(".back").hide();
-        }
-      }, false);
-      
-      $(window).bind("popstate", function(e){
-          console.log(e.originalEvent.state)
-      })
-
-      $(document).ready(function() {
-        // All "pushStates" have been moved to the new "changeFunction"
-
-        // Ex 03-02a - fade with function
-        $("#tab-bar a").click(function(e){
-          e.preventDefault();
-          var nextPage = $(e.target.hash);
-          
-          changePage(e.target.hash, "show");
-        });
-
-        changePage("#page-spots", "show");
-        
-        // Set the tab bar position
-        setTabBarPosition();
-      });
-
-// Ex 03-03a - list...
-// Also - I was going to "generalise" these lists - using "data-name" or something...
-      $("#spots-list li").click(function(e){
-        e.preventDefault();
-        changePage("#page-spot", "push");
-      });
-      $("#sightings-list li").click(function(e){
-        e.preventDefault();
-        changePage("#page-star", "push");
-      });
-      $("#star-spots-list li").click(function(e){
-        e.preventDefault();
-        changePage("#page-spot", "push");
-      });
-      
-      // Handle back clicks
-      $(".back").live("click",function(e){
-        e.preventDefault();
-        window.history.back();
-      });
-      
-      var pageState = {
-        state: {},
-        title: "",
-        url: ""
-      };
-      var first = true;
-      function changePage(page, type, reverse) {
-
-
-        pageState = {
-          state: {
-            page: page,
-            transition: type,
-            reverse: !!reverse
-          },
-          title: "",
-          url: page
-        }
-        if(first) {
-          pageState.state.first = true;
-          first = false;
-        }
-        window.history.pushState(pageState.state, pageState.title, pageState.url);
-        
-        // Do the real transition
-        transition(page, type, reverse)
-      }
-      // Ex 03-03a - transition with reverse
-      function transition(toPage, type, reverse){
-
-        if(toPage) {
-          // Set the current icon
-          $("#tab-bar").attr("className", toPage.slice(1));
-        }
-
-        var toPage = $(toPage),
-          fromPage = $("#pages .current"),
-          reverse = reverse ? "reverse" : "";
-
-        // This should be cleared on launch & when navigatin'
-        toPage.find(".back").toggle(true);
-        
-        if(toPage.hasClass("current") || toPage === fromPage) { 
-          return; 
-        };
-
-        setTabBarPosition();
-
-        // For non-animatey browsers
-        if(!("WebKitTransitionEvent" in window)){
-            toPage.addClass("current");
-            fromPage.removeClass("current");
-            return;
-        }
-        
-        toPage
-          .addClass("current " + type + " in " + reverse)
-          .one("webkitAnimationEnd", function(){
-            fromPage.removeClass("current " + type + " out " + reverse);
-            toPage.removeClass(type + " in " + reverse);
-          });
-        fromPage.addClass(type + " out " + reverse);
-      }
-      
-      // Move the tab bar
-      var setTabBarPosition = function() {
-        if(navigator.standalone) {
-          document.getElementById('tab-bar').style.top = (window.pageYOffset + window.innerHeight - 65) + 'px';
-        }
-      }
-
-      // Bind setTabBarPosition to scoll event
-      window.onscroll = function() {
-        setTabBarPosition();
-      }
-    </script>
   </body>
 </html>

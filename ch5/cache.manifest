@@ -1,14 +1,13 @@
 CACHE MANIFEST
-# v0.11
+# v0.14
 
-06-01-cache-manifest.html
+07-cache-manifest.html
 
 ../stylesheets/screen.css
 ../javascripts/vendor/jquery-1.5.min.js
 ../javascripts/vendor/modernizr-1.7.min.js
+../javascripts/vendor/jquery.tmpl.min.js
 ../images/background-body.gif
-../images/icon-location.svg
-../images/icon-sightings-normal.svg
-../images/icon-stars-normal.svg
+../images/sprite.svg
 ../images/stars/garrett.jpg
 ../images/sightings/garrett.jpg
