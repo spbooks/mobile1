@@ -9,19 +9,10 @@
 
 		<link type="text/css" rel="stylesheet" href="../stylesheets/screen.css" media="screen"/>
 		<style type="text/css" media="screen">
-			#pages {
-				position: relative;
-			}
-			#pages > div {
-				display:none;
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-			}
-			#pages > div.current {
-				display: block;
-			}
+      #addToHome {
+        
+        display: none;
+      }
 		</style>
 	</head> 
 	<body>
@@ -43,12 +34,11 @@
 			</li>
 		</ul><!-- #tab-bar -->
 
-		<div id="header">
+		<div id="header" class="header">
 			<h1>Spots</h1>
 			<a href="#" class="back">Back</a>
 		</div><!-- #header -->
 
-		<!-- CHANGE: added pages for container -->
 		<div id="pages">
 			<div id="spots" class="current">
 				<!-- "Spots" content -->
@@ -82,45 +72,10 @@
 				 </ul><!-- #spots-list -->
 			</div>
 		</div>
-		<script type="text/javascript">
-		if(!window.jQuery){
-			document.write(unescape('%3Cscript src="../javascripts/vendor/jquery-1.5.min.js"%3E%3C/script%3E'));
-		}
-		</script>
-		<script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				console.log("localStorage" in window);
-				var store = window.localStorage;
-				store.setItem("fav-celeb", "Johnny Deep");
-				var fav = store.getItem("fav-celeb");
-				console.log(fav);
-
-				console.log("should be null: ", store.getItem("no-key-of-this-name"));
-				store["lastSpot"] = new Date();
-				store.lastLocation = "Hollywood";
-
-				var spotTime = new Date(store["lastSpot"]),
-					spotPlace = store.lastLocation;
-
-				var visits = store["visitCount"];
-				if(visits == null){
-					visits = 0;
-				} else {
-					visits = parseInt(visits, 10);	
-				}
-				store["visitCount"] = visits + 1;
-				console.log(visits);
-
-				console.log(spotTime.getTime(), spotPlace);
-
-				console.log(store.length);
-
-				for(var i = 0; i < store.length; i++) {
-					//console.log(store.key(i) + ":" + store[store.key(i)]);
-				}
-
-			});
-		</script>
+		<div id="addToHome" class="footer">
+		  <p>Add StarTrackr to your home screen!</p>
+		</div>
+    <script src="../javascripts/vendor/jquery-1.5.min.js"></script>
+		<script type="text/javascript" src="../javascripts/ch6/10-storage.js"></script>
 	</body>
 </html>

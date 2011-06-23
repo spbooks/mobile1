@@ -9,19 +9,6 @@
 
 		<link type="text/css" rel="stylesheet" href="../stylesheets/screen.css" media="screen"/>
 		<style type="text/css" media="screen">
-			#pages {
-				position: relative;
-			}
-			#pages > div {
-				display:none;
-				position: absolute;
-				top: 0;
-				left: 0;
-				width: 100%;
-			}
-			#pages > div.current {
-				display: block;
-			}
 			
 			#mask {
 				display: none;
@@ -68,12 +55,11 @@
 			</li>
 		</ul><!-- #tab-bar -->
 
-		<div id="header">
+		<div id="header" class="header">
 			<h1>Spots</h1>
 			<a href="#" class="back">Back</a>
 		</div><!-- #header -->
 
-		<!-- CHANGE: added pages for container -->
 		<div id="pages">
 			<div id="spots" class="current">
 				<!-- "Spots" content -->
@@ -108,100 +94,15 @@
 			</div>
 		</div>
 		
-				
 		<div id="mask"></div>
 		<div id="dialog">
-			<h3 class="heading"></h3>
-			<span class="content"></span>
-			<button id="ok">OK</button>
-			<button id="cancel">Cancel</button>
-		</div>
-
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
-		<script type="text/javascript">
-		if(!window.jQuery){
-			document.write(unescape('%3Cscript src="../javascripts/vendor/jquery-1.5.min.js"%3E%3C/script%3E'));
-		}
-		</script>
-		<script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
-		<script type="text/javascript">
+      <h3 class="heading"></h3>
+      <span class="content"></span>
+      <button id="ok">OK</button>
+      <button id="cancel">Cancel</button>
+    </div>
 		
-		function showDialog(options, OKCallback, CancelCallback) {
-			// Set defaults.
-			var dialog = $("#dialog"),
-				settings = $.extend({
-					heading: "Notice",
-					content: "",
-					cancel: false
-				}, options);
-
-			// Set the text
-			dialog.find(".heading").text(settings.heading);
-			dialog.find(".content").text(settings.content);
-			dialog.find("#ok").one("click", function(){
-				$("#dialog,#mask").fadeOut();
-				OKCallback && OKCallback();
-			});
-
-			if(settings.cancel){
-				dialog.find("#cancel")
-					.one("click", function(){
-						$("#dialog,#mask").fadeOut();
-						CancelCallback && CancelCallback();
-					})
-					.show();
-			}
-			else {
-				dialog.find("#cancel").hide();
-			}
-			
-			$("#dialog,#mask").fadeIn();
-		}
-
-		showDialog({
-			heading: "Warning!",
-			content: "This is a thing of thing.",
-			cancel: true
-		}, function(){
-			alert("clicked ok!");
-		}, function(){
-			alert("clicked no.")
-		});
-
-	/*
-		Ex 03-01a simple.
-		$("#dialog,#mask").fadeIn();
-			$("#ok").click(function(){
-				$("#dialog,#mask").fadeOut();
-			});*/
-
-/*
-		// Ex 03-01c - Throbberz
-		function throbber(blnShow) {
-		    var elements = $("#dialog,#mask");
-		    if(blnShow) {
-		        elements.fadeIn();
-		    }
-		    else {
-		        elements.fadeOut();
-		    }
-		}
-
-		throbber(true);
-		$.ajax({
-		    url: "http://search.twitter.com/search.json?q=stars&callback=?",
-		    success: function(data){
-		        // Do something with the data
-		    },
-		    complete: function(){
-		        throbber(false);
-		    }
-		});*/
-
-
-		$(document).ready(function() {
-
-		});
-		</script>
+    <script src="../javascripts/vendor/jquery-1.5.min.js"></script>
+    <script src="../javascripts/ch6/08-dialog.js"></script>
 	</body>
 </html>

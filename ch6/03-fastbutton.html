@@ -43,12 +43,11 @@
 			</li>
 		</ul><!-- #tab-bar -->
 
-		<div id="header">
+		<div id="header" class="header">
 			<h1>Spots</h1>
 			<a href="#" class="back">Back</a>
 		</div><!-- #header -->
 
-		<!-- CHANGE: added pages for container -->
 		<div id="pages">
 			<div id="spots" class="current">
 				<!-- "Spots" content -->
@@ -56,28 +55,34 @@
 					 <h1>Planet Hollywood</h1>
 					 <span class="address">123 Fake St, Hollywood, CA</span>
 				 </div>
-				 <button id="addNote">Add Note</button>
-				 <ul id="notes-list" class="table-view table-list">
-					
+				 <ul id="sightings-list" class="table-view table-list">
+					 <li data-name="Garrett Murray">
+						 <a class="avatar" href="#">
+							 <img src="../images/sightings/garrett.jpg" alt="">
+						 </a>
+						 <h2><a href="star.html">Garrett Murray</a></h2>
+						 <span class="details">
+							 <strong class="time-ago">2 hours ago</strong>
+							 by
+							 <a href="#" class="user">makenosound</a>
+						 </span>
+					 </li>
+					 <li class="even" data-name="Bobs Yarunkle">
+						 <a class="avatar" href="#">
+							 <img src="../images/sightings/garrett.jpg" alt="">
+						 </a>
+						 <h2><a href="star.html">Bobs Yarunkle</a></h2>
+						 <span class="details">
+							 <strong class="time-ago">2 hours ago</strong>
+							 by
+							 <a href="#" class="user">makenosound</a>
+						 </span>
+					 </li>
 				 </ul><!-- #spots-list -->
 			</div>
-			<img src="http://placekitten.com/200/301" /><br style="clear:both">
-			<img src="http://placekitten.com/200/300" /><br style="clear:both">
-			<img src="http://placekitten.com/200/300" />
 		</div>
-		<script type="text/javascript">
-		if(!window.jQuery){
-			document.write(unescape('%3Cscript src="../javascripts/vendor/jquery-1.5.min.js"%3E%3C/script%3E'));
-		}
-		</script>
-		<script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-			});
-			$(window).load(function(){
-				//setTimeout(function(){window.scrollTo(0, 1);}, 1000);
-			});
-			setTimeout(function(){window.scrollTo(0, 1);}, 750)
-		</script>
+    <script src="../javascripts/vendor/jquery-1.5.min.js"></script>
+    <script src="../javascripts/vendor/helper.js"></script>
+    <script src="../javascripts/ch6/03-fastbutton.js"></script>
 	</body>
 </html>

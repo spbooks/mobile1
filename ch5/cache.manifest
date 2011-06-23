@@ -11,3 +11,6 @@ CACHE MANIFEST
 ../images/sprite.svg
 ../images/stars/garrett.jpg
 ../images/sightings/garrett.jpg
+
+NETWORK:
+*

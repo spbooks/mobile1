@@ -30,7 +30,7 @@ function fetchLocations(lat, lng) {
   var keywords = $("#address").val(),
       location = "&ll=" + lat + "," + lng,
       query = keywords ? "&query=" + keywords : "",
-      secrets = "&client_id=JTHNTGXROWPZVZ1MNNWJ411PIPDAOO3I4VTKC4TNXNDVALJ3&client_secret=WMX25UJBHEZMGDXKVZR2TTC3CKA2W3E4JC4HMVVZ3W321A4Q";
+      secrets = "&client_id=YOUR_CLIENT_ID_GOES_HERE&client_secret=YOUR_CLIENT_SECRET_GOES_HERE";
   $.ajax({
     url: "https://api.foursquare.com/v2/venues/search?" + location + query + secrets + "&callback=",
     type: "GET",

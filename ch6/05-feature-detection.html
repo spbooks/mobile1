@@ -22,16 +22,6 @@
 			#pages > div.current {
 				display: block;
 			}
-			
-			#addToHome {
-			    background-color: #000;
-			    color: #fff;
-			    width: 100%;
-			    height: 100px;
-			    position: absolute;
-			    display: none;
-			    bottom: 0;
-			}
 		</style>
 	</head> 
 	<body>
@@ -53,12 +43,11 @@
 			</li>
 		</ul><!-- #tab-bar -->
 
-		<div id="header">
+		<div id="header" class="header">
 			<h1>Spots</h1>
 			<a href="#" class="back">Back</a>
 		</div><!-- #header -->
 
-		<!-- CHANGE: added pages for container -->
 		<div id="pages">
 			<div id="spots" class="current">
 				<!-- "Spots" content -->
@@ -92,51 +81,6 @@
 				 </ul><!-- #spots-list -->
 			</div>
 		</div>
-		
-		<div id="addToHome">
-			StarTrackr tracks better
-			from your home screen!
-		</div>
-		<script type="text/javascript">
-		if(!window.jQuery){
-			document.write(unescape('%3Cscript src="../javascripts/vendor/jquery-1.5.min.js"%3E%3C/script%3E'));
-		}
-		</script>
-		<script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
-		<script type="text/javascript">
-		var $has = {
-			localStorage: "localStorage" in window,
-			standalone: "standalone" in window.navigator
-		}
-
-		$(document).ready(function() {
-			if($has.standalone && !window.navigator.standalone) {
-/*
-				// Ex 03-03-a - always show
-				$("#addToHome").slideDown()
-					.click(function(){
-						$(this).slideUp(function(){
-							$(this).remove();
-						});
-					});*/
-
-				// Ex 04-01-b - local storagey.
-				var seen = false;
-
-				if($has.localStorage) {
-					seen = window.localStorage["bubblev"] || false;
-					window.localStorage["bubbled"] = 1;
-				}
-				if(!seen) {
-					$("#addToHome").slideDown()
-						.click(function(){
-							$(this).slideUp(function() {
-								$(this).remove();
-							});
-						});
-				}
-			}
-		});
-		</script>
-	</body>
+    <script src="../javascripts/vendor/jquery-1.5.min.js"></script>
+    <script src="../javascripts/ch6/05-feature-detection.js"></script>	</body>
 </html>

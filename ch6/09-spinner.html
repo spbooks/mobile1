@@ -9,19 +9,28 @@
 
 		<link type="text/css" rel="stylesheet" href="../stylesheets/screen.css" media="screen"/>
 		<style type="text/css" media="screen">
-			#pages {
-				position: relative;
-			}
-			#pages > div {
-				display:none;
-				position: absolute;
-				top: 0;
+			#mask {
+				display: none;
+				background-color: #000;
+				opacity: 0.6;
+				right: 0;
+				z-index: 500;
+				top:0;
 				left: 0;
-				width: 100%;
+				bottom: 0px;
+				position: absolute;
 			}
-			#pages > div.current {
-				display: block;
-			}
+			
+			#spinner {
+				display: none;
+				position: absolute;
+				height: 200px;
+				top: 50%;
+				z-index: 600;
+				left: 50%;
+		    margin-left: -64px;
+		    width: 128px;
+			}			
 		</style>
 	</head> 
 	<body>
@@ -43,12 +52,11 @@
 			</li>
 		</ul><!-- #tab-bar -->
 
-		<div id="header">
+		<div id="header" class="header">
 			<h1>Spots</h1>
 			<a href="#" class="back">Back</a>
 		</div><!-- #header -->
 
-		<!-- CHANGE: added pages for container -->
 		<div id="pages">
 			<div id="spots" class="current">
 				<!-- "Spots" content -->
@@ -82,43 +90,13 @@
 				 </ul><!-- #spots-list -->
 			</div>
 		</div>
-		<script type="text/javascript">
-		if(!window.jQuery){
-			document.write(unescape('%3Cscript src="../javascripts/vendor/jquery-1.5.min.js"%3E%3C/script%3E'));
-		}
-		</script>
-		<script type="text/javascript" src="../javascripts/vendor/modernizr-1.7.min.js"></script>
-		<script src="../javascripts/vendor/fastButton.js" type="text/javascript" charset="utf-8"></script>
-		<script type="text/javascript">
-			$(document).ready(function() {
-				/*// Ex 02-01a - simple
-				$("#sightings-list li").bind("touchend", function(){
-					alert("clickk");
-				});*/
-
-				// Ex 02-01b - trak.
-				$("#sightings-list li").bind({
-					"touchstart": function(e){
-						$(this).data("clicked", new Date().getTime());
-					},
-					"touchend": function(e){
-						var now = new Date().getTime(),
-							start = $(this).data("clicked");
-						if(now - start > 400) {
-							return
-						};
-						// Do code!
-					}
-				});
-
-				return;
-
-				$("#sightings-list li").each(function(){
-					new MBP.fastButton(this, function() {
-						alert("clicked")
-					});	
-				});
-			});
-		</script>
+		
+    <div id="spinner">
+      <img src="../images/spinner.gif" />
+    </div>
+    <div id="mask"></div>
+		
+    <script src="../javascripts/vendor/jquery-1.5.min.js"></script>
+    <script src="../javascripts/ch6/09-spinner.js"></script>
 	</body>
 </html>
